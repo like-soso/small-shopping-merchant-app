@@ -13,6 +13,10 @@
     <string name="network_error_description">서버와 연결이 원활하지 않습니다.\n인터넷 연결 상태를 확인하고 잠시 후 다시 시도해주세요.</string>
     <string name="network_error_ok">확인</string>
 
+    <string name="login_error_title">자동 로그인 실패</string>
+    <string name="login_error_description">자동 로그인 정보가 올바르지 않습니다.\n다시 로그인해주세요.</string>
+    <string name="login_error_ok">확인</string>
+
     <string name="signup_form_title">회원가입</string>
     <string name="signup_form_signup">가입하기</string>
     <string name="signup_form_hint_email">이메일</string>
