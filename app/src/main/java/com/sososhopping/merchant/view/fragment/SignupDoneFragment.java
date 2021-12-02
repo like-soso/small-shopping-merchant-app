@@ -10,18 +10,18 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.sososhopping.merchant.R;
-import com.sososhopping.merchant.databinding.FragmentStartBinding;
+import com.sososhopping.merchant.databinding.FragmentSignupDoneBinding;
 
-public class StartFragment extends Fragment {
+public class SignupDoneFragment extends Fragment {
 
-    private FragmentStartBinding binding;
+    FragmentSignupDoneBinding binding;
 
-    public StartFragment() {
+    public SignupDoneFragment() {
 
     }
 
-    public static StartFragment newInstance() {
-        return new StartFragment();
+    public static SignupDoneFragment newInstance() {
+        return new SignupDoneFragment();
     }
 
     @Override
@@ -32,12 +32,13 @@ public class StartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_start, container, false);
+        // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup_done, container, false);
 
-        binding.signup.setOnClickListener(new View.OnClickListener() {
+        binding.ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_startFragment_to_signupFormFragment);
+                navigateUp();
             }
         });
 
@@ -48,5 +49,9 @@ public class StartFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void navigateUp() {
+        Navigation.findNavController(binding.getRoot()).navigateUp();
     }
 }
