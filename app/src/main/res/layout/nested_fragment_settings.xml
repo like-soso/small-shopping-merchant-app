@@ -84,18 +84,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logout" />
 
-        <Button
-            android:id="@+id/withdrawal"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_withdrawal"
-            android:textAlignment="textStart"
-            android:textColor="@color/negative"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/question" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
