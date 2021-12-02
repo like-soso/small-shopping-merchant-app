@@ -95,9 +95,14 @@ public class LoginDialog extends DialogFragment {
         SharedPreferenceManager.setString(getContext(), Constant.SHARED_PREFERENCE_KEY_ID, id);
         SharedPreferenceManager.setString(getContext(), Constant.SHARED_PREFERENCE_KEY_PASSWORD, password);
         TokenStore.storeAuthToken(token);
+        navigateToMain();
     }
 
     private void onNetworkError() {
         NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
+    }
+
+    private void navigateToMain() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_loginDialog_to_mainFragment);
     }
 }
