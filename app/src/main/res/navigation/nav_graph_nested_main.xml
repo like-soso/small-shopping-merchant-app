@@ -9,7 +9,7 @@
         android:id="@+id/nestedShopListFragment"
         android:name="com.sososhopping.merchant.view.fragment.NestedStoreListFragment"
         android:label="nested_fragment_shop_list"
-        tools:layout="@layout/nested_fragment_store_list" >
+        tools:layout="@layout/fragment_nested_store_list" >
         <action
             android:id="@+id/action_nestedShopListFragment_to_nestedSettingsFragment"
             app:destination="@id/nestedSettingsFragment"
@@ -20,7 +20,7 @@
         android:id="@+id/nestedSettingsFragment"
         android:name="com.sososhopping.merchant.view.fragment.NestedSettingsFragment"
         android:label="nested_fragment_settings"
-        tools:layout="@layout/nested_fragment_settings" >
+        tools:layout="@layout/fragment_nested_settings" >
         <action
             android:id="@+id/action_nestedSettingsFragment_to_nestedShopListFragment"
             app:destination="@id/nestedShopListFragment"

@@ -65,6 +65,12 @@
         <action
             android:id="@+id/action_mainFragment_to_questionDialog"
             app:destination="@id/questionDialog" />
+        <action
+            android:id="@+id/action_mainFragment_to_userUpdateFragment"
+            app:destination="@id/userUpdateFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_passwordUpdateFragment"
+            app:destination="@id/passwordUpdateFragment" />
     </fragment>
     <dialog
         android:id="@+id/questionDialog"
@@ -76,4 +82,14 @@
         android:name="com.sososhopping.merchant.view.fragment.ForgotFragment"
         android:label="fragment_forgot"
         tools:layout="@layout/fragment_forgot" />
+    <fragment
+        android:id="@+id/userUpdateFragment"
+        android:name="com.sososhopping.merchant.view.fragment.UserUpdateFragment"
+        android:label="fragment_user_update"
+        tools:layout="@layout/fragment_user_update" />
+    <fragment
+        android:id="@+id/passwordUpdateFragment"
+        android:name="com.sososhopping.merchant.view.fragment.PasswordUpdateFragment"
+        android:label="fragment_password_update"
+        tools:layout="@layout/fragment_password_update" />
 </navigation>
