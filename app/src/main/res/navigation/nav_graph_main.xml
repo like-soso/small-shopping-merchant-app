@@ -45,11 +45,19 @@
         tools:layout="@layout/dialog_login" >
         <action
             android:id="@+id/action_loginDialog_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="true" />
     </dialog>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.sososhopping.merchant.view.fragment.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_startFragment"
+            app:destination="@id/startFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
