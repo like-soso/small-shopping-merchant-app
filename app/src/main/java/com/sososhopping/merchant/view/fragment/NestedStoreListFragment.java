@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sososhopping.merchant.R;
-import com.sososhopping.merchant.databinding.NestedFragmentStoreListBinding;
+import com.sososhopping.merchant.databinding.FragmentNestedStoreListBinding;
 import com.sososhopping.merchant.model.store.entity.StoreBrief;
 import com.sososhopping.merchant.model.store.repository.StoreRepository;
 import com.sososhopping.merchant.view.adapter.StoreListRecyclerViewAdapter;
@@ -21,7 +21,7 @@ import java.util.function.Consumer;
 
 public class NestedStoreListFragment extends Fragment {
 
-    NestedFragmentStoreListBinding binding;
+    FragmentNestedStoreListBinding binding;
 
     public NestedStoreListFragment() {
 
@@ -40,7 +40,7 @@ public class NestedStoreListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.nested_fragment_store_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nested_store_list, container, false);
 
         Consumer<List<StoreBrief>> onShopListAcquired = this::onShopListAcquired;
         Runnable onFailed = this::onNetworkError;

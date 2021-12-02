@@ -7,18 +7,17 @@ import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.sososhopping.merchant.R;
-import com.sososhopping.merchant.databinding.NestedFragmentSettingsBinding;
+import com.sososhopping.merchant.databinding.FragmentNestedSettingsBinding;
 import com.sososhopping.merchant.utils.Constant;
 import com.sososhopping.merchant.utils.sharedpreferences.SharedPreferenceManager;
 import com.sososhopping.merchant.utils.token.TokenStore;
 
 public class NestedSettingsFragment extends Fragment {
 
-    NestedFragmentSettingsBinding binding;
+    FragmentNestedSettingsBinding binding;
 
     public NestedSettingsFragment() {
 
@@ -37,7 +36,7 @@ public class NestedSettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.nested_fragment_settings, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nested_settings, container, false);
 
         binding.logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +53,20 @@ public class NestedSettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_mainFragment_to_questionDialog);
+            }
+        });
+
+        binding.about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_mainFragment_to_userUpdateFragment);
+            }
+        });
+
+        binding.password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_mainFragment_to_passwordUpdateFragment);
             }
         });
 
