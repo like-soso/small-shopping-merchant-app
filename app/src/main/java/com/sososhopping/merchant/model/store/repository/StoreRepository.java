@@ -1,10 +1,6 @@
 package com.sososhopping.merchant.model.store.repository;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
-import com.sososhopping.merchant.model.store.entity.StoreList;
+import com.sososhopping.merchant.model.store.entity.StoreBrief;
 import com.sososhopping.merchant.model.store.service.StoreService;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
 import com.sososhopping.merchant.utils.token.TokenStore;
@@ -32,10 +28,10 @@ public class StoreRepository {
         return instance;
     }
 
-    public void requestStoreList(Consumer<List<StoreList>> onSuccess, Runnable onError) {
-        service.requestStoreList(TokenStore.getAuthToken()).enqueue(new Callback<List<StoreList>>() {
+    public void requestStoreList(Consumer<List<StoreBrief>> onSuccess, Runnable onError) {
+        service.requestStoreList(TokenStore.getAuthToken()).enqueue(new Callback<List<StoreBrief>>() {
             @Override
-            public void onResponse(Call<List<StoreList>> call, Response<List<StoreList>> response) {
+            public void onResponse(Call<List<StoreBrief>> call, Response<List<StoreBrief>> response) {
                 if (response.code() == 200) {
                     onSuccess.accept(response.body());
                 } else {
@@ -44,7 +40,7 @@ public class StoreRepository {
             }
 
             @Override
-            public void onFailure(Call<List<StoreList>> call, Throwable t) {
+            public void onFailure(Call<List<StoreBrief>> call, Throwable t) {
                 onError.run();
             }
         });

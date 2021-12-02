@@ -1,28 +1,25 @@
 package com.sososhopping.merchant.view.adapter;
 
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.ItemStoreListBinding;
-import com.sososhopping.merchant.model.store.entity.StoreList;
+import com.sososhopping.merchant.model.store.entity.StoreBrief;
 
 import java.util.List;
 
 public class StoreListRecyclerViewAdapter extends RecyclerView.Adapter<StoreListRecyclerViewAdapter.ViewHolder>{
 
-    private final List<StoreList> mValues;
+    private final List<StoreBrief> mValues;
 
-    public StoreListRecyclerViewAdapter(List<StoreList> items) {
+    public StoreListRecyclerViewAdapter(List<StoreBrief> items) {
         mValues = items;
     }
 
@@ -79,7 +76,7 @@ public class StoreListRecyclerViewAdapter extends RecyclerView.Adapter<StoreList
         public final TextView mDescriptionView;
         public final ImageView mImage;
         public final ImageView mVerified;
-        public StoreList mItem;
+        public StoreBrief mItem;
 
         public ViewHolder(ItemStoreListBinding binding) {
             super(binding.getRoot());
