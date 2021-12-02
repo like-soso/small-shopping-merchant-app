@@ -1,9 +1,13 @@
 package com.sososhopping.merchant.model.auth.repository;
 
 import com.sososhopping.merchant.model.auth.dto.request.EmailDuplicationCheckRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.LoginRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.SignupRequestDto;
+import com.sososhopping.merchant.model.auth.dto.response.LoginResponseDto;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
 import com.sososhopping.merchant.model.auth.service.AuthService;
+
+import java.util.function.BiConsumer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -66,6 +70,27 @@ public class AuthRepository {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 onFailed.run();
+            }
+        });
+    }
+
+    public void requestLogin(LoginRequestDto dto,
+                             BiConsumer<LoginRequestDto, LoginResponseDto> onSuccess,
+                             Runnable onFailed,
+                             Runnable onError){
+        service.requestLogin(dto).enqueue(new Callback<LoginResponseDto>() {
+            @Override
+            public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {
+                if(response.code() == 200) {
+                    onSuccess.accept(dto ,response.body());
+                } else {
+                    onFailed.run();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponseDto> call, Throwable t) {
+                onError.run();
             }
         });
     }

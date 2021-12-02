@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_startFragment_to_signupFormFragment"
             app:destination="@id/signupFormFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_loginDialog"
+            app:destination="@id/loginDialog" />
     </fragment>
 
     <dialog
@@ -35,4 +38,9 @@
         android:name="com.sososhopping.merchant.view.fragment.SignupDoneFragment"
         android:label="fragment_signup_done"
         tools:layout="@layout/fragment_signup_done" />
+    <dialog
+        android:id="@+id/loginDialog"
+        android:name="com.sososhopping.merchant.view.dialog.LoginDialog"
+        android:label="login_dialog"
+        tools:layout="@layout/dialog_login" />
 </navigation>
