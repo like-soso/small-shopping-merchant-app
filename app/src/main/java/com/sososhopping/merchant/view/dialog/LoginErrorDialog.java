@@ -34,7 +34,7 @@ public class LoginErrorDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_network_error, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_login_error, container, false);
 
         binding.okButton.setOnClickListener(new View.OnClickListener() {
             @Override
