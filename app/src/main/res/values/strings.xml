@@ -8,4 +8,8 @@
     <string name="start_button_signup">시작하기</string>
     <string name="start_already_registered">이미 계정이 있으신가요?</string>
     <string name="start_login">로그인하기</string>
+
+    <string name="network_error_title">서버 연결 오류</string>
+    <string name="network_error_description">서버와 연결이 원활하지 않습니다.\n인터넷 연결 상태를 확인하고 잠시 후 다시 시도해주세요.</string>
+    <string name="network_error_ok">확인</string>
 </resources>
