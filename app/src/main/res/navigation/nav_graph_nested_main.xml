@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_nested_main"
+    app:startDestination="@id/nestedShopListFragment">
+
+    <fragment
+        android:id="@+id/nestedShopListFragment"
+        android:name="com.sososhopping.merchant.view.fragment.NestedStoreListFragment"
+        android:label="nested_fragment_shop_list"
+        tools:layout="@layout/nested_fragment_store_list" >
+        <action
+            android:id="@+id/action_nestedShopListFragment_to_nestedSettingsFragment"
+            app:destination="@id/nestedSettingsFragment"
+            app:popUpTo="@id/nestedShopListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/nestedSettingsFragment"
+        android:name="com.sososhopping.merchant.view.fragment.NestedSettingsFragment"
+        android:label="nested_fragment_settings"
+        tools:layout="@layout/nested_fragment_settings" >
+        <action
+            android:id="@+id/action_nestedSettingsFragment_to_nestedShopListFragment"
+            app:destination="@id/nestedShopListFragment"
+            app:popUpTo="@id/nestedSettingsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
