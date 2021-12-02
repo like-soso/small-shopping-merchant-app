@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">소소한 장보기 for 사장님</string>
+
+    <string name="start_subtitle">간단하게 살펴보는 내 주변 상점</string>
+    <string name="start_title_main">소소한 장보기</string>
+    <string name="start_title_sub_for">for</string>
+    <string name="start_title_sub_merchant">사장님</string>
+    <string name="start_button_signup">시작하기</string>
+    <string name="start_already_registered">이미 계정이 있으신가요?</string>
+    <string name="start_login">로그인하기</string>
 </resources>
