@@ -50,6 +50,13 @@ public class NestedSettingsFragment extends Fragment {
             }
         });
 
+        binding.question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_mainFragment_to_questionDialog);
+            }
+        });
+
         return binding.getRoot();
     }
 

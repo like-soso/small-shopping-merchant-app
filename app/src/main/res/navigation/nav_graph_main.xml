@@ -59,5 +59,13 @@
             app:destination="@id/startFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_questionDialog"
+            app:destination="@id/questionDialog" />
     </fragment>
+    <dialog
+        android:id="@+id/questionDialog"
+        android:name="com.sososhopping.merchant.view.dialog.QuestionDialog"
+        android:label="dialog_question"
+        tools:layout="@layout/dialog_question" />
 </navigation>
