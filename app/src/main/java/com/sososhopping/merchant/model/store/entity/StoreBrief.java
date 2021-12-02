@@ -2,7 +2,7 @@ package com.sososhopping.merchant.model.store.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-public class StoreList {
+public class StoreBrief {
 
     @SerializedName("id")
     int id;
@@ -15,7 +15,7 @@ public class StoreList {
     @SerializedName("storeStatus")
     String storeStatus;
 
-    public StoreList(int id, String name, String imgUrl, String description, String status) {
+    public StoreBrief(int id, String name, String imgUrl, String description, String status) {
         this.id = id;
         this.name = name;
         this.imgUrl = imgUrl;

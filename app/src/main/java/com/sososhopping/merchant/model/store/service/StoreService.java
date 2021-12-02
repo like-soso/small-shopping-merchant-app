@@ -1,6 +1,6 @@
 package com.sososhopping.merchant.model.store.service;
 
-import com.sososhopping.merchant.model.store.entity.StoreList;
+import com.sososhopping.merchant.model.store.entity.StoreBrief;
 
 import java.util.List;
 
@@ -11,5 +11,5 @@ import retrofit2.http.Header;
 public interface StoreService {
 
     @GET("store")
-    Call<List<StoreList>> requestStoreList(@Header("token") String token);
+    Call<List<StoreBrief>> requestStoreList(@Header("token") String token);
 }
