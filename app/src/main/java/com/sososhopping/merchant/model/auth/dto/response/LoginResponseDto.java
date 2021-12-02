@@ -4,12 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginResponseDto {
 
-    //TODO: 파이어베이스 토큰 관련 백엔드 확인
-
     @SerializedName("token")
     String token;
 
+    @SerializedName("firebaseToken")
+    String firebaseToken;
+
     public String getToken() {
         return token;
+    }
+
+    public String getFirebaseToken() {
+        return firebaseToken;
     }
 }
