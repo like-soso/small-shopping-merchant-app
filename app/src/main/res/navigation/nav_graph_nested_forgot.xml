@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_nested_forgot"
+    app:startDestination="@id/nestedEmailFindFragment">
+
+    <fragment
+        android:id="@+id/nestedEmailFindFragment"
+        android:name="com.sososhopping.merchant.view.fragment.NestedEmailFindFragment"
+        android:label="fragment_nested_email_find"
+        tools:layout="@layout/fragment_nested_email_find" >
+        <action
+            android:id="@+id/action_nestedEmailFindFragment_to_nestedPasswordFindFragment"
+            app:destination="@id/nestedPasswordFindFragment"
+            app:popUpTo="@id/nestedEmailFindFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/nestedPasswordFindFragment"
+        android:name="com.sososhopping.merchant.view.fragment.NestedPasswordFindFragment"
+        android:label="fragment_nested_password_find"
+        tools:layout="@layout/fragment_nested_password_find" >
+        <action
+            android:id="@+id/action_nestedPasswordFindFragment_to_nestedEmailFindFragment"
+            app:destination="@id/nestedEmailFindFragment"
+            app:popUpTo="@id/nestedPasswordFindFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
