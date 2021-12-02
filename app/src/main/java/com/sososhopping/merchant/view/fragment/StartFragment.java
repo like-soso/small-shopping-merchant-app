@@ -41,6 +41,13 @@ public class StartFragment extends Fragment {
             }
         });
 
+        binding.login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_startFragment_to_loginDialog);
+            }
+        });
+
         return binding.getRoot();
     }
 
