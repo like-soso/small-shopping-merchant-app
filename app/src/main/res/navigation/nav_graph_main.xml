@@ -48,6 +48,9 @@
             app:destination="@id/mainFragment"
             app:popUpTo="@id/startFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginDialog_to_forgotFragment"
+            app:destination="@id/forgotFragment" />
     </dialog>
     <fragment
         android:id="@+id/mainFragment"
@@ -68,4 +71,9 @@
         android:name="com.sososhopping.merchant.view.dialog.QuestionDialog"
         android:label="dialog_question"
         tools:layout="@layout/dialog_question" />
+    <fragment
+        android:id="@+id/forgotFragment"
+        android:name="com.sososhopping.merchant.view.fragment.ForgotFragment"
+        android:label="fragment_forgot"
+        tools:layout="@layout/fragment_forgot" />
 </navigation>

@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -65,6 +66,13 @@ public class LoginDialog extends DialogFragment {
             }
         });
 
+        binding.findAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToForgot();
+            }
+        });
+
         return binding.getRoot();
     }
 
@@ -106,5 +114,9 @@ public class LoginDialog extends DialogFragment {
 
     private void navigateToMain() {
         NavHostFragment.findNavController(this).navigate(R.id.action_loginDialog_to_mainFragment);
+    }
+
+    private void navigateToForgot() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_loginDialog_to_forgotFragment);
     }
 }
