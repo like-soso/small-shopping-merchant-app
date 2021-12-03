@@ -1,7 +1,9 @@
 package com.sososhopping.merchant.model.store.repository;
 
+
 import androidx.annotation.NonNull;
 
+import com.sososhopping.merchant.model.store.dto.response.StoreOpenStatusResponseDto;
 import com.sososhopping.merchant.model.store.entity.StoreBrief;
 import com.sososhopping.merchant.model.store.service.StoreService;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
@@ -43,6 +45,34 @@ public class StoreRepository {
 
             @Override
             public void onFailure(@NonNull Call<List<StoreBrief>> call, @NonNull Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestStoreBusinessStatus(int storeId, Consumer<StoreOpenStatusResponseDto> consumer, Runnable onError) {
+        service.requestStoreOpenStatus(TokenStore.getAuthToken(), storeId).enqueue(new Callback<StoreOpenStatusResponseDto>() {
+            @Override
+            public void onResponse(Call<StoreOpenStatusResponseDto> call, Response<StoreOpenStatusResponseDto> response) {
+                consumer.accept(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<StoreOpenStatusResponseDto> call, Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestStoreBusinessStatusUpdate(int storeId, Consumer<StoreOpenStatusResponseDto> consumer, Runnable onError) {
+        service.requestStoreOpenStatusChange(TokenStore.getAuthToken(), storeId).enqueue(new Callback<StoreOpenStatusResponseDto>() {
+            @Override
+            public void onResponse(Call<StoreOpenStatusResponseDto> call, Response<StoreOpenStatusResponseDto> response) {
+                consumer.accept(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<StoreOpenStatusResponseDto> call, Throwable t) {
                 onError.run();
             }
         });
