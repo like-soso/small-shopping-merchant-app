@@ -20,4 +20,12 @@ public class TokenStore {
     public static void storeFirebaseToken(String firebaseToken) {
         TokenStore.firebaseToken = firebaseToken;
     }
+
+    public static void clearAuthToken() {
+        authToken = null;
+    }
+
+    public static void clearFirebaseToken() {
+        firebaseToken = null;
+    }
 }
