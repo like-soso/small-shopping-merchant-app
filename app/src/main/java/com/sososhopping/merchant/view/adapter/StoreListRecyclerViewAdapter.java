@@ -1,8 +1,8 @@
 package com.sososhopping.merchant.view.adapter;
 
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +28,7 @@ public class StoreListRecyclerViewAdapter extends RecyclerView.Adapter<StoreList
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(ItemStoreListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
@@ -36,11 +36,13 @@ public class StoreListRecyclerViewAdapter extends RecyclerView.Adapter<StoreList
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mTitleView.setText(mValues.get(position).getName());
         holder.mDescriptionView.setText(mValues.get(position).getDescription());
+
         if (mValues.get(position).getImgUrl() != null){
             Glide.with(holder.itemView.getContext())
                     .load(Uri.parse(mValues.get(position).getImgUrl()))
                     .into(holder.mImage);
         }
+
         switch (mValues.get(position).getStoreStatus()){
             case "ACTIVE": {
                 Glide.with(holder.itemView.getContext())
@@ -52,18 +54,54 @@ public class StoreListRecyclerViewAdapter extends RecyclerView.Adapter<StoreList
                 Glide.with(holder.itemView.getContext())
                         .load(R.drawable.ic_baseline_hourglass_empty_24)
                         .into(holder.mVerified);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(
+                                (View) (v.getParent().getParent().getParent().getParent().getParent().getParent())
+                        ).navigate(
+                                R.id.action_mainFragment_to_pendingStoreFragment
+                        );
+                    }
+                });
+
                 break;
             }
             case "REJECT": {
                 Glide.with(holder.itemView.getContext())
                         .load(R.drawable.ic_baseline_remove_circle_outline_24)
                         .into(holder.mVerified);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(
+                                (View) (v.getParent().getParent().getParent().getParent().getParent().getParent())
+                        ).navigate(
+                                R.id.action_mainFragment_to_rejectedStoreFragment
+                        );
+                    }
+                });
+
                 break;
             }
             case "SUSPEND": {
                 Glide.with(holder.itemView.getContext())
                         .load(R.drawable.ic_baseline_not_interested_24)
                         .into(holder.mVerified);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(
+                                (View) (v.getParent().getParent().getParent().getParent().getParent().getParent())
+                        ).navigate(
+                                R.id.action_mainFragment_to_deniedStoreFragment
+                        );
+                    }
+                });
+
                 break;
             }
         }

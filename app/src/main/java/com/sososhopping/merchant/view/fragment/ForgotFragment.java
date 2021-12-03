@@ -2,6 +2,7 @@ package com.sososhopping.merchant.view.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -25,8 +26,7 @@ public class ForgotFragment extends Fragment {
     }
 
     public static ForgotFragment newInstance() {
-        ForgotFragment fragment = new ForgotFragment();
-        return fragment;
+        return new ForgotFragment();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ForgotFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_forgot, container, false);

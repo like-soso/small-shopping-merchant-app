@@ -1,5 +1,7 @@
 package com.sososhopping.merchant.model.auth.repository;
 
+import androidx.annotation.NonNull;
+
 import com.sososhopping.merchant.model.auth.dto.request.EmailDuplicationCheckRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.LoginRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.SignupRequestDto;
@@ -36,7 +38,7 @@ public class AuthRepository {
                                              Runnable onFailed) {
         service.requestEmailDuplicationCheck(dto).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 switch (response.code()) {
                     case 200:
                         onNotDuplicated.run();
@@ -51,7 +53,7 @@ public class AuthRepository {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                 onFailed.run();
             }
         });
@@ -62,13 +64,13 @@ public class AuthRepository {
                               Runnable onFailed){
         service.requestSignup(dto).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 if (response.code() == 201) onSuccess.run();
                 else onFailed.run();
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                 onFailed.run();
             }
         });
@@ -80,7 +82,7 @@ public class AuthRepository {
                              Runnable onError){
         service.requestLogin(dto).enqueue(new Callback<LoginResponseDto>() {
             @Override
-            public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {
+            public void onResponse(@NonNull Call<LoginResponseDto> call, @NonNull Response<LoginResponseDto> response) {
                 if(response.code() == 200) {
                     onSuccess.accept(dto ,response.body());
                 } else {
@@ -89,7 +91,7 @@ public class AuthRepository {
             }
 
             @Override
-            public void onFailure(Call<LoginResponseDto> call, Throwable t) {
+            public void onFailure(@NonNull Call<LoginResponseDto> call, @NonNull Throwable t) {
                 onError.run();
             }
         });

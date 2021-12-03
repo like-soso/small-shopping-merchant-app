@@ -4,6 +4,6 @@
     <item
         android:id="@+id/storeListRegister"
         android:icon="@drawable/ic_baseline_add_24"
-        android:title="@string/shop_list_register"
+        android:title="@string/store_list_register"
         app:showAsAction="always" />
 </menu>
