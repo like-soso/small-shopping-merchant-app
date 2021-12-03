@@ -34,19 +34,13 @@ public class StartFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_start, container, false);
 
-        binding.signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_startFragment_to_signupFormFragment);
-            }
-        });
+        binding.signup.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_startFragment_to_signupFormFragment)
+        );
 
-        binding.login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_startFragment_to_loginDialog);
-            }
-        });
+        binding.login.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_startFragment_to_loginDialog)
+        );
 
         return binding.getRoot();
     }

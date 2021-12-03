@@ -21,7 +21,7 @@ public class ForgotFragment extends Fragment {
     FragmentForgotBinding binding;
 
     public ForgotFragment() {
-        // Required empty public constructor
+
     }
 
     public static ForgotFragment newInstance() {
