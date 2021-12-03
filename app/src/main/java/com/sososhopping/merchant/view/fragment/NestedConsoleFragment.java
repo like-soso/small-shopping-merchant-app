@@ -22,10 +22,8 @@ import java.util.function.Consumer;
 public class NestedConsoleFragment extends Fragment {
 
     private static final String STOREID = "storeId";
-    private static final String STORENAME = "storeName";
 
     private int storeId;
-    private String storeName;
 
     FragmentNestedConsoleBinding binding;
 
@@ -73,15 +71,21 @@ public class NestedConsoleFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
     private void onBusinessStatusChecked(StoreOpenStatusResponseDto dto) {
         boolean result = dto.getOpenStatus();
 
         if (result) {
             binding.storeOpenImg.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_pause_24));
-            binding.storeOpenText.setText("영업 중지");
+            binding.storeOpenText.setText(getString(R.string.console_store_pause));
         } else {
             binding.storeOpenImg.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_play_arrow_24));
-            binding.storeOpenText.setText("영업 재개");
+            binding.storeOpenText.setText(getString(R.string.console_store_open));
         }
     }
 
