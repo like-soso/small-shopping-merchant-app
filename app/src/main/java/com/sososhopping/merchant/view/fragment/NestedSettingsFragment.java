@@ -42,8 +42,8 @@ public class NestedSettingsFragment extends Fragment {
         binding.logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TokenStore.storeAuthToken("");
-                TokenStore.storeFirebaseToken("");
+                TokenStore.clearAuthToken();
+                TokenStore.clearFirebaseToken();
                 SharedPreferenceManager.setString(getContext(), Constant.SHARED_PREFERENCE_KEY_ID, Constant.SHARED_PREFERENCE_DEFAULT_STRING);
                 SharedPreferenceManager.setString(getContext(), Constant.SHARED_PREFERENCE_KEY_PASSWORD, Constant.SHARED_PREFERENCE_DEFAULT_STRING);
                 NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_mainFragment_to_startFragment);
