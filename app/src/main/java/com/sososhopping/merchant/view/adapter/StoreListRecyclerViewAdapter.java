@@ -1,6 +1,7 @@
 package com.sososhopping.merchant.view.adapter;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,19 @@ public class StoreListRecyclerViewAdapter extends RecyclerView.Adapter<StoreList
                 Glide.with(holder.itemView.getContext())
                         .load(R.drawable.ic_baseline_check_circle_24)
                         .into(holder.mVerified);
+                Bundle bundle = new Bundle();
+                bundle.putInt("storeId", mValues.get(position).getId());
+                bundle.putString("storeName", mValues.get(position).getName());
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Navigation.findNavController(
+                                (View) (v.getParent().getParent().getParent().getParent().getParent().getParent())
+                        ).navigate(
+                                R.id.action_mainFragment_to_storeManageFragment, bundle
+                        );
+                    }
+                });
                 break;
             }
             case "PENDING": {

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_nested_store_manage"
+    app:startDestination="@id/nestedConsoleFragment">
+
+    <fragment
+        android:id="@+id/nestedConsoleFragment"
+        android:name="com.sososhopping.merchant.view.fragment.NestedConsoleFragment"
+        android:label="fragment_nested_console"
+        tools:layout="@layout/fragment_nested_console" />
+</navigation>

@@ -80,6 +80,9 @@
         <action
             android:id="@+id/action_mainFragment_to_deniedStoreFragment"
             app:destination="@id/deniedStoreFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_storeManageFragment"
+            app:destination="@id/storeManageFragment" />
     </fragment>
     <dialog
         android:id="@+id/questionDialog"
@@ -116,4 +119,18 @@
         android:name="com.sososhopping.merchant.view.fragment.DeniedStoreFragment"
         android:label="fragment_denied_store"
         tools:layout="@layout/fragment_denied_store" />
+    <fragment
+        android:id="@+id/storeManageFragment"
+        android:name="com.sososhopping.merchant.view.fragment.StoreManageFragment"
+        android:label="fragment_store_manage"
+        tools:layout="@layout/fragment_store_manage" >
+        <argument
+            android:name="storeId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="storeName"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
 </navigation>
