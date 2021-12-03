@@ -15,7 +15,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/shopListItemImage"
+                android:id="@+id/image"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:src="@drawable/ic_baseline_shopping_basket_24"
@@ -25,7 +25,7 @@
                 android:contentDescription="@string/shop_list_item_image_description" />
 
             <TextView
-                android:id="@+id/shopListItemTitle"
+                android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -38,23 +38,23 @@
                 android:ellipsize="end"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@id/shopListItemImage"
-                app:layout_constraintEnd_toStartOf="@id/shopListItemVerified"/>
+                app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintEnd_toStartOf="@id/verifiedStatus"/>
 
             <ImageView
-                android:id="@+id/shopListItemVerified"
+                android:id="@+id/verifiedStatus"
                 android:layout_width="19dp"
                 android:layout_height="19dp"
                 android:layout_marginEnd="4dp"
                 android:src="@drawable/ic_baseline_check_circle_24"
-                app:layout_constraintBottom_toBottomOf="@+id/shopListItemTitle"
-                app:layout_constraintStart_toEndOf="@id/shopListItemTitle"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintStart_toEndOf="@id/title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/shopListItemTitle"
+                app:layout_constraintTop_toTopOf="@id/title"
                 android:contentDescription="@string/shop_list_item_verified_description" />
 
             <TextView
-                android:id="@+id/shopListItemDescription"
+                android:id="@+id/description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -64,9 +64,9 @@
                 android:lines="2"
                 android:text="@string/shop_list_item_description"
                 android:ellipsize="end"
-                app:layout_constraintStart_toEndOf="@id/shopListItemImage"
+                app:layout_constraintStart_toEndOf="@id/image"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/shopListItemTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

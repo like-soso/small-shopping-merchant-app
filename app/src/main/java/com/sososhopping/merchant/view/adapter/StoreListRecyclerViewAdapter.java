@@ -1,11 +1,14 @@
 package com.sososhopping.merchant.view.adapter;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +26,7 @@ public class StoreListRecyclerViewAdapter extends RecyclerView.Adapter<StoreList
         mValues = items;
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(ItemStoreListBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
@@ -30,7 +34,6 @@ public class StoreListRecyclerViewAdapter extends RecyclerView.Adapter<StoreList
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
         holder.mTitleView.setText(mValues.get(position).getName());
         holder.mDescriptionView.setText(mValues.get(position).getDescription());
         if (mValues.get(position).getImgUrl() != null){
@@ -71,19 +74,18 @@ public class StoreListRecyclerViewAdapter extends RecyclerView.Adapter<StoreList
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mTitleView;
         public final TextView mDescriptionView;
         public final ImageView mImage;
         public final ImageView mVerified;
-        public StoreBrief mItem;
 
         public ViewHolder(ItemStoreListBinding binding) {
             super(binding.getRoot());
-            mTitleView = binding.shopListItemTitle;
-            mDescriptionView = binding.shopListItemDescription;
-            mImage = binding.shopListItemImage;
-            mVerified = binding.shopListItemVerified;
+            mTitleView = binding.title;
+            mDescriptionView = binding.description;
+            mImage = binding.image;
+            mVerified = binding.verifiedStatus;
         }
     }
 }
