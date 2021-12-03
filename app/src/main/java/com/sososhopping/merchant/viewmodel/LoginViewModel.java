@@ -1,7 +1,6 @@
 package com.sososhopping.merchant.viewmodel;
 
 import androidx.databinding.ObservableField;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.sososhopping.merchant.model.auth.dto.request.LoginRequestDto;

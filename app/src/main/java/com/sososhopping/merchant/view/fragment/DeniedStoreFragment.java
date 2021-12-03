@@ -5,26 +5,25 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.sososhopping.merchant.R;
-import com.sososhopping.merchant.databinding.FragmentNestedPasswordFindBinding;
-import com.sososhopping.merchant.viewmodel.PasswordFindViewModel;
+import com.sososhopping.merchant.databinding.FragmentDeniedStoreBinding;
 
-public class NestedPasswordFindFragment extends Fragment {
+public class DeniedStoreFragment extends Fragment {
 
-    FragmentNestedPasswordFindBinding binding;
+    FragmentDeniedStoreBinding binding;
 
-    public NestedPasswordFindFragment() {
+    public DeniedStoreFragment() {
 
     }
 
-    public static NestedPasswordFindFragment newInstance() {
-        return new NestedPasswordFindFragment();
+    public static DeniedStoreFragment newInstance() {
+        return new DeniedStoreFragment();
     }
 
     @Override
@@ -36,10 +35,14 @@ public class NestedPasswordFindFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nested_password_find, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_denied_store, container, false);
 
-        PasswordFindViewModel viewModel = new ViewModelProvider(getViewModelStore(), new ViewModelProvider.NewInstanceFactory()).get(PasswordFindViewModel.class);
-        binding.setPasswordFindViewModel(viewModel);
+        binding.ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
 
         return binding.getRoot();
     }

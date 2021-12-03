@@ -71,6 +71,15 @@
         <action
             android:id="@+id/action_mainFragment_to_passwordUpdateFragment"
             app:destination="@id/passwordUpdateFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_rejectedStoreFragment"
+            app:destination="@id/rejectedStoreFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_pendingStoreFragment"
+            app:destination="@id/pendingStoreFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_deniedStoreFragment"
+            app:destination="@id/deniedStoreFragment" />
     </fragment>
     <dialog
         android:id="@+id/questionDialog"
@@ -92,4 +101,19 @@
         android:name="com.sososhopping.merchant.view.fragment.PasswordUpdateFragment"
         android:label="fragment_password_update"
         tools:layout="@layout/fragment_password_update" />
+    <fragment
+        android:id="@+id/rejectedStoreFragment"
+        android:name="com.sososhopping.merchant.view.fragment.RejectedStoreFragment"
+        android:label="fragment_rejected_store"
+        tools:layout="@layout/fragment_rejected_store" />
+    <fragment
+        android:id="@+id/pendingStoreFragment"
+        android:name="com.sososhopping.merchant.view.fragment.PendingStoreFragment"
+        android:label="fragment_pending_store"
+        tools:layout="@layout/fragment_pending_store" />
+    <fragment
+        android:id="@+id/deniedStoreFragment"
+        android:name="com.sososhopping.merchant.view.fragment.DeniedStoreFragment"
+        android:label="fragment_denied_store"
+        tools:layout="@layout/fragment_denied_store" />
 </navigation>

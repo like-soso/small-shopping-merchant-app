@@ -51,13 +51,13 @@
     <string name="main_list">점포 목록</string>
     <string name="main_settings">설정</string>
 
-    <string name="shop_list_register">점포 등록</string>
-    <string name="shop_list_title">점포 목록</string>
+    <string name="store_list_register">점포 등록</string>
+    <string name="store_list_title">점포 목록</string>
 
-    <string name="shop_list_item_title">샘플 점포 이름</string>
-    <string name="shop_list_item_description">샘플 점포 소개글입니다.</string>
-    <string name="shop_list_item_image_description">점포 대표 이미지</string>
-    <string name="shop_list_item_verified_description">점포 승인 정보</string>
+    <string name="store_list_item_title">샘플 점포 이름</string>
+    <string name="store_list_item_description">샘플 점포 소개글입니다.</string>
+    <string name="store_list_item_image_description">점포 대표 이미지</string>
+    <string name="store_list_item_verified_description">점포 승인 정보</string>
 
     <string name="settings_title">설정</string>
     <string name="settings_about">내 정보</string>
@@ -65,6 +65,16 @@
     <string name="settings_logout">로그아웃</string>
     <string name="settings_questions">문의하기</string>
     <string name="settings_withdrawal">회원탈퇴</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="store_status_image_description">점포 승인 정보</string>
+    <string name="store_status_ok">확인</string>
+
+    <string name="store_denied_code">이용 정지</string>
+    <string name="store_denied_explanation">점포의 서비스 이용이 정지되었습니다.</string>
+
+    <string name="store_pending_code">승인 대기 중</string>
+    <string name="store_pending_explanation">점포 승인 절차가 진행중입니다.\n관리자 승인 이후 점포 관리가 활성화됩니다.</string>
+
+    <string name="store_rejected_code">등록 승인 반려</string>
+    <string name="store_rejected_explanation">점포 등록 신청이 반려되었습니다.</string>
 </resources>
