@@ -39,20 +39,22 @@ public class MainFragment extends Fragment {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
 
-        binding.bottomNavigationView.getMenu().findItem(R.id.mainShopList).setEnabled(false);
         binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.mainShopList){
                     Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedSettingsFragment_to_nestedShopListFragment);
-                    binding.bottomNavigationView.getMenu().findItem(R.id.mainShopList).setEnabled(false);
-                    binding.bottomNavigationView.getMenu().findItem(R.id.mainSettings).setEnabled(true);
                 } else{
                     Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedShopListFragment_to_nestedSettingsFragment);
-                    binding.bottomNavigationView.getMenu().findItem(R.id.mainShopList).setEnabled(true);
-                    binding.bottomNavigationView.getMenu().findItem(R.id.mainSettings).setEnabled(false);
                 }
                 return true;
+            }
+        });
+
+        binding.bottomNavigationView.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+
             }
         });
 
