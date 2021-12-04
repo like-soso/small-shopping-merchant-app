@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_nested_order_list"
+    app:startDestination="@id/nestedPendingOrderFragment">
+
+    <fragment
+        android:id="@+id/nestedPendingOrderFragment"
+        android:name="com.sososhopping.merchant.view.fragment.NestedPendingOrderFragment"
+        android:label="fragment_nested_pending_order"
+        tools:layout="@layout/fragment_nested_pending_order" >
+        <action
+            android:id="@+id/action_nestedPendingOrderFragment_to_nestedPickupOrderFragment"
+            app:destination="@id/nestedPickupOrderFragment"
+            app:popUpTo="@id/nestedPendingOrderFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nestedPendingOrderFragment_to_nestedDeliveryOrderList"
+            app:destination="@id/nestedDeliveryOrderList"
+            app:popUpTo="@id/nestedPendingOrderFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="storeId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/nestedPickupOrderFragment"
+        android:name="com.sososhopping.merchant.view.fragment.NestedPickupOrderFragment"
+        android:label="fragment_nested_pickup_order"
+        tools:layout="@layout/fragment_nested_pickup_order" >
+        <action
+            android:id="@+id/action_nestedPickupOrderFragment_to_nestedPendingOrderFragment"
+            app:destination="@id/nestedPendingOrderFragment"
+            app:popUpTo="@id/nestedPickupOrderFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nestedPickupOrderFragment_to_nestedDeliveryOrderList"
+            app:destination="@id/nestedDeliveryOrderList"
+            app:popUpTo="@id/nestedPickupOrderFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="storeId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/nestedDeliveryOrderList"
+        android:name="com.sososhopping.merchant.view.fragment.NestedDeliveryOrderList"
+        android:label="fragment_nested_delivery_order_list"
+        tools:layout="@layout/fragment_nested_delivery_order_list" >
+        <action
+            android:id="@+id/action_nestedDeliveryOrderList_to_nestedPendingOrderFragment"
+            app:destination="@id/nestedPendingOrderFragment"
+            app:popUpTo="@id/nestedDeliveryOrderList"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nestedDeliveryOrderList_to_nestedPickupOrderFragment"
+            app:destination="@id/nestedPickupOrderFragment"
+            app:popUpTo="@id/nestedDeliveryOrderList"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="storeId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>

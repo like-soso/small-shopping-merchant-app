@@ -132,5 +132,18 @@
             android:name="storeName"
             app:argType="string"
             android:defaultValue='""' />
+        <action
+            android:id="@+id/action_storeManageFragment_to_orderListFragment"
+            app:destination="@id/orderListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderListFragment"
+        android:name="com.sososhopping.merchant.view.fragment.OrderListFragment"
+        android:label="fragment_order_list"
+        tools:layout="@layout/fragment_order_list" >
+        <argument
+            android:name="storeId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

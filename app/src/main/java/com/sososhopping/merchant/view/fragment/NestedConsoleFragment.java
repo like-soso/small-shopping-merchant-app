@@ -1,8 +1,8 @@
 package com.sososhopping.merchant.view.fragment;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -15,7 +15,6 @@ import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.FragmentNestedConsoleBinding;
 import com.sososhopping.merchant.model.store.dto.response.StoreOpenStatusResponseDto;
 import com.sososhopping.merchant.model.store.repository.StoreRepository;
-import com.sososhopping.merchant.utils.token.TokenStore;
 
 import java.util.function.Consumer;
 
@@ -26,8 +25,6 @@ public class NestedConsoleFragment extends Fragment {
     private int storeId;
 
     FragmentNestedConsoleBinding binding;
-
-    Resources resources;
 
     public NestedConsoleFragment() {
 
@@ -47,7 +44,6 @@ public class NestedConsoleFragment extends Fragment {
         if (getArguments() != null) {
             storeId = getArguments().getInt(STOREID);
         }
-        resources = getResources();
     }
 
     @Override
@@ -56,10 +52,10 @@ public class NestedConsoleFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nested_console, container, false);
 
+        System.out.println(storeId);
+
         Consumer<StoreOpenStatusResponseDto> onStatusChecked = this::onBusinessStatusChecked;
         Runnable onError = this::onNetworkError;
-
-        StoreRepository.getInstance().requestStoreBusinessStatus(storeId, onStatusChecked, onError);
 
         binding.storeOpenLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +64,24 @@ public class NestedConsoleFragment extends Fragment {
             }
         });
 
+        binding.orderListLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt(STOREID, storeId);
+                NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_storeManageFragment_to_orderListFragment, bundle);
+            }
+        });
+
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Consumer<StoreOpenStatusResponseDto> onStatusChecked = this::onBusinessStatusChecked;
+        Runnable onError = this::onNetworkError;
+        StoreRepository.getInstance().requestStoreBusinessStatus(storeId, onStatusChecked, onError);
     }
 
     @Override
@@ -81,10 +94,10 @@ public class NestedConsoleFragment extends Fragment {
         boolean result = dto.getOpenStatus();
 
         if (result) {
-            binding.storeOpenImg.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_pause_24));
+            binding.storeOpenImg.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_pause_24, null));
             binding.storeOpenText.setText(getString(R.string.console_store_pause));
         } else {
-            binding.storeOpenImg.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_play_arrow_24));
+            binding.storeOpenImg.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_play_arrow_24, null));
             binding.storeOpenText.setText(getString(R.string.console_store_open));
         }
     }
