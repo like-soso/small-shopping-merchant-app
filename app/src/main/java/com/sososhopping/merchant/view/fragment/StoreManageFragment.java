@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -61,6 +62,12 @@ public class StoreManageFragment extends Fragment {
         navController.setGraph(R.navigation.nav_graph_nested_store_manage, bundle);
 
         binding.toolbarTitle.setText(storeName);
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
 
         return binding.getRoot();
     }

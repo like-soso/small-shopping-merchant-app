@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/orderListPending"
+        android:icon="@drawable/ic_baseline_access_alarm_24"
+        android:title="@string/order_list_pending" />
+
+    <item
+        android:id="@+id/orderListPickup"
+        android:icon="@drawable/ic_baseline_local_mall_24"
+        android:title="@string/order_list_pickup" />
+
+    <item
+        android:id="@+id/orderListDelivery"
+        android:icon="@drawable/ic_baseline_two_wheeler_24"
+        android:title="@string/order_list_delivery" />
+</menu>
