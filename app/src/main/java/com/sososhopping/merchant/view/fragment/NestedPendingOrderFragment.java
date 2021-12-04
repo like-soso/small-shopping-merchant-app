@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.FragmentNestedPendingOrderBinding;
+import com.sososhopping.merchant.model.order.dto.response.OrderListResponseDto;
 import com.sososhopping.merchant.model.order.entity.Order;
 import com.sososhopping.merchant.model.order.repository.OrderRepository;
 import com.sososhopping.merchant.view.adapter.PendingOrderListRecyclerViewAdapter;
@@ -55,7 +56,7 @@ public class NestedPendingOrderFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nested_pending_order, container, false);
 
-        Consumer<List<Order>> onListAcquired = this::onListAcquired;
+        Consumer<OrderListResponseDto> onListAcquired = this::onListAcquired;
         Runnable onError = this::onNetworkError;
 
         OrderRepository.getInstance().requestOrderList(storeId, type, onListAcquired, onError);
@@ -69,8 +70,8 @@ public class NestedPendingOrderFragment extends Fragment {
         binding = null;
     }
 
-    private void onListAcquired(List<Order> orderList) {
-        binding.recyclerView.setAdapter(new PendingOrderListRecyclerViewAdapter(orderList));
+    private void onListAcquired(OrderListResponseDto dto) {
+        binding.recyclerView.setAdapter(new PendingOrderListRecyclerViewAdapter(dto.getOrders()));
     }
 
     private void onNetworkError() {

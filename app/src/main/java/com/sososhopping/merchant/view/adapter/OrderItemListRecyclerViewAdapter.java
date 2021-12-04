@@ -29,7 +29,7 @@ public class OrderItemListRecyclerViewAdapter extends RecyclerView.Adapter<Order
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mNameView.setText(mValues.get(position).getName());
-        holder.mCountView.setText(mValues.get(position).getQuantity());
+        holder.mCountView.setText(Integer.toString(mValues.get(position).getQuantity()));
     }
 
     @Override

@@ -10,9 +10,11 @@ public class Order {
     String orderId;
     @SerializedName("userId")
     int userId;
-    @SerializedName("ownerId")
+    @SerializedName("storeId")
     int storeId;
-    @SerializedName("orterItems")
+    @SerializedName("ownerId")
+    int ownerId;
+    @SerializedName("orderItems")
     List<OrderItem> orderItemList;
     @SerializedName("ordererName")
     String ordererName;
@@ -61,6 +63,27 @@ public class Order {
         this.createdAt = createdAt;
     }
 
+    public Order(String orderId, int userId, int storeId, int ownerId, List<OrderItem> orderItemList, String ordererName, String ordererPhone, String orderType, String visitDate, String storeName, int deliveryCharge, String deliveryAddress, String deliveryDetailedAddress, int orderPrice, int usedPoint, int couponDiscountPrice, int finalPrice, String createdAt) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.storeId = storeId;
+        this.ownerId = ownerId;
+        this.orderItemList = orderItemList;
+        this.ordererName = ordererName;
+        this.ordererPhone = ordererPhone;
+        this.orderType = orderType;
+        this.visitDate = visitDate;
+        this.storeName = storeName;
+        this.deliveryCharge = deliveryCharge;
+        this.deliveryAddress = deliveryAddress;
+        this.deliveryDetailedAddress = deliveryDetailedAddress;
+        this.orderPrice = orderPrice;
+        this.usedPoint = usedPoint;
+        this.couponDiscountPrice = couponDiscountPrice;
+        this.finalPrice = finalPrice;
+        this.createdAt = createdAt;
+    }
+
     public String getOrderId() {
         return orderId;
     }
@@ -71,6 +94,10 @@ public class Order {
 
     public int getStoreId() {
         return storeId;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
     }
 
     public List<OrderItem> getOrderItemList() {
