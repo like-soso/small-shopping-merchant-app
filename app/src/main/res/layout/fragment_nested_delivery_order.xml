@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fragment.NestedPickupOrderFragment">
+        tools:context=".view.fragment.NestedDeliveryOrderFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -16,7 +16,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_approved_order_list_pickup"/>
+            tools:listitem="@layout/item_approved_order_list_delivery"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

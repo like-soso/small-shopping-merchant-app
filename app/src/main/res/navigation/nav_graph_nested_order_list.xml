@@ -47,9 +47,9 @@
     </fragment>
     <fragment
         android:id="@+id/nestedDeliveryOrderList"
-        android:name="com.sososhopping.merchant.view.fragment.NestedDeliveryOrderList"
+        android:name="com.sososhopping.merchant.view.fragment.NestedDeliveryOrderFragment"
         android:label="fragment_nested_delivery_order_list"
-        tools:layout="@layout/fragment_nested_delivery_order_list" >
+        tools:layout="@layout/fragment_nested_delivery_order" >
         <action
             android:id="@+id/action_nestedDeliveryOrderList_to_nestedPendingOrderFragment"
             app:destination="@id/nestedPendingOrderFragment"
