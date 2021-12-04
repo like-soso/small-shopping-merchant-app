@@ -12,10 +12,10 @@ import com.sososhopping.merchant.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link NestedDeliveryOrderList#newInstance} factory method to
+ * Use the {@link NestedDeliveryOrderFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NestedDeliveryOrderList extends Fragment {
+public class NestedDeliveryOrderFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class NestedDeliveryOrderList extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public NestedDeliveryOrderList() {
+    public NestedDeliveryOrderFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class NestedDeliveryOrderList extends Fragment {
      * @return A new instance of fragment NestedDeliveryOrderList.
      */
     // TODO: Rename and change types and number of parameters
-    public static NestedDeliveryOrderList newInstance(String param1, String param2) {
-        NestedDeliveryOrderList fragment = new NestedDeliveryOrderList();
+    public static NestedDeliveryOrderFragment newInstance(String param1, String param2) {
+        NestedDeliveryOrderFragment fragment = new NestedDeliveryOrderFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class NestedDeliveryOrderList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nested_delivery_order_list, container, false);
+        return inflater.inflate(R.layout.fragment_nested_delivery_order, container, false);
     }
 }

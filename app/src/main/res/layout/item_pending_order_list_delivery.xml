@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="3dp"
+        app:contentPadding="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/topLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/typeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="물품 수령 방법: "
+                    android:textColor="@color/main_500"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/type"/>
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="배송"
+                    android:textColor="@color/main_500"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/typeText" />
+
+                <ImageView
+                    android:id="@+id/toggleButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_add_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/deliveryAddressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="배송지 주소"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/topLayout"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/deliveryAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="경기도 안양시 만안구 안양로214번길 22"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:gravity="end"
+                app:layout_constraintTop_toBottomOf="@id/topLayout"
+                app:layout_constraintStart_toEndOf="@id/deliveryAddressText"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/deliveryAddressDetailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="배송지 상세 주소"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddressText"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/deliveryAddressDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="302호"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:gravity="end"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddressText"
+                app:layout_constraintStart_toEndOf="@id/deliveryAddressDetailText"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/deliveryNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="받는 분 이름"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddressDetailText"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/deliveryName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="OOO"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:gravity="end"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddressDetailText"
+                app:layout_constraintStart_toEndOf="@id/deliveryNameText"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/deliveryPhoneText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="받는 분 전화 번호"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/deliveryNameText"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/deliveryPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="01011111111"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:gravity="end"
+                app:layout_constraintTop_toBottomOf="@id/deliveryNameText"
+                app:layout_constraintStart_toEndOf="@id/deliveryPhoneText"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/orderListTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="주문 내역"
+                android:textColor="@color/main_500"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/deliveryPhone"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/orderList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/item_order_item_list"
+                tools:itemCount="4"
+                app:layout_constraintTop_toBottomOf="@id/orderListTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/purchaseTypeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="결제 방법"
+                android:textColor="@color/main_500"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/orderList"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/purchaseTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="카카오페이"
+                android:gravity="end"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/main_500"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/purchaseTypeTitle"
+                app:layout_constraintTop_toBottomOf="@id/orderList" />
+
+            <TextView
+                android:id="@+id/totalPriceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="결제 금액"
+                android:textColor="@color/main_500"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/purchaseTypeTitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/totalPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="10000"
+                android:gravity="end"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/main_500"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/totalPriceUnit"
+                app:layout_constraintStart_toEndOf="@+id/totalPriceTitle"
+                app:layout_constraintTop_toBottomOf="@id/purchaseTypeTitle" />
+
+            <TextView
+                android:id="@+id/totalPriceUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="원"
+                android:textColor="@color/main_500"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/purchaseTypeTitle"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/itemPriceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="총 물품 금액"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/totalPriceTitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/itemPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="10000"
+                android:gravity="end"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/itemPriceUnit"
+                app:layout_constraintStart_toEndOf="@+id/itemPriceTitle"
+                app:layout_constraintTop_toBottomOf="@id/totalPriceTitle" />
+
+            <TextView
+                android:id="@+id/itemPriceUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/totalPriceTitle"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/pointPriceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- 포인트 사용 금액"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/itemPriceTitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/pointPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="10000"
+                android:gravity="end"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/pointPriceUnit"
+                app:layout_constraintStart_toEndOf="@+id/pointPriceTitle"
+                app:layout_constraintTop_toBottomOf="@id/itemPriceTitle" />
+
+            <TextView
+                android:id="@+id/pointPriceUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/itemPriceTitle"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/couponPriceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- 쿠폰 할인 금액"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/pointPriceTitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/couponPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="1000000000000000000000000000000000000000000000000000"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/couponPriceUnit"
+                app:layout_constraintStart_toEndOf="@+id/couponPriceTitle"
+                app:layout_constraintTop_toBottomOf="@id/pointPriceTitle" />
+
+            <TextView
+                android:id="@+id/couponPriceUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/pointPriceTitle"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/deliveryPriceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ 배송비"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/couponPriceTitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/deliveryPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="1000000000000000000000000000000000000000000000000000"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/deliveryPriceUnit"
+                app:layout_constraintStart_toEndOf="@+id/deliveryPriceTitle"
+                app:layout_constraintTop_toBottomOf="@id/couponPriceTitle" />
+
+            <TextView
+                android:id="@+id/deliveryPriceUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/couponPriceTitle"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/orderDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="주문 일시: "
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@id/deliveryPriceTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/orderDate"/>
+
+            <TextView
+                android:id="@+id/orderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="2021-12-04 12:21"
+                app:layout_constraintTop_toBottomOf="@id/deliveryPriceTitle"
+                app:layout_constraintStart_toEndOf="@id/orderDateText" />
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="주문 확인"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@id/orderDateText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cancel"/>
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="6dp"
+                android:text="주문 거절"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/orderDateText"
+                app:layout_constraintStart_toEndOf="@id/confirm"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="deliveryAddressText, deliveryAddress, deliveryAddressDetailText, deliveryAddressDetail, deliveryNameText, deliveryName, deliveryPhoneText, deliveryPhone, itemPriceTitle, itemPrice, itemPriceUnit, pointPriceTitle, pointPrice, pointPriceUnit, couponPriceTitle, couponPrice, couponPriceUnit, deliveryPriceTitle, deliveryPrice, deliveryPriceUnit, orderDateText, orderDate" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
