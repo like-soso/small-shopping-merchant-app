@@ -1,9 +1,15 @@
 package com.sososhopping.merchant.model.order.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 public class OrderItem {
+    @SerializedName("itemName")
     String name;
+    @SerializedName("description")
     String description;
+    @SerializedName("quantity")
     int quantity;
+    @SerializedName("totalPrice")
     int totalPrice;
 
     public OrderItem(String name, String description, int quantity, int totalPrice) {

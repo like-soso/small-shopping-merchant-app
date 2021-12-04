@@ -1,6 +1,7 @@
 package com.sososhopping.merchant.model.order.repository;
 
 import com.sososhopping.merchant.model.order.dto.request.OrderProcessRequestDto;
+import com.sososhopping.merchant.model.order.dto.response.OrderListResponseDto;
 import com.sososhopping.merchant.model.order.entity.Order;
 import com.sososhopping.merchant.model.order.service.OrderService;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
@@ -29,10 +30,11 @@ public class OrderRepository {
         return instance;
     }
 
-    public void requestOrderList(int storeId, String type, Consumer<List<Order>> onSuccess, Runnable onError) {
-        service.requestOrderList(TokenStore.getAuthToken(), storeId, type).enqueue(new Callback<List<Order>>() {
+    public void requestOrderList(int storeId, String type, Consumer<OrderListResponseDto> onSuccess, Runnable onError) {
+        service.requestOrderList(TokenStore.getAuthToken(), storeId, type).enqueue(new Callback<OrderListResponseDto>() {
             @Override
-            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+            public void onResponse(Call<OrderListResponseDto> call, Response<OrderListResponseDto> response) {
+                System.out.println(response.body());
                 if (response.code() == 200) {
                     onSuccess.accept(response.body());
                 } else {
@@ -41,21 +43,22 @@ public class OrderRepository {
             }
 
             @Override
-            public void onFailure(Call<List<Order>> call, Throwable t) {
+            public void onFailure(Call<OrderListResponseDto> call, Throwable t) {
+                t.printStackTrace();
                 onError.run();
             }
         });
     }
 
     public void requestOrderListAt(int storeId, String date) {
-        service.requestOrderListOfDate(TokenStore.getAuthToken(), storeId, date).enqueue(new Callback<List<Order>>() {
+        service.requestOrderListOfDate(TokenStore.getAuthToken(), storeId, date).enqueue(new Callback<OrderListResponseDto>() {
             @Override
-            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+            public void onResponse(Call<OrderListResponseDto> call, Response<OrderListResponseDto> response) {
                 ;
             }
 
             @Override
-            public void onFailure(Call<List<Order>> call, Throwable t) {
+            public void onFailure(Call<OrderListResponseDto> call, Throwable t) {
                 ;
             }
         });
