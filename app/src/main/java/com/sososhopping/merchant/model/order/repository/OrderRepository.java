@@ -64,11 +64,11 @@ public class OrderRepository {
         });
     }
 
-    public void requestOrderProceed(int storeId, int orderId, OrderProcessRequestDto dto) {
+    public void requestOrderProceed(int position, int storeId, int orderId, OrderProcessRequestDto dto, Consumer<Integer> onSuccess) {
         service.requestOrderProcessTo(TokenStore.getAuthToken(), storeId, orderId, dto).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                ;
+                if (response.code() == 200) onSuccess.accept(position);
             }
 
             @Override

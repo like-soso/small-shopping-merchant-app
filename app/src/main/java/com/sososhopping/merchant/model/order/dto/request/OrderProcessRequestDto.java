@@ -1,7 +1,10 @@
 package com.sososhopping.merchant.model.order.dto.request;
 
+import com.google.gson.annotations.SerializedName;
+
 public class OrderProcessRequestDto {
 
+    @SerializedName("action")
     String type;
 
     private OrderProcessRequestDto(String type) {
