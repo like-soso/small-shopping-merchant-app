@@ -50,16 +50,20 @@ public class OrderRepository {
         });
     }
 
-    public void requestOrderListAt(int storeId, String date) {
+    public void requestOrderListAt(int storeId, String date, Consumer<OrderListResponseDto> onSuccess, Runnable onError) {
         service.requestOrderListOfDate(TokenStore.getAuthToken(), storeId, date).enqueue(new Callback<OrderListResponseDto>() {
             @Override
             public void onResponse(Call<OrderListResponseDto> call, Response<OrderListResponseDto> response) {
-                ;
+                System.out.println(call.request().url().toString());
+                System.out.println(response.code());
+                if (response.code() == 200) onSuccess.accept(response.body());
+                else onError.run();
             }
 
             @Override
             public void onFailure(Call<OrderListResponseDto> call, Throwable t) {
-                ;
+                t.printStackTrace();
+                onError.run();
             }
         });
     }
