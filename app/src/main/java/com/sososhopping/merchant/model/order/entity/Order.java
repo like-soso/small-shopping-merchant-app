@@ -7,7 +7,7 @@ import java.util.List;
 public class Order {
 
     @SerializedName("orderId")
-    String orderId;
+    int orderId;
     @SerializedName("userId")
     int userId;
     @SerializedName("storeId")
@@ -43,27 +43,7 @@ public class Order {
     @SerializedName("createdAt")
     String createdAt;
 
-    public Order(String orderId, int userId, int storeId, List<OrderItem> orderItemList, String ordererName, String ordererPhone, String orderType, String visitDate, String storeName, int deliveryCharge, String deliveryAddress, String deliveryDetailedAddress, int orderPrice, int usedPoint, int couponDiscountPrice, int finalPrice, String createdAt) {
-        this.orderId = orderId;
-        this.userId = userId;
-        this.storeId = storeId;
-        this.orderItemList = orderItemList;
-        this.ordererName = ordererName;
-        this.ordererPhone = ordererPhone;
-        this.orderType = orderType;
-        this.visitDate = visitDate;
-        this.storeName = storeName;
-        this.deliveryCharge = deliveryCharge;
-        this.deliveryAddress = deliveryAddress;
-        this.deliveryDetailedAddress = deliveryDetailedAddress;
-        this.orderPrice = orderPrice;
-        this.usedPoint = usedPoint;
-        this.couponDiscountPrice = couponDiscountPrice;
-        this.finalPrice = finalPrice;
-        this.createdAt = createdAt;
-    }
-
-    public Order(String orderId, int userId, int storeId, int ownerId, List<OrderItem> orderItemList, String ordererName, String ordererPhone, String orderType, String visitDate, String storeName, int deliveryCharge, String deliveryAddress, String deliveryDetailedAddress, int orderPrice, int usedPoint, int couponDiscountPrice, int finalPrice, String createdAt) {
+    public Order(int orderId, int userId, int storeId, int ownerId, List<OrderItem> orderItemList, String ordererName, String ordererPhone, String orderType, String visitDate, String storeName, int deliveryCharge, String deliveryAddress, String deliveryDetailedAddress, int orderPrice, int usedPoint, int couponDiscountPrice, int finalPrice, String createdAt) {
         this.orderId = orderId;
         this.userId = userId;
         this.storeId = storeId;
@@ -84,7 +64,7 @@ public class Order {
         this.createdAt = createdAt;
     }
 
-    public String getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 

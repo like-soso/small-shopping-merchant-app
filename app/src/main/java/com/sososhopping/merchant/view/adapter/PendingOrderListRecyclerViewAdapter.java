@@ -14,13 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.ItemPendingOrderListDeliveryBinding;
 import com.sososhopping.merchant.databinding.ItemPendingOrderListPickupBinding;
+import com.sososhopping.merchant.model.order.dto.request.OrderProcessRequestDto;
 import com.sososhopping.merchant.model.order.entity.Order;
+import com.sososhopping.merchant.model.order.repository.OrderRepository;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private final List<Order> mValues;
+    private List<Order> mValues;
 
     public static final int PICKUP = 0;
     public static final int DELIVERY = 1;
@@ -38,6 +41,7 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Consumer<Integer> onSuccess = this::onSuccess;
         if (mValues.get(position).getOrderType().equals("배송")) {
             DeliveryViewHolder deliveryViewHolder = (DeliveryViewHolder) holder;
             deliveryViewHolder.mAddressView.setText(mValues.get(position).getDeliveryAddress());
@@ -67,13 +71,25 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
             deliveryViewHolder.mConfirmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ;
+                    OrderRepository.getInstance().requestOrderProceed(
+                            position,
+                            mValues.get(position).getStoreId(),
+                            mValues.get(position).getOrderId(),
+                            OrderProcessRequestDto.of("APPROVE"),
+                            onSuccess
+                    );
                 }
             });
             deliveryViewHolder.mCancelButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ;
+                    OrderRepository.getInstance().requestOrderProceed(
+                            position,
+                            mValues.get(position).getStoreId(),
+                            mValues.get(position).getOrderId(),
+                            OrderProcessRequestDto.of("REJECT"),
+                            onSuccess
+                    );
                 }
             });
         } else {
@@ -103,13 +119,25 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
             pickupViewHolder.mConfirmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ;
+                    OrderRepository.getInstance().requestOrderProceed(
+                            position,
+                            mValues.get(position).getStoreId(),
+                            mValues.get(position).getOrderId(),
+                            OrderProcessRequestDto.of("APPROVE"),
+                            onSuccess
+                    );
                 }
             });
             pickupViewHolder.mCancelButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ;
+                    OrderRepository.getInstance().requestOrderProceed(
+                            position,
+                            mValues.get(position).getStoreId(),
+                            mValues.get(position).getOrderId(),
+                            OrderProcessRequestDto.of("REJECT"),
+                            onSuccess
+                    );
                 }
             });
         }
@@ -123,6 +151,11 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
     @Override
     public int getItemViewType(int position) {
         return mValues.get(position).getOrderType().equals("배송") ? DELIVERY : PICKUP;
+    }
+
+    public void onSuccess(int position) {
+        mValues.remove(position);
+        notifyItemRemoved(position);
     }
 
     public static class PickupViewHolder extends RecyclerView.ViewHolder {
