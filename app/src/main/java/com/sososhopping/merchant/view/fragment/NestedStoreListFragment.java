@@ -57,11 +57,11 @@ public class NestedStoreListFragment extends Fragment {
         binding = null;
     }
 
-    private void onShopListAcquired(List<StoreBrief> storeBriefs) {
+    public void onShopListAcquired(List<StoreBrief> storeBriefs) {
         binding.recyclerView.setAdapter(new StoreListRecyclerViewAdapter(storeBriefs));
     }
 
-    private void onNetworkError() {
+    public void onNetworkError() {
         NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_global_networkErrorDialog);
     }
 }

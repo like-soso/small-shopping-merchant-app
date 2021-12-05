@@ -55,7 +55,7 @@ public class NetworkErrorDialog extends DialogFragment {
         }
     }
 
-    private void closeDialog() {
+    public void closeDialog() {
         this.dismiss();
     }
 }

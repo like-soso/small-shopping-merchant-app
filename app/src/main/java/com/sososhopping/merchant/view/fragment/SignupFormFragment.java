@@ -116,11 +116,11 @@ public class SignupFormFragment extends Fragment {
         binding = null;
     }
 
-    private void onSignupSuccess() {
+    public void onSignupSuccess() {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_signupFormFragment_to_signupDoneFragment);
     }
 
-    private void onEmailNotDuplicated() {
+    public void onEmailNotDuplicated() {
         TextInputLayout emailLayout = binding.emailLayout;
         TextView emailDupChecker = binding.emailDuplicationCheck;
         emailLayout.setEnabled(false);
@@ -129,79 +129,79 @@ public class SignupFormFragment extends Fragment {
         emailDupChecker.setClickable(false);
     }
 
-    private void onPasswordProper() {
+    public void onPasswordProper() {
         TextInputLayout passwordLayout = binding.passwordLayout;
         passwordLayout.setErrorEnabled(false);
         passwordLayout.setError(null);
     }
 
-    private void onPasswordMatch() {
+    public void onPasswordMatch() {
         TextInputLayout passwordCheckLayout = binding.passwordCheckLayout;
         passwordCheckLayout.setErrorEnabled(false);
         passwordCheckLayout.setError(null);
     }
 
-    private void onNameProper() {
+    public void onNameProper() {
         TextInputLayout nameLayout = binding.nameLayout;
         nameLayout.setErrorEnabled(false);
         nameLayout.setError(null);
     }
 
-    private void onPhoneProper() {
+    public void onPhoneProper() {
         TextInputLayout phoneLayout = binding.phoneLayout;
         phoneLayout.setErrorEnabled(false);
         phoneLayout.setError(null);
     }
 
-    private void onInappropriateEmail() {
+    public void onInappropriateEmail() {
         TextInputLayout emailLayout = binding.emailLayout;
         emailLayout.setErrorEnabled(true);
         emailLayout.setError(getString(R.string.signup_form_error_email_inappropriate));
     }
 
-    private void onDuplicateEmail() {
+    public void onDuplicateEmail() {
         TextInputLayout emailLayout = binding.emailLayout;
         emailLayout.setErrorEnabled(true);
         emailLayout.setError(getString(R.string.signup_form_error_email_duplicated));
     }
 
-    private void onEmailNotChecked() {
+    public void onEmailNotChecked() {
         TextInputLayout emailLayout = binding.emailLayout;
         emailLayout.setErrorEnabled(true);
         emailLayout.setError(getString(R.string.signup_form_error_email_not_checked));
     }
 
-    private void onPasswordTooShort() {
+    public void onPasswordTooShort() {
         TextInputLayout passwordLayout = binding.passwordLayout;
         passwordLayout.setErrorEnabled(true);
         passwordLayout.setError(getString(R.string.signup_form_error_password_too_short));
     }
 
-    private void onPasswordNotMatched() {
+    public void onPasswordNotMatched() {
         TextInputLayout passwordCheckLayout = binding.passwordCheckLayout;
         passwordCheckLayout.setErrorEnabled(true);
         passwordCheckLayout.setError(getString(R.string.signup_form_error_password_check_mismatch));
     }
 
-    private void onPasswordCheckEmpty() {
+    public void onPasswordCheckEmpty() {
         TextInputLayout passwordCheckLayout = binding.passwordCheckLayout;
         passwordCheckLayout.setErrorEnabled(true);
         passwordCheckLayout.setError(getString(R.string.signup_form_error_required));
     }
 
-    private void onNameEmpty() {
+    public void onNameEmpty() {
         TextInputLayout nameLayout = binding.nameLayout;
         nameLayout.setErrorEnabled(true);
         nameLayout.setError(getString(R.string.signup_form_error_required));
     }
 
-    private void onPhoneEmpty() {
+    public void onPhoneEmpty() {
         TextInputLayout phoneLayout = binding.phoneLayout;
         phoneLayout.setErrorEnabled(true);
         phoneLayout.setError(getString(R.string.signup_form_error_required));
     }
 
-    private void onNetworkError() {
+    public void onNetworkError() {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_global_networkErrorDialog);
     }
 }

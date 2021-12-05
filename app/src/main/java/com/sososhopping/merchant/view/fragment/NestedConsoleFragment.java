@@ -90,7 +90,7 @@ public class NestedConsoleFragment extends Fragment {
         binding = null;
     }
 
-    private void onBusinessStatusChecked(StoreOpenStatusResponseDto dto) {
+    public void onBusinessStatusChecked(StoreOpenStatusResponseDto dto) {
         boolean result = dto.getOpenStatus();
 
         if (result) {
@@ -102,7 +102,7 @@ public class NestedConsoleFragment extends Fragment {
         }
     }
 
-    private void onNetworkError() {
+    public void onNetworkError() {
         NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_global_networkErrorDialog);
     }
 }

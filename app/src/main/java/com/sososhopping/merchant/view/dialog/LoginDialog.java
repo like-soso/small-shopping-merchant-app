@@ -84,7 +84,7 @@ public class LoginDialog extends DialogFragment {
         }
     }
 
-    private void onLoginFailed() {
+    public void onLoginFailed() {
         TextInputLayout emailLayout = binding.emailLayout;
         TextInputLayout passwordLayout = binding.passwordLayout;
 
@@ -95,7 +95,7 @@ public class LoginDialog extends DialogFragment {
         passwordLayout.setError(getString(R.string.login_error_incorrect));
     }
 
-    private void onLoggedIn(LoginRequestDto requestDto, LoginResponseDto responseDto) {
+    public void onLoggedIn(LoginRequestDto requestDto, LoginResponseDto responseDto) {
         String id = requestDto.getEmail();
         String password = requestDto.getPassword();
         String token = responseDto.getToken();
@@ -107,15 +107,15 @@ public class LoginDialog extends DialogFragment {
         navigateToMain();
     }
 
-    private void onNetworkError() {
+    public void onNetworkError() {
         NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
     }
 
-    private void navigateToMain() {
+    public void navigateToMain() {
         NavHostFragment.findNavController(this).navigate(R.id.action_loginDialog_to_mainFragment);
     }
 
-    private void navigateToForgot() {
+    public void navigateToForgot() {
         NavHostFragment.findNavController(this).navigate(R.id.action_loginDialog_to_forgotFragment);
     }
 }

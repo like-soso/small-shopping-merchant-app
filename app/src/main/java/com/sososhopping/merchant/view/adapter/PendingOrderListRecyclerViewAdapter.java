@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.ItemPendingOrderListDeliveryBinding;
 import com.sososhopping.merchant.databinding.ItemPendingOrderListPickupBinding;
 import com.sososhopping.merchant.model.order.entity.Order;
@@ -48,8 +49,10 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
                 public void onClick(View v) {
                     if (deliveryViewHolder.fold) {
                         deliveryViewHolder.mDetails.setVisibility(View.VISIBLE);
+                        deliveryViewHolder.mToggleButton.setImageResource(R.drawable.ic_baseline_remove_24);
                     } else {
                         deliveryViewHolder.mDetails.setVisibility(View.GONE);
+                        deliveryViewHolder.mToggleButton.setImageResource(R.drawable.ic_baseline_add_24);
                     }
                     deliveryViewHolder.fold = !deliveryViewHolder.fold;
                 }
@@ -75,7 +78,7 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
             });
         } else {
             PickupViewHolder pickupViewHolder = (PickupViewHolder) holder;
-            pickupViewHolder.mVisitTimeView.setText(mValues.get(position).getDeliveryAddress());
+            pickupViewHolder.mVisitTimeView.setText(mValues.get(position).getVisitDate());
             pickupViewHolder.mVisitorNameView.setText(mValues.get(position).getOrdererName());
             pickupViewHolder.mVisitorPhoneView.setText(mValues.get(position).getOrdererPhone());
             pickupViewHolder.mToggleButton.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +86,10 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
                 public void onClick(View v) {
                     if (pickupViewHolder.fold) {
                         pickupViewHolder.mDetails.setVisibility(View.VISIBLE);
+                        pickupViewHolder.mToggleButton.setImageResource(R.drawable.ic_baseline_remove_24);
                     } else {
                         pickupViewHolder.mDetails.setVisibility(View.GONE);
+                        pickupViewHolder.mToggleButton.setImageResource(R.drawable.ic_baseline_add_24);
                     }
                     pickupViewHolder.fold = !pickupViewHolder.fold;
                 }
