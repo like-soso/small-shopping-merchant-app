@@ -92,6 +92,36 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
                     );
                 }
             });
+            switch (mValues.get(position).getPaymentType()) {
+                case "CASH": {
+                    deliveryViewHolder.mPaymentTypeView.setText("매장에서 결제");
+                    break;
+                }
+                case "CARD": {
+                    deliveryViewHolder.mPaymentTypeView.setText("신용카드");
+                    break;
+                }
+                case "LOCAL": {
+                    deliveryViewHolder.mPaymentTypeView.setText("지역화폐");
+                    break;
+                }
+                case "KAKAO": {
+                    deliveryViewHolder.mPaymentTypeView.setText("간편결제(카카오페이)");
+                    break;
+                }
+                case "NAVER": {
+                    deliveryViewHolder.mPaymentTypeView.setText("간편결제(네이버페이)");
+                    break;
+                }
+                case "PHONE": {
+                    deliveryViewHolder.mPaymentTypeView.setText("간편결제(휴대폰)");
+                    break;
+                }
+                case "TOSS": {
+                    deliveryViewHolder.mPaymentTypeView.setText("간편결제(토스)");
+                    break;
+                }
+            }
         } else {
             PickupViewHolder pickupViewHolder = (PickupViewHolder) holder;
             pickupViewHolder.mVisitTimeView.setText(mValues.get(position).getVisitDate());
@@ -140,6 +170,37 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
                     );
                 }
             });
+
+            switch (mValues.get(position).getPaymentType()) {
+                case "CASH": {
+                    pickupViewHolder.mPaymentTypeView.setText("매장에서 결제");
+                    break;
+                }
+                case "CARD": {
+                    pickupViewHolder.mPaymentTypeView.setText("신용카드");
+                    break;
+                }
+                case "LOCAL": {
+                    pickupViewHolder.mPaymentTypeView.setText("지역화폐");
+                    break;
+                }
+                case "KAKAO": {
+                    pickupViewHolder.mPaymentTypeView.setText("간편결제(카카오페이)");
+                    break;
+                }
+                case "NAVER": {
+                    pickupViewHolder.mPaymentTypeView.setText("간편결제(네이버페이)");
+                    break;
+                }
+                case "PHONE": {
+                    pickupViewHolder.mPaymentTypeView.setText("간편결제(휴대폰)");
+                    break;
+                }
+                case "TOSS": {
+                    pickupViewHolder.mPaymentTypeView.setText("간편결제(토스)");
+                    break;
+                }
+            }
         }
     }
 
@@ -172,6 +233,7 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
         public final Button mConfirmButton;
         public final Button mCancelButton;
         public final Group mDetails;
+        public final TextView mPaymentTypeView;
         public boolean fold = true;
 
         public PickupViewHolder(ItemPendingOrderListPickupBinding binding) {
@@ -189,6 +251,7 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
             mConfirmButton = binding.confirm;
             mCancelButton = binding.cancel;
             mDetails = binding.details;
+            mPaymentTypeView = binding.purchaseType;
         }
     }
 
@@ -208,6 +271,7 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
         public final Button mConfirmButton;
         public final Button mCancelButton;
         public final Group mDetails;
+        public final TextView mPaymentTypeView;
         public boolean fold = true;
 
         public DeliveryViewHolder(ItemPendingOrderListDeliveryBinding binding) {
@@ -227,6 +291,7 @@ public class PendingOrderListRecyclerViewAdapter extends RecyclerView.Adapter<Re
             mConfirmButton = binding.confirm;
             mCancelButton = binding.cancel;
             mDetails = binding.details;
+            mPaymentTypeView = binding.purchaseType;
         }
     }
 }
