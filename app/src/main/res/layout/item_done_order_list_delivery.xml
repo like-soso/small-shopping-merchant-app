@@ -40,7 +40,7 @@
                     android:id="@+id/type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="픽업 (방문 대기)"
+                    android:text="배송 (완료)"
                     android:textColor="@color/main_500"
                     android:textStyle="bold"
                     android:textSize="18sp"
@@ -60,72 +60,95 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/visitTimeText"
+                android:id="@+id/deliveryAddressText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="픽업 예정 일시"
-                android:textSize="16sp"
+                android:text="배송지 주소"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@id/topLayout"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
-                android:id="@+id/visitTime"
+                android:id="@+id/deliveryAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="2021-12-04 16:23"
-                android:textSize="16sp"
+                android:text="경기도 안양시 만안구 안양로214번길 22"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:ellipsize="end"
                 android:gravity="end"
                 app:layout_constraintTop_toBottomOf="@id/topLayout"
-                app:layout_constraintStart_toEndOf="@id/visitTimeText"
+                app:layout_constraintStart_toEndOf="@id/deliveryAddressText"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
-                android:id="@+id/visitorNameText"
+                android:id="@+id/deliveryAddressDetailText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="방문자 이름"
-                android:textSize="16sp"
+                android:text="배송지 상세 주소"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/visitTime"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddressText"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
-                android:id="@+id/visitorName"
+                android:id="@+id/deliveryAddressDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="302호"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:gravity="end"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddressText"
+                app:layout_constraintStart_toEndOf="@id/deliveryAddressDetailText"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/deliveryNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="받는 분 이름"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddressDetailText"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/deliveryName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="OOO"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:ellipsize="end"
                 android:gravity="end"
-                app:layout_constraintTop_toBottomOf="@id/visitTimeText"
-                app:layout_constraintStart_toEndOf="@id/visitorNameText"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddressDetailText"
+                app:layout_constraintStart_toEndOf="@id/deliveryNameText"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
-                android:id="@+id/visitorPhoneText"
+                android:id="@+id/deliveryPhoneText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="방문자 전화 번호"
-                android:textSize="16sp"
+                android:text="받는 분 전화 번호"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/visitorNameText"
+                app:layout_constraintTop_toBottomOf="@id/deliveryNameText"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
-                android:id="@+id/visitorPhone"
+                android:id="@+id/deliveryPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="01011111111"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:ellipsize="end"
                 android:gravity="end"
-                app:layout_constraintTop_toBottomOf="@id/visitorNameText"
-                app:layout_constraintStart_toEndOf="@id/visitorPhoneText"
+                app:layout_constraintTop_toBottomOf="@id/deliveryNameText"
+                app:layout_constraintStart_toEndOf="@id/deliveryPhoneText"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
@@ -137,7 +160,7 @@
                 android:textColor="@color/main_500"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/visitorPhoneText"
+                app:layout_constraintTop_toBottomOf="@id/deliveryPhone"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -165,11 +188,11 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/purchaseType"
+                android:id="@+id/purchaseTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="매장에서 카드 결제"
+                android:text="카카오페이"
                 android:gravity="end"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -314,13 +337,44 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
+                android:id="@+id/deliveryPriceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ 배송비"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/couponPriceTitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/deliveryPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="1000000000000000000000000000000000000000000000000000"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/deliveryPriceUnit"
+                app:layout_constraintStart_toEndOf="@+id/deliveryPriceTitle"
+                app:layout_constraintTop_toBottomOf="@id/couponPriceTitle" />
+
+            <TextView
+                android:id="@+id/deliveryPriceUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/couponPriceTitle"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
                 android:id="@+id/orderDateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="주문 일시: "
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintTop_toBottomOf="@id/couponPriceTitle"
+                app:layout_constraintTop_toBottomOf="@id/deliveryPriceTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/orderDate"/>
 
@@ -330,7 +384,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="2021-12-04 12:21"
-                app:layout_constraintTop_toBottomOf="@id/couponPriceTitle"
+                app:layout_constraintTop_toBottomOf="@id/deliveryPriceTitle"
                 app:layout_constraintStart_toEndOf="@id/orderDateText" />
 
             <androidx.constraintlayout.widget.Group
@@ -338,7 +392,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="visitorNameText, visitorName, visitorPhoneText, visitorPhone, itemPriceTitle, itemPrice, itemPriceUnit, pointPriceTitle, pointPrice, pointPriceUnit, couponPriceTitle, couponPrice, couponPriceUnit, orderDateText, orderDate" />
+                app:constraint_referenced_ids="deliveryAddressText, deliveryAddress, deliveryAddressDetailText, deliveryAddressDetail, deliveryNameText, deliveryName, deliveryPhoneText, deliveryPhone, itemPriceTitle, itemPrice, itemPriceUnit, pointPriceTitle, pointPrice, pointPriceUnit, couponPriceTitle, couponPrice, couponPriceUnit, deliveryPriceTitle, deliveryPrice, deliveryPriceUnit, orderDateText, orderDate" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -42,8 +42,12 @@ public class Order {
     int finalPrice;
     @SerializedName("createdAt")
     String createdAt;
+    @SerializedName("paymentType")
+    String paymentType;
+    @SerializedName("orderStatus")
+    String orderStatus;
 
-    public Order(int orderId, int userId, int storeId, int ownerId, List<OrderItem> orderItemList, String ordererName, String ordererPhone, String orderType, String visitDate, String storeName, int deliveryCharge, String deliveryAddress, String deliveryDetailedAddress, int orderPrice, int usedPoint, int couponDiscountPrice, int finalPrice, String createdAt) {
+    public Order(int orderId, int userId, int storeId, int ownerId, List<OrderItem> orderItemList, String ordererName, String ordererPhone, String orderType, String visitDate, String storeName, int deliveryCharge, String deliveryAddress, String deliveryDetailedAddress, int orderPrice, int usedPoint, int couponDiscountPrice, int finalPrice, String createdAt, String paymentType, String orderStatus) {
         this.orderId = orderId;
         this.userId = userId;
         this.storeId = storeId;
@@ -62,6 +66,8 @@ public class Order {
         this.couponDiscountPrice = couponDiscountPrice;
         this.finalPrice = finalPrice;
         this.createdAt = createdAt;
+        this.paymentType = paymentType;
+        this.orderStatus = orderStatus;
     }
 
     public int getOrderId() {
@@ -134,5 +140,17 @@ public class Order {
 
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }
