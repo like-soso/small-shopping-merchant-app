@@ -37,7 +37,7 @@ public class DeliveryOrderListRecyclerViewAdapter extends RecyclerView.Adapter<R
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Consumer<Integer> onSuccess = this::onSuccess;
-        PendingOrderListRecyclerViewAdapter.DeliveryViewHolder deliveryViewHolder = (PendingOrderListRecyclerViewAdapter.DeliveryViewHolder) holder;
+        DeliveryViewHolder deliveryViewHolder = (DeliveryViewHolder) holder;
         deliveryViewHolder.mAddressView.setText(mValues.get(position).getDeliveryAddress());
         deliveryViewHolder.mAddressDetailView.setText(mValues.get(position).getDeliveryDetailedAddress());
         deliveryViewHolder.mNameView.setText(mValues.get(position).getOrdererName());
@@ -62,7 +62,7 @@ public class DeliveryOrderListRecyclerViewAdapter extends RecyclerView.Adapter<R
         deliveryViewHolder.mCouponPriceView.setText(Integer.toString(mValues.get(position).getCouponDiscountPrice()));
         deliveryViewHolder.mDeliveryRateView.setText(Integer.toString(mValues.get(position).getDeliveryCharge()));
         deliveryViewHolder.mOrderDateView.setText(mValues.get(position).getCreatedAt());
-        deliveryViewHolder.mConfirmButton.setOnClickListener(new View.OnClickListener() {
+        deliveryViewHolder.mSentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OrderRepository.getInstance().requestOrderProceed(

@@ -14,5 +14,25 @@
             android:name="storeId"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_nestedConsoleFragment_to_nestedCalendarOrderListFragment"
+            app:destination="@id/nestedCalendarOrderListFragment"
+            app:popUpTo="@id/nestedConsoleFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/nestedCalendarOrderListFragment"
+        android:name="com.sososhopping.merchant.view.fragment.NestedCalendarOrderListFragment"
+        android:label="fragment_nested_calendar_order_list"
+        tools:layout="@layout/fragment_nested_calendar_order_list" >
+        <argument
+            android:name="storeId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_nestedCalendarOrderListFragment_to_nestedConsoleFragment"
+            app:destination="@id/nestedConsoleFragment"
+            app:popUpTo="@id/nestedCalendarOrderListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

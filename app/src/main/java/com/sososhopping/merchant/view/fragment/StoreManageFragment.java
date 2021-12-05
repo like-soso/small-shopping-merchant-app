@@ -2,6 +2,7 @@ package com.sososhopping.merchant.view.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -9,9 +10,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.navigation.NavigationBarView;
 import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.FragmentStoreManageBinding;
 
@@ -22,6 +25,8 @@ public class StoreManageFragment extends Fragment {
 
     private int storeId;
     private String storeName;
+
+    int currentItem;
 
     FragmentStoreManageBinding binding;
 
@@ -45,6 +50,7 @@ public class StoreManageFragment extends Fragment {
             storeId = getArguments().getInt(STOREID);
             storeName = getArguments().getString(STORENAME);
         }
+        currentItem = R.id.storeManageConsole;
     }
 
     @Override
@@ -59,13 +65,45 @@ public class StoreManageFragment extends Fragment {
 
         Bundle bundle = new Bundle();
         bundle.putInt(STOREID, storeId);
-        navController.setGraph(R.navigation.nav_graph_nested_store_manage, bundle);
+
+        try {
+            navController.getGraph();
+        } catch (Exception e) {
+            navController.setGraph(R.navigation.nav_graph_nested_store_manage, bundle);
+        }
 
         binding.toolbarTitle.setText(storeName);
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).navigateUp();
+            }
+        });
+
+        binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.storeManageConsole) {
+                    if (currentItem == R.id.storeManageChat) {
+                        //Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedPickupOrderFragment_to_nestedPendingOrderFragment, bundle);
+                    } else {
+                        Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedCalendarOrderListFragment_to_nestedConsoleFragment, bundle);
+                    }
+                    currentItem = R.id.storeManageConsole;
+                } else if (item.getItemId() == R.id.storeManageChat) {
+                    ;
+                } else {
+                    Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedConsoleFragment_to_nestedCalendarOrderListFragment, bundle);
+                    currentItem = R.id.calendar;
+                }
+                return true;
+            }
+        });
+
+        binding.bottomNavigationView.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                ;
             }
         });
 
