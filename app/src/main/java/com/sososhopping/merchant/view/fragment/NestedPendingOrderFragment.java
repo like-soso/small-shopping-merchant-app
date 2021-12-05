@@ -70,11 +70,11 @@ public class NestedPendingOrderFragment extends Fragment {
         binding = null;
     }
 
-    private void onListAcquired(OrderListResponseDto dto) {
+    public void onListAcquired(OrderListResponseDto dto) {
         binding.recyclerView.setAdapter(new PendingOrderListRecyclerViewAdapter(dto.getOrders()));
     }
 
-    private void onNetworkError() {
+    public void onNetworkError() {
         NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_global_networkErrorDialog);
     }
 }

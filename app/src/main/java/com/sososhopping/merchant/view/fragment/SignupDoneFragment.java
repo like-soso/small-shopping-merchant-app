@@ -52,7 +52,7 @@ public class SignupDoneFragment extends Fragment {
         binding = null;
     }
 
-    private void navigateUp() {
+    public void navigateUp() {
         Navigation.findNavController(binding.getRoot()).navigateUp();
     }
 }

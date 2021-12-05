@@ -55,7 +55,7 @@ public class QuestionDialog extends DialogFragment {
         }
     }
 
-    private void closeDialog() {
+    public void closeDialog() {
         this.dismiss();
     }
 }
