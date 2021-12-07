@@ -31,7 +31,9 @@
         tools:layout="@layout/fragment_signup_form" >
         <action
             android:id="@+id/action_signupFormFragment_to_signupDoneFragment"
-            app:destination="@id/signupDoneFragment" />
+            app:destination="@id/signupDoneFragment"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/signupDoneFragment"
@@ -158,5 +160,24 @@
             android:name="storeId"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_reviewListFragment_to_reportFragment"
+            app:destination="@id/reportFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.sososhopping.merchant.view.fragment.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" >
+        <action
+            android:id="@+id/action_reportFragment_to_reportDoneFragment"
+            app:destination="@id/reportDoneFragment"
+            app:popUpTo="@id/reviewListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/reportDoneFragment"
+        android:name="com.sososhopping.merchant.view.fragment.ReportDoneFragment"
+        android:label="fragment_report_done"
+        tools:layout="@layout/fragment_report_done" />
 </navigation>

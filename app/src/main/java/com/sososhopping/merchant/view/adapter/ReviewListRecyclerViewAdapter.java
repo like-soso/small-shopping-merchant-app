@@ -10,6 +10,7 @@ import android.widget.PopupMenu;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sososhopping.merchant.R;
@@ -50,14 +51,18 @@ public class ReviewListRecyclerViewAdapter extends RecyclerView.Adapter<ReviewLi
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getItemId() == R.id.reviewChat) {
                             Bundle bundle = new Bundle();
-                            bundle.putInt("CUSTOMERID", mValues.get(position).getUserId());
-                            bundle.putString("CUSTOMERNAME", mValues.get(position).getUsername());
-                            bundle.putString("STORENAME", mStoreName);
+                            bundle.putInt("CustomerId", mValues.get(position).getUserId());
+                            bundle.putString("CustomerName", mValues.get(position).getUsername());
+                            bundle.putString("StoreName", mStoreName);
                             //TODO: 여기 조치
                             System.out.println(mStoreName);
                             System.out.println("CHAT");
                         } else {
-                            System.out.println("REPORT");
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("storeId", mValues.get(position).getStoreId());
+                            bundle.putInt("customerId", mValues.get(position).getUserId());
+                            bundle.putString("customerName", mValues.get(position).getUsername());
+                            Navigation.findNavController((View) (holder.itemView.getParent().getParent().getParent().getParent())).navigate(R.id.action_reviewListFragment_to_reportFragment, bundle);
                         }
                         return true;
                     }
