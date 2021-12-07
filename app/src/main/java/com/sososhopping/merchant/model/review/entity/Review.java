@@ -6,6 +6,8 @@ public class Review {
 
     @SerializedName("userId")
     int userId;
+    @SerializedName("storeId")
+    int storeId;
     @SerializedName("userName")
     String username;
     @SerializedName("score")
@@ -17,6 +19,10 @@ public class Review {
 
     public int getUserId() {
         return userId;
+    }
+
+    public int getStoreId() {
+        return storeId;
     }
 
     public String getUsername() {
