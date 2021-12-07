@@ -65,6 +65,7 @@ public class StoreManageFragment extends Fragment {
 
         Bundle bundle = new Bundle();
         bundle.putInt(STOREID, storeId);
+        bundle.putString(STORENAME, storeName);
 
         try {
             navController.getGraph();

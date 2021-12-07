@@ -135,12 +135,25 @@
         <action
             android:id="@+id/action_storeManageFragment_to_orderListFragment"
             app:destination="@id/orderListFragment" />
+        <action
+            android:id="@+id/action_storeManageFragment_to_reviewListFragment"
+            app:destination="@id/reviewListFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderListFragment"
         android:name="com.sososhopping.merchant.view.fragment.OrderListFragment"
         android:label="fragment_order_list"
         tools:layout="@layout/fragment_order_list" >
+        <argument
+            android:name="storeId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewListFragment"
+        android:name="com.sososhopping.merchant.view.fragment.ReviewListFragment"
+        android:label="fragment_review_list"
+        tools:layout="@layout/fragment_review_list" >
         <argument
             android:name="storeId"
             app:argType="integer"

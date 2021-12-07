@@ -21,8 +21,10 @@ import java.util.function.Consumer;
 public class NestedConsoleFragment extends Fragment {
 
     private static final String STOREID = "storeId";
+    private static final String STORENAME = "storeName";
 
     private int storeId;
+    private String storeName;
 
     FragmentNestedConsoleBinding binding;
 
@@ -30,10 +32,11 @@ public class NestedConsoleFragment extends Fragment {
 
     }
 
-    public static NestedConsoleFragment newInstance(int storeId) {
+    public static NestedConsoleFragment newInstance(int storeId, String storeName) {
         NestedConsoleFragment fragment = new NestedConsoleFragment();
         Bundle args = new Bundle();
         args.putInt(STOREID, storeId);
+        args.putString(STORENAME, storeName);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,6 +46,7 @@ public class NestedConsoleFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             storeId = getArguments().getInt(STOREID);
+            storeName = getArguments().getString(STORENAME);
         }
     }
 
@@ -70,6 +74,16 @@ public class NestedConsoleFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt(STOREID, storeId);
                 NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_storeManageFragment_to_orderListFragment, bundle);
+            }
+        });
+
+        binding.reviewLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt(STOREID, storeId);
+                bundle.putString(STORENAME, storeName);
+                NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_storeManageFragment_to_reviewListFragment, bundle);
             }
         });
 
