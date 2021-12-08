@@ -68,14 +68,14 @@ public class AccountingListFragment extends Fragment {
         Consumer<List<Accounting>> onItemListAcquired = this::onBoardListAcquired;
         Runnable onError = this::onNetworkError;
 
-        AccountingRepository.getInstance().requestAccountingList(TokenStore.getAuthToken(), storeId, viewModel.getDateString(), onItemListAcquired, onError);
+        AccountingRepository.getInstance().requestAccountingList(storeId, viewModel.getDateString(), onItemListAcquired, onError);
 
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putInt(STOREID, storeId);
-                //Navigation.findNavController(v).navigate(R.id.action_accountingFragment_to_accountingFormDialog, bundle);
+                Navigation.findNavController(v).navigate(R.id.action_accountingListFragment_to_accountingRegisterDialog, bundle);
             }
         });
 
@@ -85,7 +85,7 @@ public class AccountingListFragment extends Fragment {
             public void onClick(View v) {
                 viewModel.toPrevMonth();
                 binding.invalidateAll();
-                AccountingRepository.getInstance().requestAccountingList(TokenStore.getAuthToken(), storeId, viewModel.getDateString(), onItemListAcquired, onError);
+                AccountingRepository.getInstance().requestAccountingList(storeId, viewModel.getDateString(), onItemListAcquired, onError);
             }
         });
 
@@ -95,25 +95,25 @@ public class AccountingListFragment extends Fragment {
             public void onClick(View v) {
                 viewModel.toNextMonth();
                 binding.invalidateAll();
-                AccountingRepository.getInstance().requestAccountingList(TokenStore.getAuthToken(), storeId, viewModel.getDateString(), onItemListAcquired, onError);
+                AccountingRepository.getInstance().requestAccountingList(storeId, viewModel.getDateString(), onItemListAcquired, onError);
             }
         });
 
         getParentFragmentManager().setFragmentResultListener("key", getViewLifecycleOwner(), new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                AccountingRepository.getInstance().requestAccountingList(TokenStore.getAuthToken(), storeId, viewModel.getDateString(), onItemListAcquired, onError);
+                AccountingRepository.getInstance().requestAccountingList(storeId, viewModel.getDateString(), onItemListAcquired, onError);
             }
         });
 
         return binding.getRoot();
     }
 
-    private void onBoardListAcquired(List<Accounting> accountingList) {
+    public void onBoardListAcquired(List<Accounting> accountingList) {
         binding.shopListRecyclerView.setAdapter(new AccountingListRecyclerViewAdapter(accountingList));
     }
 
-    private void onNetworkError() {
+    public void onNetworkError() {
         NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
     }
 }

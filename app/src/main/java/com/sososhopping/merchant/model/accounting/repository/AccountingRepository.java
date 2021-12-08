@@ -29,8 +29,8 @@ public class AccountingRepository {
         return instance;
     }
 
-    public void requestAccountingList(String token, int storeId, String yearMonth, Consumer<List<Accounting>> consumer, Runnable onError) {
-        service.requestAccountingList(token, storeId, yearMonth).enqueue(new Callback<List<Accounting>>() {
+    public void requestAccountingList(int storeId, String yearMonth, Consumer<List<Accounting>> consumer, Runnable onError) {
+        service.requestAccountingList(TokenStore.getAuthToken(), storeId, yearMonth).enqueue(new Callback<List<Accounting>>() {
             public void onResponse(Call<List<Accounting>> call, Response<List<Accounting>> response) {
                 System.out.println(response.code());
                 if(response.code() == 200) {
@@ -47,12 +47,11 @@ public class AccountingRepository {
         });
     }
 
-    public void requestAccountingRegister(String token,
-                                          int storeId,
+    public void requestAccountingRegister(int storeId,
                                           AccountingRegisterAndUpdateRequestDto dto,
                                           Runnable onSuccess,
                                           Runnable onError) {
-        service.requestAccountingRegister(token, storeId, dto).enqueue(new Callback<Void>() {
+        service.requestAccountingRegister(TokenStore.getAuthToken(), storeId, dto).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 System.out.println(response.code());

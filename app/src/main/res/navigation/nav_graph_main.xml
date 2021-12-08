@@ -187,5 +187,14 @@
         android:id="@+id/accountingListFragment"
         android:name="com.sososhopping.merchant.view.fragment.AccountingListFragment"
         android:label="fragment_accounting_list"
-        tools:layout="@layout/fragment_accounting_list" />
+        tools:layout="@layout/fragment_accounting_list" >
+        <action
+            android:id="@+id/action_accountingListFragment_to_accountingRegisterDialog"
+            app:destination="@id/accountingRegisterDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/accountingRegisterDialog"
+        android:name="com.sososhopping.merchant.view.dialog.AccountingRegisterDialog"
+        android:label="dialog_accounting_register"
+        tools:layout="@layout/dialog_accounting_register" />
 </navigation>
