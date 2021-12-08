@@ -121,7 +121,7 @@ public class DeliveryOrderListRecyclerViewAdapter extends RecyclerView.Adapter<R
 
     public void onSuccess(int position) {
         mValues.remove(position);
-        notifyItemRemoved(position);
+        notifyDataSetChanged();
     }
 
     public static class DeliveryViewHolder extends RecyclerView.ViewHolder {

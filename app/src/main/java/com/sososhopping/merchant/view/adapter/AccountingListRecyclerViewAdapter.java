@@ -14,8 +14,10 @@ import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.ItemAccountingListNegativeBinding;
 import com.sososhopping.merchant.databinding.ItemAccountingListPositiveBinding;
 import com.sososhopping.merchant.model.accounting.entity.Accounting;
+import com.sososhopping.merchant.model.accounting.repository.AccountingRepository;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class AccountingListRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -36,6 +38,7 @@ public class AccountingListRecyclerViewAdapter extends RecyclerView.Adapter<Recy
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        Consumer<Integer> onSuccess = this::onSuccess;
         if (mValues.get(position).getAmount() >= 0) {
             PositiveViewHolder positiveViewHolder = (PositiveViewHolder) holder;
             positiveViewHolder.mAmount.setText(Integer.toString(mValues.get(position).getAmount()));
@@ -49,12 +52,13 @@ public class AccountingListRecyclerViewAdapter extends RecyclerView.Adapter<Recy
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            if(item.getItemId() == R.id.reviewChat) {
+                            if(item.getItemId() == R.id.accountingUpdate) {
                                 System.out.println(mValues.get(position).getStoreId());
                                 System.out.println(mValues.get(position).getId());
                             } else {
                                 System.out.println(mValues.get(position).getId());
                                 System.out.println(mValues.get(position).getStoreId());
+                                AccountingRepository.getInstance().requestAccountingDelete(mValues.get(position).getStoreId(), mValues.get(position).getId(), position, onSuccess);
                             }
                             return true;
                         }
@@ -75,12 +79,13 @@ public class AccountingListRecyclerViewAdapter extends RecyclerView.Adapter<Recy
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            if(item.getItemId() == R.id.reviewChat) {
+                            if(item.getItemId() == R.id.accountingUpdate) {
                                 System.out.println(mValues.get(position).getStoreId());
                                 System.out.println(mValues.get(position).getId());
                             } else {
                                 System.out.println(mValues.get(position).getId());
                                 System.out.println(mValues.get(position).getStoreId());
+                                AccountingRepository.getInstance().requestAccountingDelete(mValues.get(position).getStoreId(), mValues.get(position).getId(), position, onSuccess);
                             }
                             return true;
                         }
@@ -100,6 +105,11 @@ public class AccountingListRecyclerViewAdapter extends RecyclerView.Adapter<Recy
     public int getItemViewType(int position) {
         if (mValues.get(position).getAmount() < 0) return NEGATIVE;
         return POSITIVE;
+    }
+
+    public void onSuccess(int position) {
+        mValues.remove(position);
+        notifyDataSetChanged();
     }
 
     public static class PositiveViewHolder extends RecyclerView.ViewHolder {

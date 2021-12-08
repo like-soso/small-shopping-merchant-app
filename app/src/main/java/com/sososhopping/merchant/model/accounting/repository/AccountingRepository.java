@@ -4,6 +4,7 @@ import com.sososhopping.merchant.model.accounting.dto.request.AccountingRegister
 import com.sososhopping.merchant.model.accounting.entity.Accounting;
 import com.sososhopping.merchant.model.accounting.service.AccountingService;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
+import com.sososhopping.merchant.utils.token.TokenStore;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -65,6 +66,24 @@ public class AccountingRepository {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 onError.run();
+            }
+        });
+    }
+
+    public void requestAccountingDelete(int storeId,
+                                        int accountingId,
+                                        int position,
+                                        Consumer<Integer> onSuccess) {
+        service.requestAccountingDelete(TokenStore.getAuthToken(), storeId, accountingId).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println(response.code());
+                if (response.code() == 200) onSuccess.accept(position);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
             }
         });
     }
