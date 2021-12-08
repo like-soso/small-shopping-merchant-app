@@ -21,14 +21,14 @@ public interface AccountingService {
     Call<List<Accounting>> requestAccountingList(@Header("token") String token, @Path("storeId") int storeId, @Query("yearMonth") String yearMonth);
 
     @GET("store/{storeId}/accounting/{accountingId}")
-    Call<List<Accounting>> requestAccountingItem(@Header("token") String token, @Path("storeId") int storeId, @Path("accountingId") int accountingId);
+    Call<Accounting> requestAccountingItem(@Header("token") String token, @Path("storeId") int storeId, @Path("accountingId") int accountingId);
 
     @POST("store/{storeId}/accounting")
     Call<Void> requestAccountingRegister(@Header("token") String token, @Path("storeId") int storeId, @Body AccountingRegisterAndUpdateRequestDto dto);
 
     @PATCH("store/{storeId}/accounting/{accountingId}")
-    Call<List<Accounting>> requestAccountingUpdate(@Header("token") String token, @Path("storeId") int storeId, @Path("accountingId") int accountingId, @Body AccountingRegisterAndUpdateRequestDto dto);
+    Call<Void> requestAccountingUpdate(@Header("token") String token, @Path("storeId") int storeId, @Path("accountingId") int accountingId, @Body AccountingRegisterAndUpdateRequestDto dto);
 
     @DELETE("store/{storeId}/accounting/{accountingId}")
-    Call<List<Accounting>> requestAccountingDelete(@Header("token") String token, @Path("storeId") int storeId, @Path("accountingId") int accountingId);
+    Call<Void> requestAccountingDelete(@Header("token") String token, @Path("storeId") int storeId, @Path("accountingId") int accountingId);
 }
