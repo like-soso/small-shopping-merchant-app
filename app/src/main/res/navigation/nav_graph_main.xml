@@ -191,10 +191,18 @@
         <action
             android:id="@+id/action_accountingListFragment_to_accountingRegisterDialog"
             app:destination="@id/accountingRegisterDialog" />
+        <action
+            android:id="@+id/action_accountingListFragment_to_accountingUpdateDialog"
+            app:destination="@id/accountingUpdateDialog" />
     </fragment>
     <dialog
         android:id="@+id/accountingRegisterDialog"
         android:name="com.sososhopping.merchant.view.dialog.AccountingRegisterDialog"
         android:label="dialog_accounting_register"
         tools:layout="@layout/dialog_accounting_register" />
+    <dialog
+        android:id="@+id/accountingUpdateDialog"
+        android:name="com.sososhopping.merchant.view.dialog.AccountingUpdateDialog"
+        android:label="dialog_accounting_update"
+        tools:layout="@layout/dialog_accounting_update" />
 </navigation>
