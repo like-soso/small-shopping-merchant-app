@@ -47,6 +47,22 @@ public class AccountingRepository {
         });
     }
 
+    public void requestAccountingItem(int storeId, int accountingId, Consumer<Accounting> onSuccess) {
+        service.requestAccountingItem(TokenStore.getAuthToken(), storeId, accountingId).enqueue(new Callback<Accounting>() {
+            @Override
+            public void onResponse(Call<Accounting> call, Response<Accounting> response) {
+                if (response.code() == 200) {
+                    onSuccess.accept(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Accounting> call, Throwable t) {
+
+            }
+        });
+    }
+
     public void requestAccountingRegister(int storeId,
                                           AccountingRegisterAndUpdateRequestDto dto,
                                           Runnable onSuccess,
@@ -56,6 +72,29 @@ public class AccountingRepository {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 System.out.println(response.code());
                 if(response.code() == 201) {
+                    onSuccess.run();
+                } else {
+                    onError.run();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestAccountingUpdate(int storeId,
+                                        int accountingId,
+                                        AccountingRegisterAndUpdateRequestDto dto,
+                                        Runnable onSuccess,
+                                        Runnable onError) {
+        service.requestAccountingUpdate(TokenStore.getAuthToken(), storeId, accountingId, dto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println(response.code());
+                if(response.code() == 200) {
                     onSuccess.run();
                 } else {
                     onError.run();

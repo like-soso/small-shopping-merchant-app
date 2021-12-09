@@ -1,5 +1,6 @@
 package com.sososhopping.merchant.view.adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sososhopping.merchant.R;
@@ -53,8 +55,10 @@ public class AccountingListRecyclerViewAdapter extends RecyclerView.Adapter<Recy
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             if(item.getItemId() == R.id.accountingUpdate) {
-                                System.out.println(mValues.get(position).getStoreId());
-                                System.out.println(mValues.get(position).getId());
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("storeId", mValues.get(position).getStoreId());
+                                bundle.putInt("accountingId", mValues.get(position).getId());
+                                Navigation.findNavController((View) (holder.itemView.getParent().getParent().getParent().getParent())).navigate(R.id.action_accountingListFragment_to_accountingUpdateDialog, bundle);
                             } else {
                                 System.out.println(mValues.get(position).getId());
                                 System.out.println(mValues.get(position).getStoreId());
@@ -80,11 +84,11 @@ public class AccountingListRecyclerViewAdapter extends RecyclerView.Adapter<Recy
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             if(item.getItemId() == R.id.accountingUpdate) {
-                                System.out.println(mValues.get(position).getStoreId());
-                                System.out.println(mValues.get(position).getId());
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("storeId", mValues.get(position).getStoreId());
+                                bundle.putInt("accountingId", mValues.get(position).getId());
+                                Navigation.findNavController((View) (holder.itemView.getParent().getParent().getParent().getParent())).navigate(R.id.action_accountingListFragment_to_accountingUpdateDialog, bundle);
                             } else {
-                                System.out.println(mValues.get(position).getId());
-                                System.out.println(mValues.get(position).getStoreId());
                                 AccountingRepository.getInstance().requestAccountingDelete(mValues.get(position).getStoreId(), mValues.get(position).getId(), position, onSuccess);
                             }
                             return true;
