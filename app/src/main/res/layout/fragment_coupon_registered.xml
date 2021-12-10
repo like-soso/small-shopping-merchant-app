@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.fragment.CouponRegisteredFragment">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="160dp"
+            android:src="@drawable/ic_baseline_check_circle_24"
+            android:contentDescription="@string/signup_done_image_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="쿠폰 등록 완료"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image" />
+
+        <TextView
+            android:id="@+id/explanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:text="쿠폰 등록이 완료되었습니다.\n발급이 시작되면 발급 종료 기간만 변경할 수 있으니 주의하세요."
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="48dp"
+            android:minHeight="56dp"
+            android:text="@string/signup_done_ok"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:letterSpacing="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

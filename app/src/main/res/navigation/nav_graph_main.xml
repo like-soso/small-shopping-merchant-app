@@ -146,6 +146,9 @@
         <action
             android:id="@+id/action_storeManageFragment_to_pointFragment"
             app:destination="@id/pointFragment" />
+        <action
+            android:id="@+id/action_storeManageFragment_to_couponFragment"
+            app:destination="@id/couponFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderListFragment"
@@ -244,4 +247,45 @@
                 app:popUpToInclusive="false" />
         </dialog>
     </navigation>
+    <fragment
+        android:id="@+id/couponFragment"
+        android:name="com.sososhopping.merchant.view.fragment.CouponFragment"
+        android:label="fragment_coupon"
+        tools:layout="@layout/fragment_coupon" >
+        <action
+            android:id="@+id/action_couponFragment_to_couponUpdateExpectedFragment"
+            app:destination="@id/couponUpdateExpectedFragment" />
+        <action
+            android:id="@+id/action_couponFragment_to_couponUpdateBeingFragment"
+            app:destination="@id/couponUpdateBeingFragment" />
+        <action
+            android:id="@+id/action_couponFragment_to_couponReigsterFragment"
+            app:destination="@id/couponRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/couponRegisterFragment"
+        android:name="com.sososhopping.merchant.view.fragment.CouponRegisterFragment"
+        android:label="fragment_coupon_register"
+        tools:layout="@layout/fragment_coupon_register" >
+        <action
+            android:id="@+id/action_couponRegisterFragment_to_couponRegisteredFragment"
+            app:destination="@id/couponRegisteredFragment"
+            app:popUpTo="@id/couponFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/couponUpdateBeingFragment"
+        android:name="com.sososhopping.merchant.view.fragment.CouponUpdateBeingFragment"
+        android:label="fragment_coupon_update_being"
+        tools:layout="@layout/fragment_coupon_update_being" />
+    <fragment
+        android:id="@+id/couponUpdateExpectedFragment"
+        android:name="com.sososhopping.merchant.view.fragment.CouponUpdateExpectedFragment"
+        android:label="fragment_coupon_update_expected"
+        tools:layout="@layout/fragment_coupon_update_expected" />
+    <fragment
+        android:id="@+id/couponRegisteredFragment"
+        android:name="com.sososhopping.merchant.view.fragment.CouponRegisteredFragment"
+        android:label="fragment_coupon_registered"
+        tools:layout="@layout/fragment_coupon_registered" />
 </navigation>
