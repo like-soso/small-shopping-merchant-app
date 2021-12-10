@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -59,6 +60,13 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
         Runnable onSuccess = this::navigateToNext;
         Runnable onError = this::onNetworkError;
 
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
+
         binding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -104,8 +112,6 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
                     if(addressList.size() == 0) {
                         binding.shopAddress.setErrorEnabled(true);
                         binding.shopAddress.setError("주소를 확인할 수 없습니다. 올바른 주소인지 확인해주세요.");
-                        binding.shopDetailedAddress.setErrorEnabled(true);
-                        binding.shopDetailedAddress.setError("주소를 확인할 수 없습니다. 올바른 주소인지 확인해주세요.");
                     }
                     else {
                         binding.shopAddressButton.setEnabled(false);
@@ -114,9 +120,6 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
                         binding.shopAddress.setError(null);
                         binding.shopAddress.setErrorEnabled(false);
                         binding.shopAddress.setEnabled(false);
-                        binding.shopDetailedAddress.setEnabled(false);
-                        binding.shopDetailedAddress.setError(null);
-                        binding.shopDetailedAddress.setErrorEnabled(false);
                         viewModel.setLng(String.valueOf(addressList.get(0).getLongitude()));
                         viewModel.setLat(String.valueOf(addressList.get(0).getLatitude()));
                     }

@@ -51,17 +51,26 @@ public class NestedSettingsFragment extends Fragment {
             }
         });
 
-        binding.question.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_mainFragment_to_questionDialog)
-        );
+        binding.question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_mainFragment_to_questionDialog);
+            }
+        });
 
-        binding.about.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_mainFragment_to_userUpdateFragment)
-        );
+        binding.about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_mainFragment_to_userUpdateFragment);
+            }
+        });
 
-        binding.password.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_mainFragment_to_passwordUpdateFragment)
-        );
+        binding.password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_mainFragment_to_passwordUpdateFragment);
+            }
+        });
 
         return binding.getRoot();
     }

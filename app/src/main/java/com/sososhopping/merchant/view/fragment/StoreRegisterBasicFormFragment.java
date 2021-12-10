@@ -92,6 +92,13 @@ public class StoreRegisterBasicFormFragment extends Fragment {
                     }
                 });
 
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
+
         binding.selectMainImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
