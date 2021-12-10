@@ -113,11 +113,12 @@ public class CouponRepository {
         });
     }
 
-    public void requestCouponCheck(int storeId, String userPhone, String couponCode){
+    public void requestCouponCheck(int storeId, String userPhone, String couponCode, Runnable onSuccess){
         service.requestCouponCheck(TokenStore.getAuthToken(), storeId, userPhone, couponCode).enqueue(new Callback<CouponCheckResponseDto>() {
             @Override
             public void onResponse(Call<CouponCheckResponseDto> call, Response<CouponCheckResponseDto> response) {
-                ;
+                System.out.println(call.request().url().toString());
+                if (response.code() == 200) onSuccess.run();
             }
 
             @Override

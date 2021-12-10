@@ -39,7 +39,7 @@ public interface CouponService {
     Call<Void> requestCouponDelete(@Header("token") String token, @Path("storeId") int storeId, @Path("couponId") int couponId);
 
     @GET("store/{storeId}/coupon/local")
-    Call<CouponCheckResponseDto> requestCouponCheck(@Header("token") String token, @Path("storeId") int storeId, @Query("userPhone") String userPhone, @Query("couponCode") String couponCode);
+    Call<CouponCheckResponseDto> requestCouponCheck(@Header("token") String token, @Path("storeId") int storeId, @Query("phone") String userPhone, @Query("couponCode") String couponCode);
 
     @POST("store/{storeId}/coupon/local")
     Call<Void> requestCouponModify(@Header("token") String token, @Path("storeId") int storeId, @Body CouponModifyRequestDto dto);

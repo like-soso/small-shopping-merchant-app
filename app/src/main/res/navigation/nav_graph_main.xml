@@ -261,6 +261,9 @@
         <action
             android:id="@+id/action_couponFragment_to_couponReigsterFragment"
             app:destination="@id/couponRegisterFragment" />
+        <action
+            android:id="@+id/action_couponFragment_to_couponCheckDialog"
+            app:destination="@id/navigationCoupon" />
     </fragment>
     <fragment
         android:id="@+id/couponRegisterFragment"
@@ -288,4 +291,23 @@
         android:name="com.sososhopping.merchant.view.fragment.CouponRegisteredFragment"
         android:label="fragment_coupon_registered"
         tools:layout="@layout/fragment_coupon_registered" />
+    <navigation android:id="@+id/navigationCoupon"
+        app:startDestination="@id/couponCheckDialog">
+        <dialog
+            android:id="@+id/couponCheckDialog"
+            android:name="com.sososhopping.merchant.view.dialog.CouponCheckDialog"
+            android:label="dialog_coupon_check"
+            tools:layout="@layout/dialog_coupon_check">
+            <action
+                android:id="@+id/action_couponCheckDialog_to_couponModifyDialog"
+                app:destination="@id/couponModifyDialog"
+                app:popUpTo="@id/couponFragment"
+                app:popUpToInclusive="false" />
+        </dialog>
+        <dialog
+            android:id="@+id/couponModifyDialog"
+            android:name="com.sososhopping.merchant.view.dialog.CouponModifyDialog"
+            android:label="dialog_coupon_modify"
+            tools:layout="@layout/dialog_coupon_modify" />
+    </navigation>
 </navigation>
