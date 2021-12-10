@@ -69,6 +69,15 @@ public class CouponFragment extends Fragment {
             }
         });
 
+        binding.pointHandleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt(STOREID, storeId);
+                Navigation.findNavController(v).navigate(R.id.action_couponFragment_to_couponCheckDialog, bundle);
+            }
+        });
+
         return binding.getRoot();
     }
 
