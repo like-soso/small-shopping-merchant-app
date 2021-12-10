@@ -143,6 +143,9 @@
         <action
             android:id="@+id/action_storeManageFragment_to_accountingListFragment"
             app:destination="@id/accountingListFragment" />
+        <action
+            android:id="@+id/action_storeManageFragment_to_pointFragment"
+            app:destination="@id/pointFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderListFragment"
@@ -205,4 +208,40 @@
         android:name="com.sososhopping.merchant.view.dialog.AccountingUpdateDialog"
         android:label="dialog_accounting_update"
         tools:layout="@layout/dialog_accounting_update" />
+    <fragment
+        android:id="@+id/pointFragment"
+        android:name="com.sososhopping.merchant.view.fragment.PointFragment"
+        android:label="fragment_point"
+        tools:layout="@layout/fragment_point" >
+        <action
+            android:id="@+id/action_pointFragment_to_pointCheckDialog"
+            app:destination="@id/navigationPoint" />
+        <action
+            android:id="@+id/action_pointFragment_to_pointRuleChangedDialog"
+            app:destination="@id/pointRuleChangedDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/pointRuleChangedDialog"
+        android:name="com.sososhopping.merchant.view.dialog.PointRuleChangedDialog"
+        android:label="dialog_point_rule_changed"
+        tools:layout="@layout/dialog_point_rule_changed" />
+    <navigation android:id="@+id/navigationPoint"
+        app:startDestination="@id/pointCheckDialog">
+        <dialog
+            android:id="@+id/pointModifyDialog"
+            android:name="com.sososhopping.merchant.view.dialog.PointModifyDialog"
+            android:label="dialog_point_modify"
+            tools:layout="@layout/dialog_point_modify" />
+        <dialog
+            android:id="@+id/pointCheckDialog"
+            android:name="com.sososhopping.merchant.view.dialog.PointCheckDialog"
+            android:label="dialog_point_check"
+            tools:layout="@layout/dialog_point_check">
+            <action
+                android:id="@+id/action_pointCheckDialog_to_pointModifyDialog"
+                app:destination="@id/pointModifyDialog"
+                app:popUpTo="@id/pointFragment"
+                app:popUpToInclusive="false" />
+        </dialog>
+    </navigation>
 </navigation>
