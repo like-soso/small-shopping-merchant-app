@@ -3,5 +3,9 @@
     <item
         android:id="@+id/couponBeingUpdate"
         android:icon="@drawable/ic_baseline_view_list_24"
-        android:title="수정" />
+        android:title="발급 기한 수정" />
+    <item
+        android:id="@+id/couponBeingSuspend"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="발급 중단" />
 </menu>

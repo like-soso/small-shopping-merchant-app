@@ -99,6 +99,21 @@ public class CouponRepository {
         });
     }
 
+    public void requestCouponSuspendBeing(int storeId, int couponId, CouponUpdateBeingRequestDto dto, int position, Consumer<Integer> onSuccess) {
+        service.requestCouponUpdateBeing(TokenStore.getAuthToken(), storeId, couponId, dto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println(response.code());
+                if (response.code() == 200) onSuccess.accept(position);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
     public void requestCouponUpdateExpected(int storeId, int couponId, CouponUpdateExpectedRequestDto dto, Runnable onSuccess) {
         System.out.println("called");
         service.requestCouponUpdateExpected(TokenStore.getAuthToken(), storeId, couponId, dto).enqueue(new Callback<Void>() {

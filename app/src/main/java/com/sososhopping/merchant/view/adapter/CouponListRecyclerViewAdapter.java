@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.HeaderCouponListBinding;
 import com.sososhopping.merchant.databinding.ItemCouponListBinding;
+import com.sososhopping.merchant.model.coupon.dto.request.CouponUpdateBeingRequestDto;
 import com.sososhopping.merchant.model.coupon.entity.Coupon;
 import com.sososhopping.merchant.model.coupon.repository.CouponRepository;
 
@@ -107,6 +108,8 @@ public class CouponListRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
                                     bundle.putInt("storeId", ((DataItem) mValues.get(position)).storeId);
                                     bundle.putInt("couponId", ((DataItem) mValues.get(position)).id);
                                     Navigation.findNavController((View) (holder.itemView.getParent().getParent().getParent().getParent())).navigate(R.id.action_couponFragment_to_couponUpdateBeingFragment, bundle);
+                                } else {
+                                    CouponRepository.getInstance().requestCouponSuspendBeing(((DataItem) mValues.get(position)).storeId, ((DataItem) mValues.get(position)).id, CouponUpdateBeingRequestDto.toSuspend(), position, onSuccess);
                                 }
                                 return true;
                             }
@@ -116,12 +119,7 @@ public class CouponListRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
                         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                if(item.getItemId() == R.id.couponExpectedUpdate) {
-                                    Bundle bundle = new Bundle();
-                                    bundle.putInt("storeId", ((DataItem) mValues.get(position)).storeId);
-                                    bundle.putInt("couponId", ((DataItem) mValues.get(position)).id);
-                                    Navigation.findNavController((View) (holder.itemView.getParent().getParent().getParent().getParent())).navigate(R.id.action_couponFragment_to_couponUpdateExpectedFragment, bundle);
-                                } else {
+                                if(item.getItemId() == R.id.couponExpectedDelete) {
                                     CouponRepository.getInstance().requestCouponDelete(((DataItem) mValues.get(position)).storeId, ((DataItem) mValues.get(position)).id, position, onSuccess);
                                 }
                                 return true;
