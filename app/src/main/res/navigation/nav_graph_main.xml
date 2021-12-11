@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_mainFragment_to_storeManageFragment"
             app:destination="@id/storeManageFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_storeRegisterBasicFormFragment"
+            app:destination="@id/navigationStoreRegister" />
     </fragment>
     <dialog
         android:id="@+id/questionDialog"
@@ -335,4 +338,32 @@
         android:name="com.sososhopping.merchant.view.fragment.ItemUpdateFragment"
         android:label="fragment_item_update"
         tools:layout="@layout/fragment_item_update" />
+    <navigation android:id="@+id/navigationStoreRegister"
+        app:startDestination="@id/storeRegisterBasicFormFragment">
+        <fragment
+            android:id="@+id/storeRegisterBasicFormFragment"
+            android:name="com.sososhopping.merchant.view.fragment.StoreRegisterBasicFormFragment"
+            android:label="fragment_store_register_basic_form"
+            tools:layout="@layout/fragment_store_register_basic_form">
+            <action
+                android:id="@+id/action_storeRegisterBasicFormFragment_to_storeRegisterMetadataFormFragment"
+                app:destination="@id/storeRegisterMetadataFormFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/storeRegisteredFragment"
+            android:name="com.sososhopping.merchant.view.fragment.StoreRegisteredFragment"
+            android:label="fragment_store_registered"
+            tools:layout="@layout/fragment_store_registered" />
+        <fragment
+            android:id="@+id/storeRegisterMetadataFormFragment"
+            android:name="com.sososhopping.merchant.view.fragment.StoreRegisterMetadataFormFragment"
+            android:label="fragment_store_register_metadata_form"
+            tools:layout="@layout/fragment_store_register_metadata_form">
+            <action
+                android:id="@+id/action_storeRegisterMetadataFormFragment_to_storeRegisteredFragment"
+                app:destination="@id/storeRegisteredFragment"
+                app:popUpTo="@id/mainFragment"
+                app:popUpToInclusive="false" />
+        </fragment>
+    </navigation>
 </navigation>
