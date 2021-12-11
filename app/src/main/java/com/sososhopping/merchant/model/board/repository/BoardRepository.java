@@ -3,8 +3,10 @@ package com.sososhopping.merchant.model.board.repository;
 import android.graphics.Bitmap;
 
 import com.sososhopping.merchant.model.board.dto.request.BoardRegisterRequestDto;
+import com.sososhopping.merchant.model.board.dto.request.BoardUpdateRequestDto;
 import com.sososhopping.merchant.model.board.entity.Board;
 import com.sososhopping.merchant.model.board.service.BoardService;
+import com.sososhopping.merchant.model.item.dto.request.ItemUpdateRequestDto;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
 import com.sososhopping.merchant.utils.retrofit.request.BitmapRequestBody;
 import com.sososhopping.merchant.utils.retrofit.request.DtoJsonRequestBody;
@@ -53,6 +55,22 @@ public class BoardRepository {
         });
     }
 
+    public void requestBoardItem(int storeId,
+                                 int boardId,
+                                 Consumer<Board> onSuccess) {
+        service.requestBoardItem(TokenStore.getAuthToken(), storeId, boardId).enqueue(new Callback<Board>(){
+            @Override
+            public void onResponse(Call<Board> call, Response<Board> response) {
+                if (response.code() == 200) onSuccess.accept(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Board> call, Throwable t) {
+
+            }
+        });
+    }
+
     public void requestBoardRegister(int storeId,
                                      BoardRegisterRequestDto dto,
                                      Bitmap bitmap,
@@ -85,6 +103,21 @@ public class BoardRepository {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
 
+            }
+        });
+    }
+
+    public void requestBoardUpdate(int storeId, int boardId, BoardUpdateRequestDto dto, Bitmap bitmap, Runnable onSuccess, Runnable onError) {
+        service.requestBoardUpdate(TokenStore.getAuthToken(), storeId, boardId, MultipartBody.Part.createFormData("dto", "dto", new DtoJsonRequestBody<>(dto)), MultipartBody.Part.createFormData("img", "image.jpg", new BitmapRequestBody(bitmap))).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onError.run();
             }
         });
     }

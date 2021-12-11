@@ -46,15 +46,15 @@ public class BoardListRecyclerViewAdapter extends RecyclerView.Adapter<BoardList
             @Override
             public void onClick(View v) {
                 PopupMenu popupMenu = new PopupMenu(v.getContext(), holder.mMore);
-                popupMenu.inflate(R.menu.menu_item_popup);
+                popupMenu.inflate(R.menu.menu_board_popup);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getItemId() == R.id.boardUpdate) {
                             Bundle bundle = new Bundle();
                             bundle.putInt("storeId", mValues.get(position).getStoreId());
-                            bundle.putInt("itemId", mValues.get(position).getId());
-                            //Navigation.findNavController((View) (holder.itemView.getParent().getParent().getParent().getParent())).navigate(R.id.action_itemFragment_to_itemUpdateFragment, bundle);
+                            bundle.putInt("boardId", mValues.get(position).getId());
+                            Navigation.findNavController((View) (holder.itemView.getParent().getParent().getParent().getParent())).navigate(R.id.action_boardFragment_to_boardUpdateFragment, bundle);
                         } else {
                             System.out.println(mValues.get(position).getId());
                             System.out.println(mValues.get(position).getStoreId());

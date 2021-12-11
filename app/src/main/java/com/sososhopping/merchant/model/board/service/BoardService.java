@@ -10,6 +10,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
@@ -24,4 +25,11 @@ public interface BoardService {
 
     @DELETE("store/{storeId}/writing/{writingId}")
     Call<Void> requestBoardDelete(@Header("token") String token, @Path("storeId") int storeId, @Path("writingId") int boardId);
+
+    @GET("store/{storeId}/writing/{writingId}")
+    Call<Board> requestBoardItem(@Header("token") String token, @Path("storeId") int storeId, @Path("writingId") int boardId);
+
+    @Multipart
+    @PATCH("store/{storeId}/writing/{writingId}")
+    Call<Void> requestBoardUpdate(@Header("token") String token, @Path("storeId") int storeId, @Path("writingId") int boardId, @Part MultipartBody.Part dto, @Part MultipartBody.Part image);
 }

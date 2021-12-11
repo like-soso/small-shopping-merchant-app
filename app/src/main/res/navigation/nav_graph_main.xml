@@ -383,6 +383,9 @@
         <action
             android:id="@+id/action_boardFragment_to_boardRegisterFragment"
             app:destination="@id/boardRegisterFragment" />
+        <action
+            android:id="@+id/action_boardFragment_to_boardUpdateFragment"
+            app:destination="@id/boardUpdateFragment" />
     </fragment>
     <fragment
         android:id="@+id/boardRegisterFragment"
@@ -404,4 +407,9 @@
             android:name="userName"
             app:argType="string"/>
     </fragment>
+    <fragment
+        android:id="@+id/boardUpdateFragment"
+        android:name="com.sososhopping.merchant.view.fragment.BoardUpdateFragment"
+        android:label="fragment_board_update"
+        tools:layout="@layout/fragment_board_update" />
 </navigation>
