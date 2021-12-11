@@ -114,6 +114,15 @@ public class NestedConsoleFragment extends Fragment {
             }
         });
 
+        binding.itemLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt(STOREID, storeId);
+                NavHostFragment.findNavController(getParentFragment().getParentFragment()).navigate(R.id.action_storeManageFragment_to_itemFragment, bundle);
+            }
+        });
+
         return binding.getRoot();
     }
 

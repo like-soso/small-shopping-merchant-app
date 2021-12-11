@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="3dp"
+        app:contentPadding="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/shopListItemImage"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_baseline_shopping_basket_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/shopListItemTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="4dp"
+                android:text="샘플 물품 이름"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:ellipsize="end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/shopListItemImage" />
+
+            <TextView
+                android:id="@+id/shopListItemDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/gray"
+                android:lines="1"
+                android:text="샘플 물품 설명입니다."
+                android:ellipsize="end"
+                app:layout_constraintStart_toEndOf="@id/shopListItemImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shopListItemTitle" />
+
+            <TextView
+                android:id="@+id/itemListItemUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:text="1개"
+                android:ellipsize="end"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/shopListItemImage"
+                app:layout_constraintEnd_toStartOf="@id/itemListPer"
+                app:layout_constraintTop_toBottomOf="@+id/shopListItemDescription" />
+
+            <TextView
+                android:id="@+id/itemListPer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:text="/"
+                android:ellipsize="end"
+                app:layout_constraintStart_toEndOf="@id/itemListItemUnit"
+                app:layout_constraintEnd_toStartOf="@id/itemListItemUnitPrice"
+                app:layout_constraintTop_toBottomOf="@+id/shopListItemDescription" />
+
+            <TextView
+                android:id="@+id/itemListItemUnitPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:text="00000원"
+                android:ellipsize="end"
+                app:layout_constraintStart_toEndOf="@id/itemListPer"
+                app:layout_constraintEnd_toStartOf="@id/more"
+                app:layout_constraintTop_toBottomOf="@+id/shopListItemDescription" />
+
+            <TextView
+                android:id="@+id/itemListDisabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="4dp"
+                android:textSize="14sp"
+                android:textColor="@color/negative"
+                android:lines="1"
+                android:text="구매 불가능"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6sp"
+                android:src="@drawable/ic_baseline_more_horiz_24"
+                app:layout_constraintStart_toEndOf="@id/itemListItemUnitPrice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
