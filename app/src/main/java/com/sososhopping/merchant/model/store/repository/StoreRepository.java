@@ -1,17 +1,23 @@
 package com.sososhopping.merchant.model.store.repository;
 
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 
+import com.sososhopping.merchant.model.store.dto.request.StoreRegisterRequestDto;
 import com.sososhopping.merchant.model.store.dto.response.StoreOpenStatusResponseDto;
 import com.sososhopping.merchant.model.store.entity.StoreBrief;
 import com.sososhopping.merchant.model.store.service.StoreService;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
+import com.sososhopping.merchant.utils.retrofit.request.BitmapRequestBody;
+import com.sososhopping.merchant.utils.retrofit.request.DtoJsonRequestBody;
 import com.sososhopping.merchant.utils.token.TokenStore;
 
 import java.util.List;
 import java.util.function.Consumer;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +51,25 @@ public class StoreRepository {
 
             @Override
             public void onFailure(@NonNull Call<List<StoreBrief>> call, @NonNull Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestRegister(Bitmap image, StoreRegisterRequestDto dto, Runnable onSuccess, Runnable onError) {
+        service.requestStoreRegister(TokenStore.getAuthToken() ,MultipartBody.Part.createFormData("dto", "dto", new DtoJsonRequestBody<>(dto)), MultipartBody.Part.createFormData("img", "image.jpg", new BitmapRequestBody(image))).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println(response.code());
+                if (response.code() == 201) {
+                    onSuccess.run();
+                } else {
+                    onError.run();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 onError.run();
             }
         });

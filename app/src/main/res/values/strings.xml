@@ -102,6 +102,55 @@
     <string name="order_list_pending">승인 대기</string>
     <string name="order_list_pickup">오늘 픽업</string>
     <string name="order_list_delivery">배송 주문</string>
+
+    <string name="store_register_basic_title">점포 등록</string>
+    <string name="store_register_basic_image_description">점포 대표 이미지</string>
+    <string name="store_register_basic_select_image">대표 이미지 선택</string>
+    <string name="store_register_basic_name">점포명</string>
+    <string name="store_register_basic_store_description">점포 소개글</string>
+    <string name="store_register_basic_call">연락처</string>
+
+    <string-array name="store_register_basic_spinner">
+        <item>카테고리</item>
+        <item>마트</item>
+        <item>정육점</item>
+        <item>수산물</item>
+        <item>베이커리</item>
+        <item>카페</item>
+        <item>헤어샵</item>
+        <item>세탁소</item>
+        <item>서점</item>
+        <item>사무용품</item>
+        <item>학원</item>
+        <item>사진관</item>
+        <item>화원</item>
+        <item>의류</item>
+    </string-array>
+
+    <string name="store_register_basic_open_days">영업일</string>
+    <string name="store_register_basic_monday">월</string>
+    <string name="store_register_basic_opening_hour">여는 시간</string>
+    <string name="store_register_basic_closing_hour">닫는 시간</string>
+    <string name="store_register_basic_tuesday">화</string>
+    <string name="store_register_basic_wednesday">수</string>
+    <string name="store_register_basic_thursday">목</string>
+    <string name="store_register_basic_friday">금</string>
+    <string name="store_register_basic_saturday">토</string>
+    <string name="store_register_basic_sunday">일</string>
+    <string name="store_register_basic_open_detail">영업 시간 추가 정보</string>
+    <string name="store_register_basic_extra_service">추가 제공 서비스</string>
+    <string name="store_register_basic_delivery">배달 서비스 제공</string>
+    <string name="store_register_basic_local_currency">지역화폐 결제</string>
+    <string name="store_register_basic_next">다음으로</string>
+
+    <string name="store_register_metadata_title">사업자 정보 입력</string>
+    <string name="store_register_metadata_number">사업자 등록 번호</string>
+    <string name="store_register_metadata_owner">대표자 성명</string>
+    <string name="store_register_metadata_name">상호명</string>
+    <string name="store_register_metadata_open_date">개업일</string>
+    <string name="store_register_metadata_address">점포 주소</string>
+    <string name="store_register_metadata_address_detail">상세 주소</string>
+    <string name="store_register_metadata_register">등록하기</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
