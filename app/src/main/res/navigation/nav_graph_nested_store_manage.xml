@@ -19,6 +19,11 @@
             app:destination="@id/nestedCalendarOrderListFragment"
             app:popUpTo="@id/nestedConsoleFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nestedConsoleFragment_to_nestedChatroomFragment"
+            app:destination="@id/nestedChatroomFragment"
+            app:popUpTo="@id/nestedConsoleFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/nestedCalendarOrderListFragment"
@@ -33,6 +38,27 @@
             android:id="@+id/action_nestedCalendarOrderListFragment_to_nestedConsoleFragment"
             app:destination="@id/nestedConsoleFragment"
             app:popUpTo="@id/nestedCalendarOrderListFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nestedCalendarOrderListFragment_to_nestedChatroomFragment"
+            app:destination="@id/nestedChatroomFragment"
+            app:popUpTo="@id/nestedCalendarOrderListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/nestedChatroomFragment"
+        tools:layout="@layout/fragment_nested_chatroom"
+        android:name="com.sososhopping.merchant.NestedChatroomFragment"
+        android:label="NestedChatroomFragment" >
+        <action
+            android:id="@+id/action_nestedChatroomFragment_to_nestedConsoleFragment"
+            app:destination="@id/nestedConsoleFragment"
+            app:popUpTo="@id/nestedChatroomFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nestedChatroomFragment_to_nestedCalendarOrderListFragment"
+            app:destination="@id/nestedCalendarOrderListFragment"
+            app:popUpTo="@id/nestedChatroomFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

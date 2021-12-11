@@ -9,6 +9,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -86,15 +87,25 @@ public class StoreManageFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.storeManageConsole) {
                     if (currentItem == R.id.storeManageChat) {
-                        //Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedPickupOrderFragment_to_nestedPendingOrderFragment, bundle);
+                        Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedChatroomFragment_to_nestedConsoleFragment, bundle);
                     } else {
                         Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedCalendarOrderListFragment_to_nestedConsoleFragment, bundle);
                     }
                     currentItem = R.id.storeManageConsole;
                 } else if (item.getItemId() == R.id.storeManageChat) {
-                    ;
+                    if (currentItem == R.id.storeManageConsole) {
+                        Log.d("어디서 터지나", "여긴가?");
+                        Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedConsoleFragment_to_nestedChatroomFragment, bundle);
+                    } else {
+                        Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedCalendarOrderListFragment_to_nestedChatroomFragment, bundle);
+                    }
+                    currentItem = R.id.storeManageChat;
                 } else {
-                    Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedConsoleFragment_to_nestedCalendarOrderListFragment, bundle);
+                    if (currentItem ==R.id.storeManageConsole) {
+                        Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedConsoleFragment_to_nestedCalendarOrderListFragment, bundle);
+                    } else {
+                        Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedChatroomFragment_to_nestedCalendarOrderListFragment, bundle);
+                    }
                     currentItem = R.id.calendar;
                 }
                 return true;

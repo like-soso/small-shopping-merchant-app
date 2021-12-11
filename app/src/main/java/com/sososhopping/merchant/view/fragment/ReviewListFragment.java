@@ -68,7 +68,7 @@ public class ReviewListFragment extends Fragment {
         binding.avgScore.setText(Double.toString(dto.getAverageScore()));
         binding.count.setText(Integer.toString(dto.getReviewCount()));
         if (dto.getReviewCount() != 0) {
-            binding.recyclerView.setAdapter(new ReviewListRecyclerViewAdapter(storeName, dto.getReviewList()));
+            binding.recyclerView.setAdapter(new ReviewListRecyclerViewAdapter(storeName, dto.getReviewList(), getContext()));
         }
     }
 

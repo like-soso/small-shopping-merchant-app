@@ -158,6 +158,9 @@
         <action
             android:id="@+id/action_storeManageFragment_to_boardFragment"
             app:destination="@id/boardFragment" />
+        <action
+            android:id="@+id/action_storeManageFragment_to_conversationFragment"
+            app:destination="@id/conversationFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderListFragment"
@@ -181,6 +184,9 @@
         <action
             android:id="@+id/action_reviewListFragment_to_reportFragment"
             app:destination="@id/reportFragment" />
+        <action
+            android:id="@+id/action_reviewListFragment_to_conversationFragment"
+            app:destination="@id/conversationFragment" />
     </fragment>
     <fragment
         android:id="@+id/reportFragment"
@@ -383,4 +389,19 @@
         android:name="com.sososhopping.merchant.view.fragment.BoardRegisterFragment"
         android:label="fragment_board_register"
         tools:layout="@layout/fragment_board_register" />
+    <fragment
+        android:id="@+id/conversationFragment"
+        android:name="com.sososhopping.merchant.ConversationFragment"
+        android:label="fragment_conversation"
+        tools:layout="@layout/fragment_conversation">
+        <argument
+            android:name="chatroomId"
+            app:argType="string" />
+        <argument
+            android:name="storeId"
+            app:argType="string"/>
+        <argument
+            android:name="userName"
+            app:argType="string"/>
+    </fragment>
 </navigation>
