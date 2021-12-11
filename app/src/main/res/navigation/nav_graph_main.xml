@@ -149,6 +149,9 @@
         <action
             android:id="@+id/action_storeManageFragment_to_couponFragment"
             app:destination="@id/couponFragment" />
+        <action
+            android:id="@+id/action_storeManageFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderListFragment"
@@ -310,4 +313,26 @@
             android:label="dialog_coupon_modify"
             tools:layout="@layout/dialog_coupon_modify" />
     </navigation>
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.sososhopping.merchant.view.fragment.ItemFragment"
+        android:label="fragment_item"
+        tools:layout="@layout/fragment_item" >
+        <action
+            android:id="@+id/action_itemFragment_to_itemRegisterFragment"
+            app:destination="@id/itemRegisterFragment" />
+        <action
+            android:id="@+id/action_itemFragment_to_itemUpdateFragment"
+            app:destination="@id/itemUpdateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemRegisterFragment"
+        android:name="com.sososhopping.merchant.view.fragment.ItemRegisterFragment"
+        android:label="fragment_item_register"
+        tools:layout="@layout/fragment_item_register" />
+    <fragment
+        android:id="@+id/itemUpdateFragment"
+        android:name="com.sososhopping.merchant.view.fragment.ItemUpdateFragment"
+        android:label="fragment_item_update"
+        tools:layout="@layout/fragment_item_update" />
 </navigation>
