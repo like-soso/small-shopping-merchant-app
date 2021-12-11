@@ -152,6 +152,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(!isChecked){
+                    viewModel.setOpenMonday(false);
                     binding.openHourMonday.setEnabled(false);
                     binding.openHourMonday.getEditText().setText(null);
                     binding.closeHourMonday.setEnabled(false);
@@ -159,6 +160,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
                     binding.openHourMonday.getEditText().setClickable(false);
                     binding.closeHourMonday.getEditText().setClickable(false);
                 } else {
+                    viewModel.setOpenMonday(true);
                     binding.openHourMonday.setEnabled(true);
                     binding.closeHourMonday.setEnabled(true);
                     binding.openHourMonday.getEditText().setClickable(true);
@@ -171,6 +173,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(!isChecked){
+                    viewModel.setOpenTuesday(false);
                     binding.openHourTuesday.setEnabled(false);
                     binding.openHourTuesday.getEditText().setText(null);
                     binding.closeHourTuesday.setEnabled(false);
@@ -178,6 +181,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
                     binding.openHourTuesday.getEditText().setClickable(false);
                     binding.closeHourTuesday.getEditText().setClickable(false);
                 } else {
+                    viewModel.setOpenTuesday(true);
                     binding.openHourTuesday.setEnabled(true);
                     binding.closeHourTuesday.setEnabled(true);
                     binding.openHourTuesday.getEditText().setClickable(true);
@@ -190,6 +194,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(!isChecked){
+                    viewModel.setOpenWednesday(false);
                     binding.openHourWednesday.setEnabled(false);
                     binding.openHourWednesday.getEditText().setText(null);
                     binding.closeHourWednesday.setEnabled(false);
@@ -197,6 +202,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
                     binding.openHourWednesday.getEditText().setClickable(false);
                     binding.closeHourWednesday.getEditText().setClickable(false);
                 } else {
+                    viewModel.setOpenWednesday(true);
                     binding.openHourWednesday.setEnabled(true);
                     binding.closeHourWednesday.setEnabled(true);
                     binding.openHourWednesday.getEditText().setClickable(true);
@@ -209,6 +215,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(!isChecked){
+                    viewModel.setOpenThursday(false);
                     binding.openHourThursday.setEnabled(false);
                     binding.openHourThursday.getEditText().setText(null);
                     binding.closeHourThursday.setEnabled(false);
@@ -216,6 +223,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
                     binding.openHourThursday.getEditText().setClickable(false);
                     binding.closeHourThursday.getEditText().setClickable(false);
                 } else {
+                    viewModel.setOpenThursday(true);
                     binding.openHourThursday.setEnabled(true);
                     binding.closeHourThursday.setEnabled(true);
                     binding.openHourThursday.getEditText().setClickable(true);
@@ -228,6 +236,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(!isChecked){
+                    viewModel.setOpenFriday(false);
                     binding.openHourFriday.setEnabled(false);
                     binding.openHourFriday.getEditText().setText(null);
                     binding.closeHourFriday.setEnabled(false);
@@ -235,6 +244,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
                     binding.openHourFriday.getEditText().setClickable(false);
                     binding.closeHourFriday.getEditText().setClickable(false);
                 } else {
+                    viewModel.setOpenFriday(true);
                     binding.openHourFriday.setEnabled(true);
                     binding.closeHourFriday.setEnabled(true);
                     binding.openHourFriday.getEditText().setClickable(true);
@@ -247,6 +257,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(!isChecked){
+                    viewModel.setOpenSaturday(false);
                     binding.openHourSaturday.setEnabled(false);
                     binding.openHourSaturday.getEditText().setText(null);
                     binding.closeHourSaturday.setEnabled(false);
@@ -254,6 +265,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
                     binding.openHourSaturday.getEditText().setClickable(false);
                     binding.closeHourSaturday.getEditText().setClickable(false);
                 } else {
+                    viewModel.setOpenSaturday(true);
                     binding.openHourSaturday.setEnabled(true);
                     binding.closeHourSaturday.setEnabled(true);
                     binding.openHourSaturday.getEditText().setClickable(true);
@@ -266,6 +278,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(!isChecked){
+                    viewModel.setOpenSunday(false);
                     binding.openHourSunday.setEnabled(false);
                     binding.openHourSunday.getEditText().setText(null);
                     binding.closeHourSunday.setEnabled(false);
@@ -273,6 +286,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
                     binding.openHourSunday.getEditText().setClickable(false);
                     binding.closeHourSunday.getEditText().setClickable(false);
                 } else {
+                    viewModel.setOpenSunday(true);
                     binding.openHourSunday.setEnabled(true);
                     binding.closeHourSunday.setEnabled(true);
                     binding.openHourSunday.getEditText().setClickable(true);
@@ -284,6 +298,7 @@ public class StoreRegisterBasicFormFragment extends Fragment {
         binding.delivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                viewModel.setDelivery(isChecked);
                 if (isChecked) {
                     binding.deliveryFee.setEnabled(true);
                 } else {

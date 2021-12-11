@@ -69,7 +69,9 @@ public class NestedStoreListFragment extends Fragment {
     }
 
     public void onShopListAcquired(List<StoreBrief> storeBriefs) {
-        binding.recyclerView.setAdapter(new StoreListRecyclerViewAdapter(storeBriefs));
+        if (binding != null) {
+            binding.recyclerView.setAdapter(new StoreListRecyclerViewAdapter(storeBriefs));
+        }
     }
 
     public void onNetworkError() {

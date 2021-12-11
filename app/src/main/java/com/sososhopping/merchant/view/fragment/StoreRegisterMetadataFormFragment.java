@@ -124,7 +124,8 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
                         viewModel.setLat(String.valueOf(addressList.get(0).getLatitude()));
                     }
                 } catch (IOException e){
-                    e.printStackTrace();
+                    binding.shopAddress.setErrorEnabled(true);
+                    binding.shopAddress.setError("주소를 확인할 수 없습니다. 올바른 주소인지 확인해주세요.");
                 }
             }
         });

@@ -61,7 +61,7 @@ public class StoreRegisterViewModel extends ViewModel {
     ObservableField<String> businessName = new ObservableField<>();
     ObservableField<String> businessOpenDate = new ObservableField<>();
 
-    ObservableField<String> streetAddress = new ObservableField<>();
+    ObservableField<String> streetAddress = new ObservableField<>("");
     ObservableField<String> detailedAddress = new ObservableField<>();
 
     ObservableField<String> lat = new ObservableField<>();
