@@ -21,8 +21,10 @@ import com.sososhopping.merchant.viewmodel.CouponModifyViewModel;
 public class CouponModifyDialog extends DialogFragment {
 
     private static final String STOREID = "storeId";
+    private static final String USERNAME = "userName";
 
     private int storeId;
+    private String userName;
 
     DialogCouponModifyBinding binding;
 
@@ -34,6 +36,7 @@ public class CouponModifyDialog extends DialogFragment {
         CouponModifyDialog dialog = new CouponModifyDialog();
         Bundle args = new Bundle();
         args.putInt(STOREID, storeId);
+        args.putString(USERNAME, userName);
         dialog.setArguments(args);
         return dialog;
     }
@@ -43,6 +46,7 @@ public class CouponModifyDialog extends DialogFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             storeId = getArguments().getInt(STOREID);
+            userName = getArguments().getString(USERNAME);
         }
     }
 
@@ -53,20 +57,28 @@ public class CouponModifyDialog extends DialogFragment {
 
         NavController navController = NavHostFragment.findNavController(this);
 
-        ViewModelProvider viewModelProvider = new ViewModelProvider(navController.getViewModelStoreOwner(R.id.navigationCoupon));
+        ViewModelProvider viewModelProvider = new ViewModelProvider(requireParentFragment());
 
         CouponModifyViewModel viewModel = viewModelProvider.get(CouponModifyViewModel.class);
 
         binding.setCouponModifyViewModel(viewModel);
 
+        binding.usernameValue.setText(userName);
+
+        Runnable onSuccess = this::onSuccess;
+
         binding.loginLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.requestCouponModify(storeId);
+                viewModel.requestCouponModify(storeId, onSuccess);
             }
         });
 
         return binding.getRoot();
+    }
+
+    public void onSuccess() {
+        NavHostFragment.findNavController(this).navigateUp();
     }
 
     @Override

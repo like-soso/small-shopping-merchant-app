@@ -17,7 +17,10 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.DialogCouponCheckBinding;
+import com.sososhopping.merchant.model.coupon.dto.response.CouponCheckResponseDto;
 import com.sososhopping.merchant.viewmodel.CouponModifyViewModel;
+
+import java.util.function.Consumer;
 
 public class CouponCheckDialog extends DialogFragment {
 
@@ -26,6 +29,7 @@ public class CouponCheckDialog extends DialogFragment {
     private int storeId;
 
     DialogCouponCheckBinding binding;
+    CouponModifyViewModel viewModel;
 
     public CouponCheckDialog() {
 
@@ -54,12 +58,12 @@ public class CouponCheckDialog extends DialogFragment {
 
         NavController navController = NavHostFragment.findNavController(this);
 
-        ViewModelProvider viewModelProvider = new ViewModelProvider(navController.getViewModelStoreOwner(R.id.navigationCoupon));
+        ViewModelProvider viewModelProvider = new ViewModelProvider(requireParentFragment());
 
-        CouponModifyViewModel viewModel = viewModelProvider.get(CouponModifyViewModel.class);
+        viewModel = viewModelProvider.get(CouponModifyViewModel.class);
         binding.setCouponModifyViewModel(viewModel);
 
-        Runnable onSuccess = this::onSuccess;
+        Consumer<CouponCheckResponseDto> onSuccess = this::onSuccess;
         binding.check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,9 +83,10 @@ public class CouponCheckDialog extends DialogFragment {
         }
     }
 
-    public void onSuccess() {
+    public void onSuccess(CouponCheckResponseDto dto) {
         Bundle bundle = new Bundle();
         bundle.putInt(STOREID, storeId);
+        viewModel.setModel(dto.getCoupon());
         NavHostFragment.findNavController(this).navigate(R.id.action_couponCheckDialog_to_couponModifyDialog, bundle);
     }
 }
