@@ -3,6 +3,7 @@ package com.sososhopping.merchant.model.item.repository;
 import android.graphics.Bitmap;
 
 import com.sososhopping.merchant.model.item.dto.request.ItemRegisterRequestDto;
+import com.sososhopping.merchant.model.item.dto.request.ItemUpdateRequestDto;
 import com.sososhopping.merchant.model.item.entity.Item;
 import com.sososhopping.merchant.model.item.service.ItemService;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
@@ -97,6 +98,21 @@ public class ItemRepository {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
 
+            }
+        });
+    }
+
+    public void requestItemUpdate(int storeId, int itemId, ItemUpdateRequestDto dto, Bitmap bitmap, Runnable onSuccess, Runnable onError) {
+        service.requestItemUpdate(TokenStore.getAuthToken(), storeId, itemId, MultipartBody.Part.createFormData("dto", "dto", new DtoJsonRequestBody<>(dto)), MultipartBody.Part.createFormData("img", "image.jpg", new BitmapRequestBody(bitmap))).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onError.run();
             }
         });
     }

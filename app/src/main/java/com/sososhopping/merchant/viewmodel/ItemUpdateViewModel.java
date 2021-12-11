@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
-import com.sososhopping.merchant.model.item.dto.request.ItemRegisterRequestDto;
+import com.sososhopping.merchant.model.item.dto.request.ItemUpdateRequestDto;
 import com.sososhopping.merchant.model.item.entity.Item;
 import com.sososhopping.merchant.model.item.repository.ItemRepository;
 
@@ -54,12 +54,12 @@ public class ItemUpdateViewModel extends ViewModel {
 
     public void requestUpdate(int storeId, int itemId, Runnable onSuccess, Runnable onError) {
         System.out.println(this.name.get());
-        ItemRepository.getInstance().requestRegisterItem(storeId, this.toDto(), this.bitmap.get(), onSuccess, onError);
+        ItemRepository.getInstance().requestItemUpdate(storeId, itemId, this.toDto(), this.bitmap.get(), onSuccess, onError);
     }
 
-    private ItemRegisterRequestDto toDto() {
+    private ItemUpdateRequestDto toDto() {
         System.out.println(unitPrice.get());
-        return new ItemRegisterRequestDto(name.get(), description.get(), unit.get(), Integer.valueOf(unitPrice.get()), salesStatus.get());
+        return new ItemUpdateRequestDto(name.get(), description.get(), unit.get(), Integer.valueOf(unitPrice.get()), salesStatus.get());
     }
 
     public void setItem(Item item) {
