@@ -155,6 +155,9 @@
         <action
             android:id="@+id/action_storeManageFragment_to_itemFragment"
             app:destination="@id/itemFragment" />
+        <action
+            android:id="@+id/action_storeManageFragment_to_boardFragment"
+            app:destination="@id/boardFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderListFragment"
@@ -366,4 +369,18 @@
                 app:popUpToInclusive="false" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.sososhopping.merchant.view.fragment.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" >
+        <action
+            android:id="@+id/action_boardFragment_to_boardRegisterFragment"
+            app:destination="@id/boardRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/boardRegisterFragment"
+        android:name="com.sososhopping.merchant.view.fragment.BoardRegisterFragment"
+        android:label="fragment_board_register"
+        tools:layout="@layout/fragment_board_register" />
 </navigation>
