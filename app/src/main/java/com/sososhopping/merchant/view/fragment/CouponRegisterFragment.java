@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -58,10 +59,12 @@ public class CouponRegisterFragment extends Fragment {
         CouponRegisterViewModel viewModel = new ViewModelProvider(getViewModelStore(), new ViewModelProvider.NewInstanceFactory()).get(CouponRegisterViewModel.class);
         binding.setCouponReigsterViewModel(viewModel);
 
+        Runnable onSuccess = this::onSuccess;
+
         binding.shopListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.couponRegister) viewModel.requestRegister(storeId);
+                if (item.getItemId() == R.id.couponRegister) viewModel.requestRegister(storeId, onSuccess);
                 return true;
             }
         });
@@ -157,5 +160,9 @@ public class CouponRegisterFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    public void onSuccess() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_couponRegisterFragment_to_couponRegisteredFragment);
     }
 }

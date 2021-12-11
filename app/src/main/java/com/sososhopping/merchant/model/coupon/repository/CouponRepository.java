@@ -68,11 +68,13 @@ public class CouponRepository {
         });
     }
 
-    public void requestRegister(int storeId, CouponRegisterRequestDto dto) {
+    public void requestRegister(int storeId, CouponRegisterRequestDto dto, Runnable onSuccess) {
         service.requestCouponRegister(TokenStore.getAuthToken(), storeId, dto).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                System.out.println(response.code());
+                if (response.code() == 201) {
+                    onSuccess.run();
+                }
             }
 
             @Override

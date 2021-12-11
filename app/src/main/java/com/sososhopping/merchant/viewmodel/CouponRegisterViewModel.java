@@ -53,8 +53,8 @@ public class CouponRegisterViewModel extends ViewModel {
         this.couponType.set(couponType);
     }
 
-    public void requestRegister(int storeId) {
-        CouponRepository.getInstance().requestRegister(storeId, this.toDto());
+    public void requestRegister(int storeId, Runnable onSuccess) {
+        CouponRepository.getInstance().requestRegister(storeId, this.toDto(), onSuccess);
     }
 
     private CouponRegisterRequestDto toDto() {
