@@ -74,4 +74,18 @@ public class BoardRepository {
             }
         });
     }
+
+    public void requestBoardDelete(int storeId, int boardId, int position, Consumer<Integer> onSuccess) {
+        service.requestBoardDelete(TokenStore.getAuthToken(), storeId, boardId).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.accept(position);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
 }

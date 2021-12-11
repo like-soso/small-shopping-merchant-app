@@ -6,6 +6,7 @@ import java.util.List;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
@@ -20,4 +21,7 @@ public interface BoardService {
     @Multipart
     @POST("store/{storeId}/writing")
     Call<Void> requestBoardRegister(@Header("token") String token, @Path("storeId") int storeId, @Part MultipartBody.Part dto, @Part MultipartBody.Part image);
+
+    @DELETE("store/{storeId}/writing/{writingId}")
+    Call<Void> requestBoardDelete(@Header("token") String token, @Path("storeId") int storeId, @Path("writingId") int boardId);
 }
