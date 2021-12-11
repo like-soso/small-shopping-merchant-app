@@ -101,6 +101,7 @@
                         android:textColor="@color/gray"
                         android:lines="1"
                         android:ellipsize="end"
+                        android:text="@={couponModifyViewModel.couponCode}"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -114,6 +115,7 @@
                         android:textColor="@color/black"
                         android:lines="1"
                         android:ellipsize="end"
+                        android:text="@={couponModifyViewModel.couponName}"
                         app:layout_constraintTop_toBottomOf="@id/code"
                         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -126,6 +128,7 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:ellipsize="end"
+                        android:text="@={couponModifyViewModel.couponAmount}"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Title"
@@ -162,6 +165,7 @@
                         android:id="@+id/minOrder"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@={couponModifyViewModel.couponMinPrice}"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintTop_toBottomOf="@id/discountAmount"
                         app:layout_constraintEnd_toStartOf="@id/minOrderText" />
@@ -178,6 +182,7 @@
                         android:id="@+id/expiryDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@={couponModifyViewModel.couponExpiry}"
                         app:layout_constraintTop_toBottomOf="@id/minOrder"
                         app:layout_constraintEnd_toStartOf="@id/expiryDateText" />
 

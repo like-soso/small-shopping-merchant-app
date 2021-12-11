@@ -113,12 +113,12 @@ public class CouponRepository {
         });
     }
 
-    public void requestCouponCheck(int storeId, String userPhone, String couponCode, Runnable onSuccess){
+    public void requestCouponCheck(int storeId, String userPhone, String couponCode, Consumer<CouponCheckResponseDto> onSuccess){
         service.requestCouponCheck(TokenStore.getAuthToken(), storeId, userPhone, couponCode).enqueue(new Callback<CouponCheckResponseDto>() {
             @Override
             public void onResponse(Call<CouponCheckResponseDto> call, Response<CouponCheckResponseDto> response) {
                 System.out.println(call.request().url().toString());
-                if (response.code() == 200) onSuccess.run();
+                if (response.code() == 200) onSuccess.accept(response.body());
             }
 
             @Override
@@ -128,11 +128,11 @@ public class CouponRepository {
         });
     }
 
-    public void requestCouponModify(int storeId, CouponModifyRequestDto dto) {
+    public void requestCouponModify(int storeId, CouponModifyRequestDto dto, Runnable onSuccess) {
         service.requestCouponModify(TokenStore.getAuthToken(), storeId, dto).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                ;
+                if (response.code() == 200) onSuccess.run();
             }
 
             @Override
