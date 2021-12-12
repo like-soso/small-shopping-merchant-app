@@ -86,6 +86,7 @@ public class CouponCheckDialog extends DialogFragment {
     public void onSuccess(CouponCheckResponseDto dto) {
         Bundle bundle = new Bundle();
         bundle.putInt(STOREID, storeId);
+        bundle.putString("userName", dto.getUserName());
         viewModel.setModel(dto.getCoupon());
         NavHostFragment.findNavController(this).navigate(R.id.action_couponCheckDialog_to_couponModifyDialog, bundle);
     }
