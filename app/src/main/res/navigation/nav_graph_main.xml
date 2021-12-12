@@ -98,7 +98,13 @@
         android:id="@+id/forgotFragment"
         android:name="com.sososhopping.merchant.view.fragment.ForgotFragment"
         android:label="fragment_forgot"
-        tools:layout="@layout/fragment_forgot" />
+        tools:layout="@layout/fragment_forgot" >
+        <action
+            android:id="@+id/action_forgotFragment_to_passwordChangedDialog"
+            app:destination="@id/passwordChangedDialog"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/userUpdateFragment"
         android:name="com.sososhopping.merchant.view.fragment.UserUpdateFragment"
@@ -420,4 +426,9 @@
         android:name="com.sososhopping.merchant.view.fragment.StoreUpdateFragment"
         android:label="fragment_store_update"
         tools:layout="@layout/fragment_store_update" />
+    <dialog
+        android:id="@+id/passwordChangedDialog"
+        android:name="com.sososhopping.merchant.view.dialog.PasswordChangedDialog"
+        android:label="dialog_password_changed"
+        tools:layout="@layout/dialog_password_changed" />
 </navigation>

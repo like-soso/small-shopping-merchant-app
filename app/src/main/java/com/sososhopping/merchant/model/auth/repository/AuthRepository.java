@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import com.sososhopping.merchant.model.auth.dto.request.EmailDuplicationCheckRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.EmailFindRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.LoginRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.PasswordChangeRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.PasswordFindRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.SignupRequestDto;
 import com.sososhopping.merchant.model.auth.dto.response.EmailFindResponseDto;
 import com.sososhopping.merchant.model.auth.dto.response.LoginResponseDto;
@@ -114,6 +116,37 @@ public class AuthRepository {
 
             @Override
             public void onFailure(Call<EmailFindResponseDto> call, Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestPasswordFind(PasswordFindRequestDto toFindDto, Runnable onSuccess, Runnable onInvalid, Runnable onError) {
+        service.requestFindPassword(toFindDto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+                else if (response.code() == 404) onInvalid.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestPasswordChange(PasswordChangeRequestDto dto, Runnable onSuccess, Runnable onError) {
+        service.requestChangePassword(dto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 onError.run();
             }
         });

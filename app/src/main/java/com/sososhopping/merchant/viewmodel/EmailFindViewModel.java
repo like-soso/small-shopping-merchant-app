@@ -11,8 +11,8 @@ import java.util.function.Consumer;
 
 public class EmailFindViewModel extends ViewModel {
 
-    private final ObservableField<String> name = new ObservableField<>();
-    private final ObservableField<String> phone = new ObservableField<>();
+    private final ObservableField<String> name = new ObservableField<>("");
+    private final ObservableField<String> phone = new ObservableField<>("");
 
     public ObservableField<String> getName() {
         return name;

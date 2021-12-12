@@ -78,8 +78,8 @@ public class NestedEmailFindFragment extends Fragment {
     public void onInvalid() {
         binding.nameLayout.setErrorEnabled(true);
         binding.phoneLayout.setErrorEnabled(true);
-        binding.nameLayout.setError("사용자를 찾을 수 없습니다.");
-        binding.phoneLayout.setError("사용자를 찾을 수 없습니다.");
+        binding.nameLayout.setError("정보가 일치하는 사용자를 찾을 수 없습니다.");
+        binding.phoneLayout.setError("정보가 일치하는 사용자를 찾을 수 없습니다.");
     }
 
     public void onError() {
