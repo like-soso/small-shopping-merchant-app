@@ -110,7 +110,8 @@ public class StoreUpdateFragment extends Fragment {
                 });
 
         Consumer<StoreDetail> onSuccessRead = this::onItemAcquired;
-        StoreRepository.getInstance().requestStoreDetail(storeId, onSuccessRead);
+        Runnable onError = this::onError;
+        StoreRepository.getInstance().requestStoreDetail(storeId, onSuccessRead, onError);
 
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +178,7 @@ public class StoreUpdateFragment extends Fragment {
                         onDeliveryConsistent,
                         onDeliveryInconsistent
                 )) {
-                    viewModel.requestUpdate(storeId, onSuccess);
+                    viewModel.requestUpdate(storeId, onSuccess, onError);
                 }
                 return true;
             }
@@ -813,6 +814,10 @@ public class StoreUpdateFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void onError() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
     }
 
     @Override

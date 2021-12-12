@@ -237,8 +237,8 @@ public class StoreRegisterViewModel extends ViewModel {
         return deliveryCharge;
     }
 
-    public void requestRegister(Runnable onSuccess, Runnable onError) {
-        StoreRepository.getInstance().requestRegister(bitmap.get(), toDto(), onSuccess, onError);
+    public void requestRegister(Runnable onSuccess, Runnable onInvalid, Runnable onError) {
+        StoreRepository.getInstance().requestRegister(bitmap.get(), toDto(), onSuccess, onInvalid, onError);
     }
 
 

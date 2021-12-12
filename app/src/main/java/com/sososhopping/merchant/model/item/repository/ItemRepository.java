@@ -71,19 +71,19 @@ public class ItemRepository {
         });
     }
 
-    public void requestItem(int storeId, int itemId, Consumer<Item> onSuccess) {
+    public void requestItem(int storeId, int itemId, Consumer<Item> onSuccess, Runnable onError) {
         service.requestStoreItem(TokenStore.getAuthToken(), storeId, itemId).enqueue(new Callback<Item>() {
             @Override
             public void onResponse(Call<Item> call, Response<Item> response) {
-                System.out.println(response.code());
                 if (response.code() == 200) {
                     onSuccess.accept(response.body());
                 }
+                else onError.run();
             }
 
             @Override
             public void onFailure(Call<Item> call, Throwable t) {
-
+                onError.run();
             }
         });
     }

@@ -58,14 +58,16 @@ public class StoreRepository {
         });
     }
 
-    public void requestRegister(Bitmap image, StoreRegisterRequestDto dto, Runnable onSuccess, Runnable onError) {
+    public void requestRegister(Bitmap image, StoreRegisterRequestDto dto, Runnable onSuccess, Runnable onInvalid, Runnable onError) {
         service.requestStoreRegister(TokenStore.getAuthToken(), MultipartBody.Part.createFormData("dto", "dto", new DtoJsonRequestBody<>(dto)), MultipartBody.Part.createFormData("img", "image.jpg", new BitmapRequestBody(image))).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 System.out.println(response.code());
                 if (response.code() == 201) {
                     onSuccess.run();
-                } else {
+                } else if (response.code() == 400){
+                    onInvalid.run();
+                } else{
                     onError.run();
                 }
             }
@@ -105,30 +107,32 @@ public class StoreRepository {
         });
     }
 
-    public void requestStoreDetail(int storeId, Consumer<StoreDetail> onSuccess) {
+    public void requestStoreDetail(int storeId, Consumer<StoreDetail> onSuccess, Runnable onError) {
         service.requestStoreDetail(TokenStore.getAuthToken(), storeId).enqueue(new Callback<StoreDetail>() {
             @Override
             public void onResponse(Call<StoreDetail> call, Response<StoreDetail> response) {
                 if (response.code() == 200) onSuccess.accept(response.body());
+                else onError.run();
             }
 
             @Override
             public void onFailure(Call<StoreDetail> call, Throwable t) {
-
+                onError.run();
             }
         });
     }
 
-    public void requestStoreUpdate(int storeId, Bitmap image, StoreUpdateRequestDto dto, Runnable onSuccess) {
+    public void requestStoreUpdate(int storeId, Bitmap image, StoreUpdateRequestDto dto, Runnable onSuccess, Runnable onError) {
         service.requestStoreUpdate(TokenStore.getAuthToken(), storeId, MultipartBody.Part.createFormData("dto", "dto", new DtoJsonRequestBody<>(dto)), MultipartBody.Part.createFormData("img", "image.jpg", new BitmapRequestBody(image))).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == 200) onSuccess.run();
+                else onError.run();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                onError.run();
             }
         });
     }

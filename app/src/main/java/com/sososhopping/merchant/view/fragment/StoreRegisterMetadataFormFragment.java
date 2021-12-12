@@ -58,6 +58,7 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
         binding.setStoreRegisterViewModel(viewModel);
 
         Runnable onSuccess = this::navigateToNext;
+        Runnable onInvalid = this::onBusinessNumDuplicate;
         Runnable onError = this::onNetworkError;
 
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -93,7 +94,7 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
                             onOpenDateNotEmpty,
                             onAddressNotChecked
                     ))
-                    viewModel.requestRegister(onSuccess, onError);
+                    viewModel.requestRegister(onSuccess, onInvalid, onError);
                 }
                 return true;
             }
@@ -153,6 +154,11 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void onBusinessNumDuplicate() {
+        binding.name.setErrorEnabled(true);
+        binding.name.setError("이미 사용중인 사업자 등록 번호입니다.");
     }
 
     @Override

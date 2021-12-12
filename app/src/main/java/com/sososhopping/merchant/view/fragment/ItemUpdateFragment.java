@@ -81,7 +81,7 @@ public class ItemUpdateFragment extends Fragment {
 
         Consumer<Item> onItemAcquired = this::onItemAcquired;
 
-        ItemRepository.getInstance().requestItem(storeId, itemId, onItemAcquired);
+        ItemRepository.getInstance().requestItem(storeId, itemId, onItemAcquired, this::onNetworkError);
 
         imageActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),

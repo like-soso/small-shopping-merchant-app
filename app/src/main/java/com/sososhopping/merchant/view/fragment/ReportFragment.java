@@ -66,12 +66,13 @@ public class ReportFragment extends Fragment {
         binding.userNameLayout.getEditText().setText(customerName);
 
         Runnable onSuccess = this::onSuccess;
+        Runnable onError = this::onError;
 
         binding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.reportReport) {
-                    viewModel.requestReport(storeId, customerId, customerName, onSuccess);
+                    viewModel.requestReport(storeId, customerId, customerName, onSuccess, onError);
                 }
                 return true;
             }
@@ -89,5 +90,9 @@ public class ReportFragment extends Fragment {
 
     public void onSuccess() {
         NavHostFragment.findNavController(this).navigate(R.id.action_reportFragment_to_reportDoneFragment);
+    }
+
+    public void onError() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
     }
 }

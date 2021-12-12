@@ -193,8 +193,8 @@ public class StoreUpdateViewModel extends ViewModel {
         this.delivery = delivery;
     }
 
-    public void requestUpdate(int storeId, Runnable onSuccess) {
-        StoreRepository.getInstance().requestStoreUpdate(storeId, this.bitmap.get(), toDto(), onSuccess);
+    public void requestUpdate(int storeId, Runnable onSuccess, Runnable onError) {
+        StoreRepository.getInstance().requestStoreUpdate(storeId, this.bitmap.get(), toDto(), onSuccess, onError);
     }
 
     public void setItem(StoreDetail storeDetail) {
