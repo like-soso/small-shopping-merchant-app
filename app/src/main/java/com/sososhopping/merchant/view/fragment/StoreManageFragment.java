@@ -94,7 +94,6 @@ public class StoreManageFragment extends Fragment {
                     currentItem = R.id.storeManageConsole;
                 } else if (item.getItemId() == R.id.storeManageChat) {
                     if (currentItem == R.id.storeManageConsole) {
-                        Log.d("어디서 터지나", "여긴가?");
                         Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedConsoleFragment_to_nestedChatroomFragment, bundle);
                     } else {
                         Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_nestedCalendarOrderListFragment_to_nestedChatroomFragment, bundle);

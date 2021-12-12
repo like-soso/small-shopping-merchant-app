@@ -18,11 +18,6 @@ import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.FragmentReportBinding;
 import com.sososhopping.merchant.viewmodel.ReportViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ReportFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ReportFragment extends Fragment {
 
     private static final String STOREID = "storeId";
@@ -79,6 +74,13 @@ public class ReportFragment extends Fragment {
                     viewModel.requestReport(storeId, customerId, customerName, onSuccess);
                 }
                 return true;
+            }
+        });
+
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
             }
         });
 

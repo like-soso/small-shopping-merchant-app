@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -60,6 +61,13 @@ public class ReviewListFragment extends Fragment {
         Runnable onError = this::onNetworkError;
 
         ReviewRepository.getInstance().requestReviewList(storeId, onReviewListAcquired, onError);
+
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
 
         return binding.getRoot();
     }

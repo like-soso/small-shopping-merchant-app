@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -57,6 +58,13 @@ public class BoardFragment extends Fragment {
         Runnable onError = this::onNetworkError;
 
         BoardRepository.getInstance().requestBoardList(storeId, onItemListAcquired, onError);
+
+        binding.shopListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
 
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

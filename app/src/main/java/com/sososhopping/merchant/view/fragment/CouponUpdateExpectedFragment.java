@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -80,6 +81,13 @@ public class CouponUpdateExpectedFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.couponUpdateExpected) viewModel.requestRegister(storeId, couponId, onSuccess);
                 return true;
+            }
+        });
+
+        binding.shopListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
             }
         });
 

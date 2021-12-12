@@ -17,8 +17,6 @@ import com.sososhopping.merchant.databinding.FragmentForgotBinding;
 
 public class ForgotFragment extends Fragment {
 
-    //TODO: 백엔드 개발 요청 및 통합
-
     FragmentForgotBinding binding;
 
     public ForgotFragment() {

@@ -130,7 +130,7 @@ public class StoreUpdateFragment extends Fragment {
         binding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId() == R.id.storeRegisterBasicNext) {
+                if(item.getItemId() == R.id.storeUpdate) {
                     viewModel.requestUpdate(storeId, onSuccess);
                 }
                 return true;

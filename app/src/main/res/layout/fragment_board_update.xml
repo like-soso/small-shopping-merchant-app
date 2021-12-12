@@ -28,7 +28,7 @@
                 android:background="@drawable/background_bottom_stroke"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
-                app:menu="@menu/menu_board_register_toolbar"
+                app:menu="@menu/menu_board_update_toolbar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

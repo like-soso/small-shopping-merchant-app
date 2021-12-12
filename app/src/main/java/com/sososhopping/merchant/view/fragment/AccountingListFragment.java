@@ -70,6 +70,13 @@ public class AccountingListFragment extends Fragment {
 
         AccountingRepository.getInstance().requestAccountingList(storeId, viewModel.getDateString(), onItemListAcquired, onError);
 
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
+
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
