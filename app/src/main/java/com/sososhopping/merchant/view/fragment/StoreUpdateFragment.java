@@ -126,11 +126,57 @@ public class StoreUpdateFragment extends Fragment {
             }
         });
 
+        Runnable onNameEmpty = this::onNameEmpty;
+        Runnable onNameNotEmpty = this::onNameNotEmpty;
+        Runnable onPhoneEmpty = this::onPhoneEmpty;
+        Runnable onPhoneNotEmpty = this::onPhoneNotEmpty;
+        Runnable onCategoryEmpty = this::onCategoryNotSelected;
+        Runnable onCategoryNotEmpty = this::onCategorySelected;
+        Runnable onMondayConsistent = this::onMondayConsistent;
+        Runnable onMondayInconsistent = this::onMondayInConsistent;
+        Runnable onTuesdayConsistent = this::onTuesdayConsistent;
+        Runnable onTuesdayInconsistent = this::onTuesdayInConsistent;
+        Runnable onWednesdayConsistent = this::onWednesdayConsistent;
+        Runnable onWednesdayInconsistent = this::onWednesdayInConsistent;
+        Runnable onThursdayConsistent = this::onThursdayConsistent;
+        Runnable onThursdayInconsistent = this::onThursdayInConsistent;
+        Runnable onFridayConsistent = this::onFridayConsistent;
+        Runnable onFridayInconsistent = this::onFridayInConsistent;
+        Runnable onSaturdayConsistent = this::onSaturdayConsistent;
+        Runnable onSaturdayInconsistent = this::onSaturdayInConsistent;
+        Runnable onSundayConsistent = this::onSundayConsistent;
+        Runnable onSundayInconsistent = this::onSundayInConsistent;
+        Runnable onDeliveryConsistent = this::onDeliveryConsistent;
+        Runnable onDeliveryInconsistent = this::onDeliveryInconsistent;
+
         Runnable onSuccess = this::onSuccess;
         binding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId() == R.id.storeUpdate) {
+                if (viewModel.validate(
+                        onNameEmpty,
+                        onNameNotEmpty,
+                        onPhoneEmpty,
+                        onPhoneNotEmpty,
+                        onCategoryEmpty,
+                        onCategoryNotEmpty,
+                        onMondayConsistent,
+                        onMondayInconsistent,
+                        onTuesdayConsistent,
+                        onTuesdayInconsistent,
+                        onWednesdayConsistent,
+                        onWednesdayInconsistent,
+                        onThursdayConsistent,
+                        onThursdayInconsistent,
+                        onFridayConsistent,
+                        onFridayInconsistent,
+                        onSaturdayConsistent,
+                        onSaturdayInconsistent,
+                        onSundayConsistent,
+                        onSundayInconsistent,
+                        onDeliveryConsistent,
+                        onDeliveryInconsistent
+                )) {
                     viewModel.requestUpdate(storeId, onSuccess);
                 }
                 return true;
@@ -814,6 +860,142 @@ public class StoreUpdateFragment extends Fragment {
         Glide.with(getContext())
                 .load(Uri.parse(storeDetail.getImgUrl()))
                 .into(binding.mainImage);
+    }
+
+    public void onNameEmpty() {
+        binding.name.setErrorEnabled(true);
+        binding.name.setError("필수 입력 항목입니다.");
+    }
+
+    public void onNameNotEmpty() {
+        binding.name.setErrorEnabled(false);
+        binding.name.setError(null);
+    }
+
+    public void onPhoneEmpty() {
+        binding.phone.setErrorEnabled(true);
+        binding.phone.setError("필수 입력 항목입니다.");
+    }
+
+    public void onPhoneNotEmpty() {
+        binding.name.setErrorEnabled(false);
+        binding.name.setError(null);
+    }
+
+    public void onCategoryNotSelected() {
+        binding.categoryError.setVisibility(View.VISIBLE);
+    }
+
+    public void onCategorySelected() {
+        binding.categoryError.setVisibility(View.GONE);
+    }
+
+    public void onMondayInConsistent() {
+        binding.openHourMonday.setErrorEnabled(true);
+        binding.closeHourMonday.setErrorEnabled(true);
+        binding.openHourMonday.setError("필수 입력 사항");
+        binding.closeHourMonday.setError("필수 입력 사항");
+    }
+
+    public void onMondayConsistent() {
+        binding.openHourMonday.setErrorEnabled(false);
+        binding.closeHourMonday.setErrorEnabled(false);
+        binding.openHourMonday.setError(null);
+        binding.closeHourMonday.setError(null);
+    }
+
+    public void onTuesdayInConsistent() {
+        binding.openHourTuesday.setErrorEnabled(true);
+        binding.closeHourTuesday.setErrorEnabled(true);
+        binding.openHourTuesday.setError("필수 입력 사항");
+        binding.closeHourTuesday.setError("필수 입력 사항");
+    }
+
+    public void onTuesdayConsistent() {
+        binding.openHourTuesday.setErrorEnabled(false);
+        binding.closeHourTuesday.setErrorEnabled(false);
+        binding.openHourTuesday.setError(null);
+        binding.closeHourTuesday.setError(null);
+    }
+
+    public void onWednesdayInConsistent() {
+        binding.openHourWednesday.setErrorEnabled(true);
+        binding.closeHourWednesday.setErrorEnabled(true);
+        binding.openHourWednesday.setError("필수 입력 사항");
+        binding.closeHourWednesday.setError("필수 입력 사항");
+    }
+
+    public void onWednesdayConsistent() {
+        binding.openHourWednesday.setErrorEnabled(false);
+        binding.closeHourWednesday.setErrorEnabled(false);
+        binding.openHourWednesday.setError(null);
+        binding.closeHourWednesday.setError(null);
+    }
+
+    public void onThursdayInConsistent() {
+        binding.openHourThursday.setErrorEnabled(true);
+        binding.closeHourThursday.setErrorEnabled(true);
+        binding.openHourThursday.setError("필수 입력 사항");
+        binding.closeHourThursday.setError("필수 입력 사항");
+    }
+
+    public void onThursdayConsistent() {
+        binding.openHourThursday.setErrorEnabled(false);
+        binding.closeHourThursday.setErrorEnabled(false);
+        binding.openHourThursday.setError(null);
+        binding.closeHourThursday.setError(null);
+    }
+
+    public void onFridayInConsistent() {
+        binding.openHourFriday.setErrorEnabled(true);
+        binding.closeHourFriday.setErrorEnabled(true);
+        binding.openHourFriday.setError("필수 입력 사항");
+        binding.closeHourFriday.setError("필수 입력 사항");
+    }
+
+    public void onFridayConsistent() {
+        binding.openHourFriday.setErrorEnabled(false);
+        binding.closeHourFriday.setErrorEnabled(false);
+        binding.openHourFriday.setError(null);
+        binding.closeHourFriday.setError(null);
+    }
+
+    public void onSaturdayInConsistent() {
+        binding.openHourSaturday.setErrorEnabled(true);
+        binding.closeHourSaturday.setErrorEnabled(true);
+        binding.openHourSaturday.setError("필수 입력 사항");
+        binding.closeHourSaturday.setError("필수 입력 사항");
+    }
+
+    public void onSaturdayConsistent() {
+        binding.openHourSunday.setErrorEnabled(false);
+        binding.closeHourSunday.setErrorEnabled(false);
+        binding.openHourSunday.setError(null);
+        binding.closeHourSunday.setError(null);
+    }
+
+    public void onSundayInConsistent() {
+        binding.openHourSunday.setErrorEnabled(true);
+        binding.closeHourSunday.setErrorEnabled(true);
+        binding.openHourSunday.setError("필수 입력 사항");
+        binding.closeHourSunday.setError("필수 입력 사항");
+    }
+
+    public void onSundayConsistent() {
+        binding.openHourSunday.setErrorEnabled(false);
+        binding.closeHourSunday.setErrorEnabled(false);
+        binding.openHourSunday.setError(null);
+        binding.closeHourSunday.setError(null);
+    }
+
+    public void onDeliveryInconsistent() {
+        binding.deliveryFee.setErrorEnabled(true);
+        binding.deliveryFee.setError("배송 제공 시 필수 입력");
+    }
+
+    public void onDeliveryConsistent() {
+        binding.deliveryFee.setErrorEnabled(false);
+        binding.deliveryFee.setError(null);
     }
 
     private void openAlbumForResult() {
