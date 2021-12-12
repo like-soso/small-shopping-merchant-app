@@ -56,8 +56,6 @@ public class CouponCheckDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_coupon_check, container, false);
 
-        NavController navController = NavHostFragment.findNavController(this);
-
         ViewModelProvider viewModelProvider = new ViewModelProvider(requireParentFragment());
 
         viewModel = viewModelProvider.get(CouponModifyViewModel.class);

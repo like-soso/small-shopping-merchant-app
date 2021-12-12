@@ -12,6 +12,8 @@ import java.util.function.Consumer;
 
 public class CouponModifyViewModel extends ViewModel {
 
+    String couponType = "FIX";
+
     private final ObservableField<String> userPhone = new ObservableField<>("");
     private final ObservableField<String> couponCode = new ObservableField<>("");
 
@@ -19,6 +21,10 @@ public class CouponModifyViewModel extends ViewModel {
     ObservableField<String> couponAmount = new ObservableField<>("");
     ObservableField<String> couponMinPrice = new ObservableField<>("");
     ObservableField<String> couponExpiry = new ObservableField<>("");
+
+    public String getCouponType() {
+        return couponType;
+    }
 
     public ObservableField<String> getUserPhone() {
         return userPhone;
@@ -57,6 +63,7 @@ public class CouponModifyViewModel extends ViewModel {
     }
 
     public void setModel(Coupon coupon) {
+        this.couponType = coupon.getCouponType();
         this.couponName.set(coupon.getCouponName());
         this.couponAmount.set(coupon.getCouponType().equals("FIX") ? Integer.toString(coupon.getFixAmount()) : Double.toString(coupon.getRateAmount()));
         this.couponMinPrice.set(Integer.toString(coupon.getMinimumOrderPrice()));

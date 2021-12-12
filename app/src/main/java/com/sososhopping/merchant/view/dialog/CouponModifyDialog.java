@@ -55,8 +55,6 @@ public class CouponModifyDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_coupon_modify, container, false);
 
-        NavController navController = NavHostFragment.findNavController(this);
-
         ViewModelProvider viewModelProvider = new ViewModelProvider(requireParentFragment());
 
         CouponModifyViewModel viewModel = viewModelProvider.get(CouponModifyViewModel.class);
@@ -64,6 +62,8 @@ public class CouponModifyDialog extends DialogFragment {
         binding.setCouponModifyViewModel(viewModel);
 
         binding.usernameValue.setText(userName);
+
+        binding.type.setText("FIX".equals(viewModel.getCouponType()) ? "원" : "%");
 
         Runnable onSuccess = this::onSuccess;
         Runnable onInvalid = this::onInvalid;
