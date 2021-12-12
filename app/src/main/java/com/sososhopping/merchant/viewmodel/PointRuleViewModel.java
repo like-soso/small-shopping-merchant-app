@@ -10,7 +10,7 @@ import com.sososhopping.merchant.model.point.repository.PointRepository;
 public class PointRuleViewModel extends ViewModel {
 
     boolean usePoint = false;
-    ObservableField<String> pointRate = new ObservableField<>();
+    ObservableField<String> pointRate = new ObservableField<>("");
 
     public boolean getUsePoint() {
         return usePoint;
