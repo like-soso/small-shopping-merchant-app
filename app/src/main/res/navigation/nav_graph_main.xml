@@ -270,7 +270,13 @@
             android:id="@+id/pointModifyDialog"
             android:name="com.sososhopping.merchant.view.dialog.PointModifyDialog"
             android:label="dialog_point_modify"
-            tools:layout="@layout/dialog_point_modify" />
+            tools:layout="@layout/dialog_point_modify" >
+            <action
+                android:id="@+id/action_pointModifyDialog_to_pointUsedDialog"
+                app:destination="@id/pointUsedDialog"
+                app:popUpTo="@id/pointFragment"
+                app:popUpToInclusive="false" />
+        </dialog>
         <dialog
             android:id="@+id/pointCheckDialog"
             android:name="com.sososhopping.merchant.view.dialog.PointCheckDialog"
@@ -278,10 +284,13 @@
             tools:layout="@layout/dialog_point_check">
             <action
                 android:id="@+id/action_pointCheckDialog_to_pointModifyDialog"
-                app:destination="@id/pointModifyDialog"
-                app:popUpTo="@id/pointFragment"
-                app:popUpToInclusive="false" />
+                app:destination="@id/pointModifyDialog" />
         </dialog>
+        <dialog
+            android:id="@+id/pointUsedDialog"
+            android:name="com.sososhopping.merchant.view.dialog.PointUsedDialog"
+            android:label="PointUsedDialog"
+            tools:layout="@layout/dialog_point_used"/>
     </navigation>
     <fragment
         android:id="@+id/couponFragment"
@@ -328,15 +337,34 @@
             tools:layout="@layout/dialog_coupon_check">
             <action
                 android:id="@+id/action_couponCheckDialog_to_couponModifyDialog"
-                app:destination="@id/couponModifyDialog"
-                app:popUpTo="@id/couponFragment"
-                app:popUpToInclusive="false" />
+                app:destination="@id/couponModifyDialog" />
         </dialog>
+        <dialog
+            android:id="@+id/invalidCouponDialog"
+            android:name="com.sososhopping.merchant.view.dialog.InvalidCouponDialog"
+            android:label="InvalidCouponDialog"
+            tools:layout="@layout/dialog_invalid_coupon"/>
+        <dialog
+            android:id="@+id/couponUsedDialog"
+            android:name="com.sososhopping.merchant.view.dialog.CouponUsedDialog"
+            android:label="CouponUsedDialog"
+            tools:layout="@layout/dialog_coupon_used"/>
         <dialog
             android:id="@+id/couponModifyDialog"
             android:name="com.sososhopping.merchant.view.dialog.CouponModifyDialog"
             android:label="dialog_coupon_modify"
-            tools:layout="@layout/dialog_coupon_modify" />
+            tools:layout="@layout/dialog_coupon_modify" >
+            <action
+                android:id="@+id/action_couponModifyDialog_to_invalidCouponDialog"
+                app:destination="@id/invalidCouponDialog"
+                app:popUpTo="@id/couponFragment"
+                app:popUpToInclusive="false" />
+            <action
+                android:id="@+id/action_couponModifyDialog_to_couponUsedDialog"
+                app:destination="@id/couponUsedDialog"
+                app:popUpTo="@id/couponFragment"
+                app:popUpToInclusive="false" />
+        </dialog>
     </navigation>
     <fragment
         android:id="@+id/itemFragment"
@@ -429,7 +457,13 @@
         android:id="@+id/storeUpdateFragment"
         android:name="com.sososhopping.merchant.view.fragment.StoreUpdateFragment"
         android:label="fragment_store_update"
-        tools:layout="@layout/fragment_store_update" />
+        tools:layout="@layout/fragment_store_update" >
+        <action
+            android:id="@+id/action_storeUpdateFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <dialog
         android:id="@+id/passwordChangedDialog"
         android:name="com.sososhopping.merchant.view.dialog.PasswordChangedDialog"

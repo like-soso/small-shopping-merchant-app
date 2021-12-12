@@ -64,14 +64,35 @@ public class CouponCheckDialog extends DialogFragment {
         binding.setCouponModifyViewModel(viewModel);
 
         Consumer<CouponCheckResponseDto> onSuccess = this::onSuccess;
+        Runnable onFailed = this::onFailed;
+        Runnable onInvalid = this::onInvalid;
+        Runnable onError = this::onError;
         binding.check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.requestCouponCheck(storeId, onSuccess);
+                viewModel.requestCouponCheck(storeId, onSuccess, onFailed, onInvalid, onError);
             }
         });
 
         return binding.getRoot();
+    }
+
+    private void onError() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
+    }
+
+    private void onInvalid() {
+        binding.customerNumber.setErrorEnabled(false);
+        binding.customerNumber.setError(null);
+        binding.point.setErrorEnabled(true);
+        binding.point.setError("이 점포의 쿠폰 번호가 아닙니다.");
+    }
+
+    private void onFailed() {
+        binding.customerNumber.setErrorEnabled(true);
+        binding.customerNumber.setError("입력하신 정보가 올바르지 않습니다.");
+        binding.point.setErrorEnabled(true);
+        binding.point.setError("입력하신 정보가 올바르지 않습니다.");
     }
 
     @Override

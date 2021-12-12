@@ -66,19 +66,29 @@ public class CouponModifyDialog extends DialogFragment {
         binding.usernameValue.setText(userName);
 
         Runnable onSuccess = this::onSuccess;
+        Runnable onInvalid = this::onInvalid;
+        Runnable onError = this::onError;
 
         binding.loginLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.requestCouponModify(storeId, onSuccess);
+                viewModel.requestCouponModify(storeId, onSuccess, onInvalid, onError);
             }
         });
 
         return binding.getRoot();
     }
 
+    private void onError() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
+    }
+
+    private void onInvalid() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_couponModifyDialog_to_invalidCouponDialog);
+    }
+
     public void onSuccess() {
-        NavHostFragment.findNavController(this).navigateUp();
+        NavHostFragment.findNavController(this).navigate(R.id.action_couponModifyDialog_to_couponUsedDialog);
     }
 
     @Override

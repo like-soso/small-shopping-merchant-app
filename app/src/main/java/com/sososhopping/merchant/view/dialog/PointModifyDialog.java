@@ -94,7 +94,7 @@ public class PointModifyDialog extends DialogFragment {
     }
 
     private void closeDialog() {
-        this.dismiss();
+        NavHostFragment.findNavController(this).navigate(R.id.action_pointModifyDialog_to_pointUsedDialog);
     }
 
     private void onNetworkError() {

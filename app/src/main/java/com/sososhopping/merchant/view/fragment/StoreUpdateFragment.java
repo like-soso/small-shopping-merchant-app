@@ -1010,6 +1010,6 @@ public class StoreUpdateFragment extends Fragment {
     }
 
     public void onSuccess() {
-        NavHostFragment.findNavController(this).navigateUp();
+        NavHostFragment.findNavController(this).navigate(R.id.action_storeUpdateFragment_to_mainFragment);
     }
 }

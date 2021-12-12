@@ -71,7 +71,8 @@ public class PointRepository {
             public void onResponse(Call<PointCheckResponseDto> call, Response<PointCheckResponseDto> response) {
                 System.out.println(response.code());
                 if (response.code() == 200) onSuccess.accept(response.body());
-                else onFailed.run();
+                else if (response.code() == 400) onFailed.run();
+                else onError.run();
             }
 
             @Override

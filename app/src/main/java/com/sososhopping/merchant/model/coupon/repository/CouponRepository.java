@@ -42,7 +42,6 @@ public class CouponRepository {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Call<CouponListResponseDto> call, Response<CouponListResponseDto> response) {
-                System.out.println(response.code());
                 if(response.code() == 200) onSuccess.accept(response.body());
                 else onError.run();
             }
@@ -130,31 +129,36 @@ public class CouponRepository {
         });
     }
 
-    public void requestCouponCheck(int storeId, String userPhone, String couponCode, Consumer<CouponCheckResponseDto> onSuccess){
+    public void requestCouponCheck(int storeId, String userPhone, String couponCode, Consumer<CouponCheckResponseDto> onSuccess, Runnable onFailed, Runnable onInvalid, Runnable onError){
         service.requestCouponCheck(TokenStore.getAuthToken(), storeId, userPhone, couponCode).enqueue(new Callback<CouponCheckResponseDto>() {
             @Override
             public void onResponse(Call<CouponCheckResponseDto> call, Response<CouponCheckResponseDto> response) {
-                System.out.println(call.request().url().toString());
                 if (response.code() == 200) onSuccess.accept(response.body());
+                else if (response.code() == 400) onFailed.run();
+                else if (response.code() == 404) onInvalid.run();
+                else onError.run();
             }
 
             @Override
             public void onFailure(Call<CouponCheckResponseDto> call, Throwable t) {
-                ;
+                onError.run();
             }
         });
     }
 
-    public void requestCouponModify(int storeId, CouponModifyRequestDto dto, Runnable onSuccess) {
+    public void requestCouponModify(int storeId, CouponModifyRequestDto dto, Runnable onSuccess, Runnable onInvalid, Runnable onError) {
         service.requestCouponModify(TokenStore.getAuthToken(), storeId, dto).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == 200) onSuccess.run();
+                else if (response.code() == 403 || response.code() == 404) {
+                    onInvalid.run();
+                } else onError.run();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                ;
+                onError.run();
             }
         });
     }

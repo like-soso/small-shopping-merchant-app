@@ -44,12 +44,12 @@ public class CouponModifyViewModel extends ViewModel {
         return couponExpiry;
     }
 
-    public void requestCouponCheck(int storeId, Consumer<CouponCheckResponseDto> onSuccess) {
-        CouponRepository.getInstance().requestCouponCheck(storeId, userPhone.get(), couponCode.get(), onSuccess);
+    public void requestCouponCheck(int storeId, Consumer<CouponCheckResponseDto> onSuccess, Runnable onFailed, Runnable onInvalid, Runnable onError) {
+        CouponRepository.getInstance().requestCouponCheck(storeId, userPhone.get(), couponCode.get(), onSuccess, onFailed, onInvalid, onError);
     }
 
-    public void requestCouponModify(int storeId, Runnable onSuccess) {
-        CouponRepository.getInstance().requestCouponModify(storeId, this.toDto(), onSuccess);
+    public void requestCouponModify(int storeId, Runnable onSuccess, Runnable onInvalid, Runnable onError) {
+        CouponRepository.getInstance().requestCouponModify(storeId, this.toDto(), onSuccess, onInvalid, onError);
     }
 
     private CouponModifyRequestDto toDto() {
