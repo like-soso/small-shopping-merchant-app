@@ -3,13 +3,16 @@ package com.sososhopping.merchant.model.auth.repository;
 import androidx.annotation.NonNull;
 
 import com.sososhopping.merchant.model.auth.dto.request.EmailDuplicationCheckRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.EmailFindRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.LoginRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.SignupRequestDto;
+import com.sososhopping.merchant.model.auth.dto.response.EmailFindResponseDto;
 import com.sososhopping.merchant.model.auth.dto.response.LoginResponseDto;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
 import com.sososhopping.merchant.model.auth.service.AuthService;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -92,6 +95,25 @@ public class AuthRepository {
 
             @Override
             public void onFailure(@NonNull Call<LoginResponseDto> call, @NonNull Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestEmailFind(EmailFindRequestDto dto,
+                                 Consumer<EmailFindResponseDto> onSuccess,
+                                 Runnable onInvalid,
+                                 Runnable onError) {
+        service.requestFindEmail(dto).enqueue(new Callback<EmailFindResponseDto>() {
+            @Override
+            public void onResponse(Call<EmailFindResponseDto> call, Response<EmailFindResponseDto> response) {
+                if (response.code() == 200) onSuccess.accept(response.body());
+                else if (response.code() == 404) onInvalid.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<EmailFindResponseDto> call, Throwable t) {
                 onError.run();
             }
         });

@@ -1,8 +1,10 @@
 package com.sososhopping.merchant.model.auth.service;
 
 import com.sososhopping.merchant.model.auth.dto.request.EmailDuplicationCheckRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.EmailFindRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.LoginRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.SignupRequestDto;
+import com.sososhopping.merchant.model.auth.dto.response.EmailFindResponseDto;
 import com.sososhopping.merchant.model.auth.dto.response.LoginResponseDto;
 
 import retrofit2.Call;
@@ -19,4 +21,7 @@ public interface AuthService {
 
     @POST("auth/login")
     Call<LoginResponseDto> requestLogin(@Body LoginRequestDto dto);
+
+    @POST("auth/findEmail")
+    Call<EmailFindResponseDto> requestFindEmail(@Body EmailFindRequestDto dto);
 }
