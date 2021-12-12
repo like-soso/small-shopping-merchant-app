@@ -30,7 +30,7 @@ public class PointRuleViewModel extends ViewModel {
 
     public boolean validate(Runnable onValid, Runnable onInvalid) {
         try {
-            if (!usePoint || (pointRate.get() != null && (Double.parseDouble(pointRate.get())) > 0)) {
+            if (!usePoint || (pointRate.get() != null && ((Double.parseDouble(pointRate.get()) > 0) || (Double.parseDouble(pointRate.get()) <= 100)))) {
                 onValid.run();
                 return true;
             }

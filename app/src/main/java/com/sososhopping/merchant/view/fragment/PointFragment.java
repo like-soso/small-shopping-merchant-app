@@ -120,7 +120,7 @@ public class PointFragment extends Fragment {
 
     public void onInvalid() {
         binding.signupFormEmailLayout.setErrorEnabled(true);
-        binding.signupFormEmailLayout.setError("포인트 적립 비율은 양수만 사용할 수 있습니다.");
+        binding.signupFormEmailLayout.setError("유효하지 않은 입력입니다.");
     }
 
     public void onNetworkError() {
