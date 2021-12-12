@@ -12,13 +12,13 @@ import java.util.function.Consumer;
 
 public class CouponModifyViewModel extends ViewModel {
 
-    private final ObservableField<String> userPhone = new ObservableField<>();
-    private final ObservableField<String> couponCode = new ObservableField<>();
+    private final ObservableField<String> userPhone = new ObservableField<>("");
+    private final ObservableField<String> couponCode = new ObservableField<>("");
 
-    ObservableField<String> couponName = new ObservableField<>();
-    ObservableField<String> couponAmount = new ObservableField<>();
-    ObservableField<String> couponMinPrice = new ObservableField<>();
-    ObservableField<String> couponExpiry = new ObservableField<>();
+    ObservableField<String> couponName = new ObservableField<>("");
+    ObservableField<String> couponAmount = new ObservableField<>("");
+    ObservableField<String> couponMinPrice = new ObservableField<>("");
+    ObservableField<String> couponExpiry = new ObservableField<>("");
 
     public ObservableField<String> getUserPhone() {
         return userPhone;
