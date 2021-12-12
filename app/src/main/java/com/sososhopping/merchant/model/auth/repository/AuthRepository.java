@@ -8,9 +8,11 @@ import com.sososhopping.merchant.model.auth.dto.request.LoginRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.PasswordChangeRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.PasswordFindRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.PasswordUpdateRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.ProfileUpdateRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.SignupRequestDto;
 import com.sososhopping.merchant.model.auth.dto.response.EmailFindResponseDto;
 import com.sososhopping.merchant.model.auth.dto.response.LoginResponseDto;
+import com.sososhopping.merchant.model.auth.dto.response.ProfileResponseDto;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
 import com.sososhopping.merchant.model.auth.service.AuthService;
 import com.sososhopping.merchant.utils.token.TokenStore;
@@ -160,6 +162,40 @@ public class AuthRepository {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == 200) onSuccess.run();
                 else if (response.code() == 401) onInvalid.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestMyProfile(Consumer<ProfileResponseDto> onSuccess, Runnable onError) {
+        service.requestMyProfile(TokenStore.getAuthToken()).enqueue(new Callback<ProfileResponseDto>() {
+            @Override
+            public void onResponse(Call<ProfileResponseDto> call, Response<ProfileResponseDto> response) {
+                System.out.println(response.code());
+                if (response.code() == 200) onSuccess.accept(response.body());
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponseDto> call, Throwable t) {
+                t.printStackTrace();
+                onError.run();
+            }
+        });
+    }
+
+    public void requestProfileUpdate(ProfileUpdateRequestDto dto, Runnable onSuccess, Runnable onInvalid, Runnable onPhoneDup, Runnable onError) {
+        service.requestProfileUpdate(TokenStore.getAuthToken(), dto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+                else if (response.code() == 401) onInvalid.run();
+                else if (response.code() == 409) onPhoneDup.run();
                 else onError.run();
             }
 
