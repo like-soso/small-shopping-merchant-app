@@ -100,11 +100,22 @@ public class BoardRegisterFragment extends Fragment {
         Runnable onSuccess = this::onSuccess;
         Runnable onError = this::onNetworkError;
 
+        Runnable onTitleEmpty = this::onTitleEmpty;
+        Runnable onTitleNotEmpty = this::onTitleNotEmpty;
+        Runnable onContentEmpty = this::onContentEmpty;
+        Runnable onContentNotEmpty = this::onContentNotEmpty;
         binding.shopListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId() == R.id.boardRegister) {
-                    viewModel.requestRegister(storeId, onSuccess, onError);
+                    if (viewModel.valid(
+                            onTitleEmpty,
+                            onTitleNotEmpty,
+                            onContentEmpty,
+                            onContentNotEmpty
+                    )) {
+                        viewModel.requestRegister(storeId, onSuccess, onError);
+                    }
                 }
                 return true;
             }
@@ -137,11 +148,32 @@ public class BoardRegisterFragment extends Fragment {
         imageActivityResultLauncher.launch(intent);
     }
 
-    private void onSuccess() {
+    public void onTitleEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(true);
+        binding.signupFormEmailLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onTitleNotEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(false);
+        binding.signupFormEmailLayout.setError(null);
+
+    }
+
+    public void onContentEmpty() {
+        binding.itemDescriptionLayout.setErrorEnabled(true);
+        binding.itemDescriptionLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onContentNotEmpty() {
+        binding.itemDescriptionLayout.setErrorEnabled(false);
+        binding.itemDescriptionLayout.setError(null);
+    }
+
+    public void onSuccess() {
         NavHostFragment.findNavController(this).navigateUp();
     }
 
-    private void onNetworkError() {
+    public void onNetworkError() {
         NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
     }
 }

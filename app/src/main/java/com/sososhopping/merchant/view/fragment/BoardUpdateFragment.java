@@ -117,11 +117,22 @@ public class BoardUpdateFragment extends Fragment {
         Runnable onSuccess = this::onSuccess;
         Runnable onError = this::onNetworkError;
 
+        Runnable onTitleEmpty = this::onTitleEmpty;
+        Runnable onTitleNotEmpty = this::onTitleNotEmpty;
+        Runnable onContentEmpty = this::onContentEmpty;
+        Runnable onContentNotEmpty = this::onContentNotEmpty;
         binding.shopListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId() == R.id.boardUpdate) {
-                    viewModel.requestUpdate(storeId, boardId, onSuccess, onError);
+                    if (viewModel.valid(
+                            onTitleEmpty,
+                            onTitleNotEmpty,
+                            onContentEmpty,
+                            onContentNotEmpty
+                    )) {
+                        viewModel.requestUpdate(storeId, boardId, onSuccess, onError);
+                    }
                 }
                 return true;
             }
@@ -162,6 +173,27 @@ public class BoardUpdateFragment extends Fragment {
                     .load(Uri.parse(board.getImgUrl()))
                     .into(binding.mainImage);
         }
+    }
+
+    public void onTitleEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(true);
+        binding.signupFormEmailLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onTitleNotEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(false);
+        binding.signupFormEmailLayout.setError(null);
+
+    }
+
+    public void onContentEmpty() {
+        binding.itemDescriptionLayout.setErrorEnabled(true);
+        binding.itemDescriptionLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onContentNotEmpty() {
+        binding.itemDescriptionLayout.setErrorEnabled(false);
+        binding.itemDescriptionLayout.setError(null);
     }
 
     public void onSuccess() {

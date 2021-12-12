@@ -53,4 +53,20 @@ public class BoardUpdateViewModel extends ViewModel {
         this.title.set(board.getTitle());
         this.description.set(board.getContent());
     }
+
+    public boolean valid(Runnable onTitleEmpty, Runnable onTitleNotEmpty, Runnable onContentEmpty, Runnable onContentNotEmpty) {
+        boolean ret = true;
+
+        if (title.get() == null || title.get().isEmpty()) {
+            ret = false;
+            onTitleEmpty.run();
+        } else onTitleNotEmpty.run();
+
+        if (description.get() == null || description.get().isEmpty()) {
+            ret = false;
+            onContentEmpty.run();
+        } else onContentNotEmpty.run();
+
+        return ret;
+    }
 }
