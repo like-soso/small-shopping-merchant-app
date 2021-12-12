@@ -113,11 +113,29 @@ public class ItemUpdateFragment extends Fragment {
         Runnable onSuccess = this::onSuccess;
         Runnable onError = this::onNetworkError;
 
+        Runnable onNameEmpty = this::onNameEmpty;
+        Runnable onNameNotEmpty = this::onNameNotEmpty;
+        Runnable onUnitEmpty = this::onUnitEmpty;
+        Runnable onUnitNotEmpty = this::onUnitNotEmpty;
+        Runnable onPriceEmpty = this::onPriceEmpty;
+        Runnable onPriceNotEmpty = this::onPriceNotEmpty;
+        Runnable onPriceInvalid = this::onPriceInvalid;
+
         binding.shopListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.itemUpdateToolbar){
-                    viewModel.requestUpdate(storeId, itemId, onSuccess, onError);
+                    if (viewModel.valid(
+                            onNameEmpty,
+                            onNameNotEmpty,
+                            onUnitEmpty,
+                            onUnitNotEmpty,
+                            onPriceEmpty,
+                            onPriceNotEmpty,
+                            onPriceInvalid
+                    )) {
+                        viewModel.requestUpdate(storeId, itemId, onSuccess, onError);
+                    }
                 }
                 return true;
             }
@@ -131,6 +149,41 @@ public class ItemUpdateFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    public void onNameEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(true);
+        binding.signupFormEmailLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onNameNotEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(false);
+        binding.signupFormEmailLayout.setError(null);
+    }
+
+    public void onUnitEmpty() {
+        binding.itemUnitLayout.setErrorEnabled(true);
+        binding.itemUnitLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onUnitNotEmpty() {
+        binding.itemUnitLayout.setErrorEnabled(false);
+        binding.itemUnitLayout.setError(null);
+    }
+
+    public void onPriceEmpty() {
+        binding.itemUnitPriceLayout.setErrorEnabled(true);
+        binding.itemUnitPriceLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onPriceInvalid() {
+        binding.itemUnitPriceLayout.setErrorEnabled(true);
+        binding.itemUnitPriceLayout.setError("양수만 입력 가능");
+    }
+
+    public void onPriceNotEmpty() {
+        binding.itemUnitLayout.setErrorEnabled(false);
+        binding.itemUnitLayout.setError(null);
     }
 
     private void openAlbumForResult() {
