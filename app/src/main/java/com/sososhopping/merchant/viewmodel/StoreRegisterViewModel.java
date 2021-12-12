@@ -17,57 +17,57 @@ import java.util.List;
 public class StoreRegisterViewModel extends ViewModel {
     ObservableField<Bitmap> bitmap = new ObservableField<>();
 
-    ObservableField<String> name = new ObservableField<>();
-    ObservableField<String> description = new ObservableField<>();
-    ObservableField<String> phone = new ObservableField<>();
+    ObservableField<String> name = new ObservableField<>("");
+    ObservableField<String> description = new ObservableField<>("");
+    ObservableField<String> phone = new ObservableField<>("");
 
-    ObservableField<String> category = new ObservableField<>();
+    ObservableField<String> category = new ObservableField<>("");
 
     boolean openMonday = false;
-    ObservableField<String> openHourMonday = new ObservableField<>();
-    ObservableField<String> closeHourMonday = new ObservableField<>();
+    ObservableField<String> openHourMonday = new ObservableField<>("");
+    ObservableField<String> closeHourMonday = new ObservableField<>("");
 
     boolean openTuesday = false;
-    ObservableField<String> openHourTuesday = new ObservableField<>();
-    ObservableField<String> closeHourTuesday = new ObservableField<>();
+    ObservableField<String> openHourTuesday = new ObservableField<>("");
+    ObservableField<String> closeHourTuesday = new ObservableField<>("");
 
     boolean openWednesday = false;
-    ObservableField<String> openHourWednesday = new ObservableField<>();
-    ObservableField<String> closeHourWednesday = new ObservableField<>();
+    ObservableField<String> openHourWednesday = new ObservableField<>("");
+    ObservableField<String> closeHourWednesday = new ObservableField<>("");
 
     boolean openThursday = false;
-    ObservableField<String> openHourThursday = new ObservableField<>();
-    ObservableField<String> closeHourThursday = new ObservableField<>();
+    ObservableField<String> openHourThursday = new ObservableField<>("");
+    ObservableField<String> closeHourThursday = new ObservableField<>("");
 
     boolean openFriday = false;
-    ObservableField<String> openHourFriday = new ObservableField<>();
-    ObservableField<String> closeHourFriday = new ObservableField<>();
+    ObservableField<String> openHourFriday = new ObservableField<>("");
+    ObservableField<String> closeHourFriday = new ObservableField<>("");
 
     boolean openSaturday = false;
-    ObservableField<String> openHourSaturday = new ObservableField<>();
-    ObservableField<String> closeHourSaturday = new ObservableField<>();
+    ObservableField<String> openHourSaturday = new ObservableField<>("");
+    ObservableField<String> closeHourSaturday = new ObservableField<>("");
 
     boolean openSunday = false;
-    ObservableField<String> openHourSunday = new ObservableField<>();
-    ObservableField<String> closeHourSunday = new ObservableField<>();
+    ObservableField<String> openHourSunday = new ObservableField<>("");
+    ObservableField<String> closeHourSunday = new ObservableField<>("");
 
-    ObservableField<String> openHourDetail = new ObservableField<>();
+    ObservableField<String> openHourDetail = new ObservableField<>("");
 
     boolean delivery = false;
     ObservableField<Boolean> localCurrency = new ObservableField<>(false);
 
-    ObservableField<String> businessNumber = new ObservableField<>();
-    ObservableField<String> repName = new ObservableField<>();
-    ObservableField<String> businessName = new ObservableField<>();
-    ObservableField<String> businessOpenDate = new ObservableField<>();
+    ObservableField<String> businessNumber = new ObservableField<>("");
+    ObservableField<String> repName = new ObservableField<>("");
+    ObservableField<String> businessName = new ObservableField<>("");
+    ObservableField<String> businessOpenDate = new ObservableField<>("");
 
     ObservableField<String> streetAddress = new ObservableField<>("");
-    ObservableField<String> detailedAddress = new ObservableField<>();
+    ObservableField<String> detailedAddress = new ObservableField<>("");
 
-    ObservableField<String> lat = new ObservableField<>();
-    ObservableField<String> lng = new ObservableField<>();
+    ObservableField<String> lat = new ObservableField<>("");
+    ObservableField<String> lng = new ObservableField<>("");
 
-    ObservableField<String> deliveryCharge = new ObservableField<>();
+    ObservableField<String> deliveryCharge = new ObservableField<>("");
 
     public ObservableField<String> getLat() {
         return lat;
@@ -282,5 +282,97 @@ public class StoreRegisterViewModel extends ViewModel {
                 businessName.get(),
                 businessOpenDate.get()
         );
+    }
+
+    public boolean validateBasicForm(Runnable onNameEmpty, Runnable onNameNotEmpty, Runnable onPhoneEmpty, Runnable onPhoneNotEmpty, Runnable onCategoryEmpty, Runnable onCategoryNotEmpty, Runnable onMondayConsistent, Runnable onMondayInconsistent, Runnable onTuesdayConsistent, Runnable onTuesdayInconsistent, Runnable onWednesdayConsistent, Runnable onWednesdayInconsistent, Runnable onThursdayConsistent, Runnable onThursdayInconsistent, Runnable onFridayConsistent, Runnable onFridayInconsistent, Runnable onSaturdayConsistent, Runnable onSaturdayInconsistent, Runnable onSundayConsistent, Runnable onSundayInconsistent, Runnable onDeliveryConsistent, Runnable onDeliveryInconsistent) {
+        boolean ret = true;
+
+        if (name.get() == null || name.get().isEmpty()) {
+            ret = false;
+            onNameEmpty.run();
+        } else onNameNotEmpty.run();
+
+        if (phone.get() == null || phone.get().isEmpty()) {
+            ret = false;
+            onPhoneEmpty.run();
+        } else onPhoneNotEmpty.run();
+
+        if (category.get() == null || category.get().isEmpty() || "카테고리".equals(category.get())) {
+            ret = false;
+            onCategoryEmpty.run();
+        } else onCategoryNotEmpty.run();
+
+        if (openMonday && (openHourMonday.get() == null || openHourMonday.get().isEmpty() || closeHourMonday.get() == null || closeHourMonday.get().isEmpty())) {
+            ret = false;
+            onMondayInconsistent.run();
+        } else onMondayConsistent.run();
+
+        if (openTuesday && (openHourTuesday.get() == null || openHourTuesday.get().isEmpty() || closeHourTuesday.get() == null || closeHourTuesday.get().isEmpty())) {
+            ret = false;
+            onTuesdayInconsistent.run();
+        } else onTuesdayConsistent.run();
+
+        if (openWednesday && (openHourWednesday.get() == null || openHourWednesday.get().isEmpty() || closeHourWednesday.get() == null || closeHourWednesday.get().isEmpty())) {
+            ret = false;
+            onWednesdayInconsistent.run();
+        } else onWednesdayConsistent.run();
+
+        if (openThursday && (openHourThursday.get() == null || openHourThursday.get().isEmpty() || closeHourThursday.get() == null || closeHourThursday.get().isEmpty())) {
+            ret = false;
+            onThursdayInconsistent.run();
+        } else onThursdayConsistent.run();
+
+        if (openFriday && (openHourFriday.get() == null || openHourFriday.get().isEmpty() || closeHourFriday.get() == null || closeHourFriday.get().isEmpty())) {
+            ret = false;
+            onFridayInconsistent.run();
+        } else onFridayConsistent.run();
+
+        if (openSaturday && (openHourSaturday.get() == null || openHourSaturday.get().isEmpty() || closeHourSaturday.get() == null || closeHourSaturday.get().isEmpty())) {
+            ret = false;
+            onSaturdayInconsistent.run();
+        } else onSaturdayConsistent.run();
+
+        if (openSunday && (openHourSunday.get() == null || openHourSunday.get().isEmpty() || closeHourSunday.get() == null || closeHourSunday.get().isEmpty())) {
+            ret = false;
+            onSundayInconsistent.run();
+        } else onSundayConsistent.run();
+
+        if (delivery && (deliveryCharge.get() == null || deliveryCharge.get().isEmpty())) {
+            ret = false;
+            onDeliveryInconsistent.run();
+        } else onDeliveryConsistent.run();
+
+        return ret;
+    }
+
+    public boolean validateMetaForm(Runnable onBusinessNumEmpty, Runnable onBusinessNumNotEmpty, Runnable onOwnerNameEmpty, Runnable onOwnerNameNotEmpty, Runnable onBusinessNameEmpty, Runnable onBusinessNameNotEmpty, Runnable onOpenDateEmpty, Runnable onOpenDateNotEmpty, Runnable onAddressNotChecked) {
+        boolean ret = true;
+
+        if (businessNumber.get() == null || businessNumber.get().isEmpty()) {
+            ret = false;
+            onBusinessNumEmpty.run();
+        } else onBusinessNumNotEmpty.run();
+
+        if (repName.get() == null || repName.get().isEmpty()) {
+            ret = false;
+            onOwnerNameEmpty.run();
+        } else onOwnerNameNotEmpty.run();
+
+        if (businessName.get() == null || businessName.get().isEmpty()) {
+            ret = false;
+            onBusinessNameEmpty.run();
+        } else onBusinessNameNotEmpty.run();
+
+        if (businessOpenDate.get() == null || businessOpenDate.get().isEmpty()) {
+            ret = false;
+            onOpenDateEmpty.run();
+        } else onOpenDateNotEmpty.run();
+
+        if (lat.get() == null || lat.get().isEmpty() || lng.get() == null || lng.get().isEmpty()) {
+            ret = false;
+            onAddressNotChecked.run();
+        }
+
+        return ret;
     }
 }
