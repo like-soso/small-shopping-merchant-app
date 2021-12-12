@@ -5,12 +5,15 @@ import com.sososhopping.merchant.model.auth.dto.request.EmailFindRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.LoginRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.PasswordChangeRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.PasswordFindRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.PasswordUpdateRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.SignupRequestDto;
 import com.sososhopping.merchant.model.auth.dto.response.EmailFindResponseDto;
 import com.sososhopping.merchant.model.auth.dto.response.LoginResponseDto;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface AuthService {
@@ -32,4 +35,7 @@ public interface AuthService {
 
     @POST("auth/changePassword")
     Call<Void> requestChangePassword(@Body PasswordChangeRequestDto dto);
+
+    @PATCH("auth/info/password")
+    Call<Void> requestUpdatePassword(@Header("token") String token, @Body PasswordUpdateRequestDto dto);
 }
