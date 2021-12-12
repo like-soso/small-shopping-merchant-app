@@ -94,6 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:maxLength="8"
                 android:text="@={pointModifyViewModel.amount}"
                 android:hint="사용/적립 포인트" />
         </com.google.android.material.textfield.TextInputLayout>
