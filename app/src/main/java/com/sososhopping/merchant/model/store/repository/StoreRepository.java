@@ -6,8 +6,10 @@ import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 
 import com.sososhopping.merchant.model.store.dto.request.StoreRegisterRequestDto;
+import com.sososhopping.merchant.model.store.dto.request.StoreUpdateRequestDto;
 import com.sososhopping.merchant.model.store.dto.response.StoreOpenStatusResponseDto;
 import com.sososhopping.merchant.model.store.entity.StoreBrief;
+import com.sososhopping.merchant.model.store.entity.StoreDetail;
 import com.sososhopping.merchant.model.store.service.StoreService;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
 import com.sososhopping.merchant.utils.retrofit.request.BitmapRequestBody;
@@ -57,7 +59,7 @@ public class StoreRepository {
     }
 
     public void requestRegister(Bitmap image, StoreRegisterRequestDto dto, Runnable onSuccess, Runnable onError) {
-        service.requestStoreRegister(TokenStore.getAuthToken() ,MultipartBody.Part.createFormData("dto", "dto", new DtoJsonRequestBody<>(dto)), MultipartBody.Part.createFormData("img", "image.jpg", new BitmapRequestBody(image))).enqueue(new Callback<Void>() {
+        service.requestStoreRegister(TokenStore.getAuthToken(), MultipartBody.Part.createFormData("dto", "dto", new DtoJsonRequestBody<>(dto)), MultipartBody.Part.createFormData("img", "image.jpg", new BitmapRequestBody(image))).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 System.out.println(response.code());
@@ -99,6 +101,34 @@ public class StoreRepository {
             @Override
             public void onFailure(Call<StoreOpenStatusResponseDto> call, Throwable t) {
                 onError.run();
+            }
+        });
+    }
+
+    public void requestStoreDetail(int storeId, Consumer<StoreDetail> onSuccess) {
+        service.requestStoreDetail(TokenStore.getAuthToken(), storeId).enqueue(new Callback<StoreDetail>() {
+            @Override
+            public void onResponse(Call<StoreDetail> call, Response<StoreDetail> response) {
+                if (response.code() == 200) onSuccess.accept(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<StoreDetail> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void requestStoreUpdate(int storeId, Bitmap image, StoreUpdateRequestDto dto, Runnable onSuccess) {
+        service.requestStoreUpdate(TokenStore.getAuthToken(), storeId, MultipartBody.Part.createFormData("dto", "dto", new DtoJsonRequestBody<>(dto)), MultipartBody.Part.createFormData("img", "image.jpg", new BitmapRequestBody(image))).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
             }
         });
     }

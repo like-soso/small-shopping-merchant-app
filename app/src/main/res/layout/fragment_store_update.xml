@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="storeUpdateViewModel"
+            type="com.sososhopping.merchant.viewmodel.StoreUpdateViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        tools:context=".view.fragment.StoreUpdateFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:menu="@menu/menu_toolbar_store_register_basic"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:letterSpacing="0.25"
+                android:text="점포 수정"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/main_500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+
+            <ImageView
+                android:id="@+id/mainImage"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/store_register_basic_image_description"
+                app:imgBitmap="@{storeUpdateViewModel.bitmap}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"/>
+
+            <TextView
+                android:id="@+id/selectMainImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/store_register_basic_select_image"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/main_500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mainImage"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                app:layout_constraintTop_toBottomOf="@id/selectMainImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="@={storeUpdateViewModel.name}"
+                    android:hint="@string/store_register_basic_name" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/signupFormPasswordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textMultiLine"
+                    android:lines="2"
+                    android:text="@={storeUpdateViewModel.description}"
+                    android:hint="@string/store_register_basic_store_description" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                app:layout_constraintTop_toBottomOf="@id/signupFormPasswordLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:text="@={storeUpdateViewModel.phone}"
+                    android:hint="@string/store_register_basic_call" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintTop_toBottomOf="@id/phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/openDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:text="@string/store_register_basic_open_days"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/main_500"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/category" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkBoxMonday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:text="@string/store_register_basic_monday"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@id/openHourMonday"
+                app:layout_constraintTop_toTopOf="@id/openHourMonday"
+                app:layout_constraintBottom_toBottomOf="@id/openHourMonday"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/openHourMonday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/openDays"
+                app:layout_constraintStart_toEndOf="@id/checkBoxMonday"
+                app:layout_constraintEnd_toStartOf="@id/closeHourMonday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.openHourMonday}"
+                    android:hint="@string/store_register_basic_opening_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/closeHourMonday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/openDays"
+                app:layout_constraintStart_toEndOf="@id/openHourMonday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.closeHourMonday}"
+                    android:hint="@string/store_register_basic_closing_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkBoxTuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:text="@string/store_register_basic_tuesday"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@id/openHourTuesday"
+                app:layout_constraintTop_toTopOf="@id/openHourTuesday"
+                app:layout_constraintBottom_toBottomOf="@id/openHourTuesday"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/openHourTuesday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxMonday"
+                app:layout_constraintStart_toEndOf="@id/checkBoxTuesday"
+                app:layout_constraintEnd_toStartOf="@id/closeHourTuesday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.openHourTuesday}"
+                    android:hint="@string/store_register_basic_opening_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/closeHourTuesday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxMonday"
+                app:layout_constraintStart_toEndOf="@id/openHourTuesday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.closeHourTuesday}"
+                    android:hint="@string/store_register_basic_closing_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkBoxWednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:text="@string/store_register_basic_wednesday"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@id/openHourWednesday"
+                app:layout_constraintTop_toTopOf="@id/openHourWednesday"
+                app:layout_constraintBottom_toBottomOf="@id/openHourWednesday"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/openHourWednesday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxTuesday"
+                app:layout_constraintStart_toEndOf="@id/checkBoxWednesday"
+                app:layout_constraintEnd_toStartOf="@id/closeHourWednesday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.openHourWednesday}"
+                    android:hint="@string/store_register_basic_opening_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/closeHourWednesday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxTuesday"
+                app:layout_constraintStart_toEndOf="@id/openHourWednesday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.closeHourWednesday}"
+                    android:hint="@string/store_register_basic_closing_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkBoxThursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:text="@string/store_register_basic_thursday"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@id/openHourThursday"
+                app:layout_constraintTop_toTopOf="@id/openHourThursday"
+                app:layout_constraintBottom_toBottomOf="@id/openHourThursday"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/openHourThursday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxWednesday"
+                app:layout_constraintStart_toEndOf="@id/checkBoxThursday"
+                app:layout_constraintEnd_toStartOf="@id/closeHourThursday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.openHourThursday}"
+                    android:hint="@string/store_register_basic_opening_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/closeHourThursday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxWednesday"
+                app:layout_constraintStart_toEndOf="@id/openHourThursday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.closeHourThursday}"
+                    android:hint="@string/store_register_basic_closing_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkBoxFriday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:text="@string/store_register_basic_friday"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@id/openHourFriday"
+                app:layout_constraintTop_toTopOf="@id/openHourFriday"
+                app:layout_constraintBottom_toBottomOf="@id/openHourFriday"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/openHourFriday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxThursday"
+                app:layout_constraintStart_toEndOf="@id/checkBoxFriday"
+                app:layout_constraintEnd_toStartOf="@id/closeHourFriday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.openHourFriday}"
+                    android:hint="@string/store_register_basic_opening_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/closeHourFriday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxThursday"
+                app:layout_constraintStart_toEndOf="@id/openHourFriday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.closeHourFriday}"
+                    android:hint="@string/store_register_basic_closing_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkBoxSaturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:text="@string/store_register_basic_saturday"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@id/openHourSaturday"
+                app:layout_constraintTop_toTopOf="@id/openHourSaturday"
+                app:layout_constraintBottom_toBottomOf="@id/openHourSaturday"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/openHourSaturday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxFriday"
+                app:layout_constraintStart_toEndOf="@id/checkBoxSaturday"
+                app:layout_constraintEnd_toStartOf="@id/closeHourSaturday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.openHourSaturday}"
+                    android:hint="@string/store_register_basic_opening_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/closeHourSaturday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxFriday"
+                app:layout_constraintStart_toEndOf="@id/openHourSaturday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.closeHourSaturday}"
+                    android:hint="@string/store_register_basic_closing_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkBoxSunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:text="@string/store_register_basic_sunday"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@id/openHourSunday"
+                app:layout_constraintTop_toTopOf="@id/openHourSunday"
+                app:layout_constraintBottom_toBottomOf="@id/openHourSunday"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/openHourSunday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                android:enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxSaturday"
+                app:layout_constraintStart_toEndOf="@id/checkBoxSunday"
+                app:layout_constraintEnd_toStartOf="@id/closeHourSunday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.openHourSunday}"
+                    android:hint="@string/store_register_basic_opening_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/closeHourSunday"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                android:enabled="false"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxSaturday"
+                app:layout_constraintStart_toEndOf="@id/openHourSunday" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:maxLength="4"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:text="@={storeUpdateViewModel.closeHourSunday}"
+                    android:hint="@string/store_register_basic_closing_hour" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/openDaysDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxSunday"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="@={storeUpdateViewModel.openHourDetail}"
+                    android:hint="@string/store_register_basic_open_detail" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/additionalService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/store_register_basic_extra_service"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/main_500"
+                app:layout_constraintTop_toBottomOf="@id/openDaysDetail"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:text="@string/store_register_basic_delivery"
+                app:layout_constraintTop_toBottomOf="@id/additionalService"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/deliveryFee"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/deliveryFee"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:enabled="false"
+                app:boxStrokeColor="@color/main_500"
+                app:hintTextColor="@color/main_500"
+                app:layout_constraintTop_toBottomOf="@id/additionalService"
+                app:layout_constraintStart_toEndOf="@id/delivery"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="@={storeUpdateViewModel.deliveryCharge}"
+                    android:hint="배송비" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/localCurrency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/store_register_basic_local_currency"
+                android:checked="@={storeUpdateViewModel.localCurrency}"
+                app:layout_constraintTop_toBottomOf="@id/delivery"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
