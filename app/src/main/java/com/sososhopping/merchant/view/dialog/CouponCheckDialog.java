@@ -61,6 +61,9 @@ public class CouponCheckDialog extends DialogFragment {
         viewModel = viewModelProvider.get(CouponModifyViewModel.class);
         binding.setCouponModifyViewModel(viewModel);
 
+        viewModel.getUserPhone().set("");
+        viewModel.getCouponCode().set("");
+
         Consumer<CouponCheckResponseDto> onSuccess = this::onSuccess;
         Runnable onFailed = this::onFailed;
         Runnable onInvalid = this::onInvalid;

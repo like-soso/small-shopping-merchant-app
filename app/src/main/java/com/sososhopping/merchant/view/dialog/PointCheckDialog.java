@@ -61,6 +61,10 @@ public class PointCheckDialog extends DialogFragment {
         PointModifyViewModel viewModel = viewModelProvider.get(PointModifyViewModel.class);
         binding.setPointModifyViewModel(viewModel);
 
+        viewModel.getAmount().set("");
+        viewModel.getUserPhone().set("");
+        viewModel.getIsSave().set(true);
+
         Consumer<PointCheckResponseDto> onSuccess = this::onSuccess;
         Runnable onFailed = this::onUserNotFound;
         Runnable onError = this::onNetworkError;
