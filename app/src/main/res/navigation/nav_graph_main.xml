@@ -377,6 +377,9 @@
         <action
             android:id="@+id/action_itemFragment_to_itemUpdateFragment"
             app:destination="@id/itemUpdateFragment" />
+        <action
+            android:id="@+id/action_itemFragment_to_invalidItemDeleteDialog"
+            app:destination="@id/invalidItemDeleteDialog" />
     </fragment>
     <fragment
         android:id="@+id/itemRegisterFragment"
@@ -474,4 +477,9 @@
         android:name="com.sososhopping.merchant.view.dialog.ProfileUpdatedDialog"
         android:label="ProfileUpdatedDialog"
         tools:layout="@layout/dialog_profile_updated"/>
+    <dialog
+        android:id="@+id/invalidItemDeleteDialog"
+        android:name="com.sososhopping.merchant.view.dialog.InvalidItemDeleteDialog"
+        android:label="InvalidItemDeleteDialog"
+        tools:layout="@layout/dialog_invalid_item_delete"/>
 </navigation>

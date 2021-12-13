@@ -88,16 +88,17 @@ public class ItemRepository {
         });
     }
 
-    public void requestItemDelete(int storeId, int itemId, int position, Consumer<Integer> onSuccess) {
+    public void requestItemDelete(int storeId, int itemId, int position, Consumer<Integer> onSuccess, Runnable onInvalid, Runnable onError) {
         service.requestItemDelete(TokenStore.getAuthToken(), storeId, itemId).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == 200) onSuccess.accept(position);
+                else if (response.code() == 403) onInvalid.run();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                onError.run();
             }
         });
     }
