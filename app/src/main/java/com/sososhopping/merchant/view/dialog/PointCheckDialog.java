@@ -110,13 +110,13 @@ public class PointCheckDialog extends DialogFragment {
     }
 
     public void onPointValid() {
-        binding.point.setErrorEnabled(true);
-        binding.point.setError("유효하지 않은 입력입니다.");
+        binding.point.setErrorEnabled(false);
+        binding.point.setError(null);
     }
 
     public void onPointInvalid() {
-        binding.point.setErrorEnabled(false);
-        binding.point.setError(null);
+        binding.point.setErrorEnabled(true);
+        binding.point.setError("유효하지 않은 입력입니다.");
     }
 
     public void onNetworkError() {
