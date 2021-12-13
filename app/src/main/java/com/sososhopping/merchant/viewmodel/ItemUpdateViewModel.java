@@ -13,10 +13,10 @@ public class ItemUpdateViewModel extends ViewModel {
 
     ObservableField<Bitmap> bitmap = new ObservableField<>();
 
-    ObservableField<String> name = new ObservableField<>();
-    ObservableField<String> description = new ObservableField<>();
-    ObservableField<String> unit = new ObservableField<>();
-    ObservableField<String> unitPrice = new ObservableField<>();
+    ObservableField<String> name = new ObservableField<>("");
+    ObservableField<String> description = new ObservableField<>("");
+    ObservableField<String> unit = new ObservableField<>("");
+    ObservableField<String> unitPrice = new ObservableField<>("");
 
     ObservableField<Boolean> salesStatus = new ObservableField<>(true);
 
@@ -73,5 +73,34 @@ public class ItemUpdateViewModel extends ViewModel {
 
     public String getImgUrl() {
         return imgUrl;
+    }
+
+    public boolean valid(Runnable onNameEmpty, Runnable onNameNotEmpty, Runnable onUnitEmpty, Runnable onUnitNotEmpty, Runnable onPriceEmpty, Runnable onPriceNotEmpty, Runnable onPriceInvalid) {
+        boolean ret = true;
+
+        if (name.get() == null || name.get().isEmpty()) {
+            ret = false;
+            onNameEmpty.run();
+        } else onNameNotEmpty.run();
+
+        if (unit.get() == null || unit.get().isEmpty()) {
+            ret = false;
+            onUnitEmpty.run();
+        } else onUnitNotEmpty.run();
+
+        try{
+            if (unitPrice.get() == null || unit.get().isEmpty()) {
+                ret = false;
+                onPriceEmpty.run();
+            } else if (Integer.parseInt(unitPrice.get()) <= 0) {
+                ret = false;
+                onPriceInvalid.run();
+            } else onPriceNotEmpty.run();
+        } catch (Exception ignored) {
+            ret = false;
+            onPriceInvalid.run();
+        }
+
+        return ret;
     }
 }

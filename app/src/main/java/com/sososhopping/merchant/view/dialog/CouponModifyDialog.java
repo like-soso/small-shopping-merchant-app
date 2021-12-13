@@ -55,8 +55,6 @@ public class CouponModifyDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_coupon_modify, container, false);
 
-        NavController navController = NavHostFragment.findNavController(this);
-
         ViewModelProvider viewModelProvider = new ViewModelProvider(requireParentFragment());
 
         CouponModifyViewModel viewModel = viewModelProvider.get(CouponModifyViewModel.class);
@@ -65,20 +63,32 @@ public class CouponModifyDialog extends DialogFragment {
 
         binding.usernameValue.setText(userName);
 
+        binding.type.setText("FIX".equals(viewModel.getCouponType()) ? "원" : "%");
+
         Runnable onSuccess = this::onSuccess;
+        Runnable onInvalid = this::onInvalid;
+        Runnable onError = this::onError;
 
         binding.loginLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.requestCouponModify(storeId, onSuccess);
+                viewModel.requestCouponModify(storeId, onSuccess, onInvalid, onError);
             }
         });
 
         return binding.getRoot();
     }
 
+    private void onError() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
+    }
+
+    private void onInvalid() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_couponModifyDialog_to_invalidCouponDialog);
+    }
+
     public void onSuccess() {
-        NavHostFragment.findNavController(this).navigateUp();
+        NavHostFragment.findNavController(this).navigate(R.id.action_couponModifyDialog_to_couponUsedDialog);
     }
 
     @Override

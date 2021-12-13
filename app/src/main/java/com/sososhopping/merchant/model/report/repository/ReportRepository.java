@@ -26,16 +26,17 @@ public class ReportRepository {
         return instance;
     }
 
-    public void requestReport(int storeId, UserReportRequestDto dto, Runnable onSuccess) {
+    public void requestReport(int storeId, UserReportRequestDto dto, Runnable onSuccess, Runnable onError) {
         service.requestReportUser(TokenStore.getAuthToken(), storeId, dto).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == 201) onSuccess.run();
+                else onError.run();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                ;
+                onError.run();
             }
         });
     }

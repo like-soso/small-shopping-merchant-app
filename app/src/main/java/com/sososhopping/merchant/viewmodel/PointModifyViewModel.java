@@ -12,8 +12,8 @@ import java.util.function.Consumer;
 
 public class PointModifyViewModel extends ViewModel {
 
-    private final ObservableField<String> userPhone = new ObservableField<>();
-    private final ObservableField<String> amount = new ObservableField<>();
+    private final ObservableField<String> userPhone = new ObservableField<>("");
+    private final ObservableField<String> amount = new ObservableField<>("");
 
     private final ObservableField<Boolean> isSave = new ObservableField<>(true);
 
@@ -43,5 +43,19 @@ public class PointModifyViewModel extends ViewModel {
 
     private PointModifyRequestDto toDto() {
         return new PointModifyRequestDto(userPhone.get(), Integer.parseInt(amount.get()), isSave.get());
+    }
+
+    public boolean valid(Runnable onValid, Runnable onInvalid) {
+        boolean ret = true;
+        try {
+            if (amount.get() == null || Integer.parseInt(amount.get()) <= 0) {
+                ret = false;
+                onInvalid.run();
+            } else onValid.run();
+        } catch (Exception e) {
+            ret = false;
+            onInvalid.run();
+        }
+        return ret;
     }
 }

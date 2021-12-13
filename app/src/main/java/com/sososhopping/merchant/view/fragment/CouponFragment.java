@@ -69,6 +69,13 @@ public class CouponFragment extends Fragment {
             }
         });
 
+        binding.shopListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
+
         binding.pointHandleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

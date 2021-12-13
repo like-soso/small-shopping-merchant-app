@@ -67,7 +67,21 @@ public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter<ItemListRe
                         } else {
                             System.out.println(mValues.get(position).getId());
                             System.out.println(mValues.get(position).getStoreId());
-                            ItemRepository.getInstance().requestItemDelete(mValues.get(position).getStoreId(), mValues.get(position).getId(), position, onSuccess);
+                            ItemRepository.getInstance().requestItemDelete(
+                                    mValues.get(position).getStoreId(), mValues.get(position).getId(), position, onSuccess,
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Navigation.findNavController((View) (holder.itemView.getParent().getParent().getParent().getParent())).navigate(R.id.action_itemFragment_to_invalidItemDeleteDialog);
+                                        }
+                                    },
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Navigation.findNavController((View) (holder.itemView.getParent().getParent().getParent().getParent())).navigate(R.id.action_global_networkErrorDialog);
+                                        }
+                                    }
+                            );
                         }
                         return true;
                     }

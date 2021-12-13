@@ -59,6 +59,13 @@ public class ItemFragment extends Fragment {
 
         ItemRepository.getInstance().requestItemList(storeId, onItemListAcquired, onFailed);
 
+        binding.shopListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
+
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

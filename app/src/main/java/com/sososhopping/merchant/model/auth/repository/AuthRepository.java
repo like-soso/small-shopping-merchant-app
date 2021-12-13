@@ -3,13 +3,22 @@ package com.sososhopping.merchant.model.auth.repository;
 import androidx.annotation.NonNull;
 
 import com.sososhopping.merchant.model.auth.dto.request.EmailDuplicationCheckRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.EmailFindRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.LoginRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.PasswordChangeRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.PasswordFindRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.PasswordUpdateRequestDto;
+import com.sososhopping.merchant.model.auth.dto.request.ProfileUpdateRequestDto;
 import com.sososhopping.merchant.model.auth.dto.request.SignupRequestDto;
+import com.sososhopping.merchant.model.auth.dto.response.EmailFindResponseDto;
 import com.sososhopping.merchant.model.auth.dto.response.LoginResponseDto;
+import com.sososhopping.merchant.model.auth.dto.response.ProfileResponseDto;
 import com.sososhopping.merchant.utils.retrofit.factory.ApiServiceFactory;
 import com.sososhopping.merchant.model.auth.service.AuthService;
+import com.sososhopping.merchant.utils.token.TokenStore;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -92,6 +101,106 @@ public class AuthRepository {
 
             @Override
             public void onFailure(@NonNull Call<LoginResponseDto> call, @NonNull Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestEmailFind(EmailFindRequestDto dto,
+                                 Consumer<EmailFindResponseDto> onSuccess,
+                                 Runnable onInvalid,
+                                 Runnable onError) {
+        service.requestFindEmail(dto).enqueue(new Callback<EmailFindResponseDto>() {
+            @Override
+            public void onResponse(Call<EmailFindResponseDto> call, Response<EmailFindResponseDto> response) {
+                if (response.code() == 200) onSuccess.accept(response.body());
+                else if (response.code() == 404) onInvalid.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<EmailFindResponseDto> call, Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestPasswordFind(PasswordFindRequestDto toFindDto, Runnable onSuccess, Runnable onInvalid, Runnable onError) {
+        service.requestFindPassword(toFindDto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+                else if (response.code() == 404) onInvalid.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestPasswordChange(PasswordChangeRequestDto dto, Runnable onSuccess, Runnable onError) {
+        service.requestChangePassword(dto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestPasswordUpdate(PasswordUpdateRequestDto dto, Runnable onSuccess, Runnable onInvalid, Runnable onError) {
+        service.requestUpdatePassword(TokenStore.getAuthToken(), dto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+                else if (response.code() == 401) onInvalid.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                onError.run();
+            }
+        });
+    }
+
+    public void requestMyProfile(Consumer<ProfileResponseDto> onSuccess, Runnable onError) {
+        service.requestMyProfile(TokenStore.getAuthToken()).enqueue(new Callback<ProfileResponseDto>() {
+            @Override
+            public void onResponse(Call<ProfileResponseDto> call, Response<ProfileResponseDto> response) {
+                System.out.println(response.code());
+                if (response.code() == 200) onSuccess.accept(response.body());
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponseDto> call, Throwable t) {
+                t.printStackTrace();
+                onError.run();
+            }
+        });
+    }
+
+    public void requestProfileUpdate(ProfileUpdateRequestDto dto, Runnable onSuccess, Runnable onInvalid, Runnable onPhoneDup, Runnable onError) {
+        service.requestProfileUpdate(TokenStore.getAuthToken(), dto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) onSuccess.run();
+                else if (response.code() == 401) onInvalid.run();
+                else if (response.code() == 409) onPhoneDup.run();
+                else onError.run();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 onError.run();
             }
         });

@@ -56,22 +56,44 @@ public class CouponCheckDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_coupon_check, container, false);
 
-        NavController navController = NavHostFragment.findNavController(this);
-
         ViewModelProvider viewModelProvider = new ViewModelProvider(requireParentFragment());
 
         viewModel = viewModelProvider.get(CouponModifyViewModel.class);
         binding.setCouponModifyViewModel(viewModel);
 
+        viewModel.getUserPhone().set("");
+        viewModel.getCouponCode().set("");
+
         Consumer<CouponCheckResponseDto> onSuccess = this::onSuccess;
+        Runnable onFailed = this::onFailed;
+        Runnable onInvalid = this::onInvalid;
+        Runnable onError = this::onError;
         binding.check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.requestCouponCheck(storeId, onSuccess);
+                viewModel.requestCouponCheck(storeId, onSuccess, onFailed, onInvalid, onError);
             }
         });
 
         return binding.getRoot();
+    }
+
+    private void onError() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
+    }
+
+    private void onInvalid() {
+        binding.customerNumber.setErrorEnabled(false);
+        binding.customerNumber.setError(null);
+        binding.point.setErrorEnabled(true);
+        binding.point.setError("이 점포의 쿠폰 번호가 아닙니다.");
+    }
+
+    private void onFailed() {
+        binding.customerNumber.setErrorEnabled(true);
+        binding.customerNumber.setError("입력하신 정보가 올바르지 않습니다.");
+        binding.point.setErrorEnabled(true);
+        binding.point.setError("입력하신 정보가 올바르지 않습니다.");
     }
 
     @Override
@@ -86,6 +108,7 @@ public class CouponCheckDialog extends DialogFragment {
     public void onSuccess(CouponCheckResponseDto dto) {
         Bundle bundle = new Bundle();
         bundle.putInt(STOREID, storeId);
+        bundle.putString("userName", dto.getUserName());
         viewModel.setModel(dto.getCoupon());
         NavHostFragment.findNavController(this).navigate(R.id.action_couponCheckDialog_to_couponModifyDialog, bundle);
     }

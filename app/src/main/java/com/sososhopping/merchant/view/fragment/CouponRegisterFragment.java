@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -61,11 +62,58 @@ public class CouponRegisterFragment extends Fragment {
 
         Runnable onSuccess = this::onSuccess;
 
+        Runnable onNameEmpty = this::onNameEmpty;
+        Runnable onNameNotEmpty = this::onNameNotEmpty;
+        Runnable onAmountEmpty = this::onAmountEmpty;
+        Runnable onAmountNotEmpty = this::onAmountNotEmpty;
+        Runnable onAmountInvalid = this::onAmountInvalid;
+        Runnable onMinPriceEmpty = this::onMinPriceEmpty;
+        Runnable onMinPriceNotEmpty = this::onMinPriceNotEmpty;
+        Runnable onMinPriceInvalid = this::onMinPriceInvalid;
+        Runnable onQuantityEmpty = this::onQuantityEmpty;
+        Runnable onQuantityNotEmpty = this::onQuantityNotEmpty;
+        Runnable onQuantityInvalid = this::onQuantityInvalid;
+        Runnable onExpiryEmpty = this::onExpiryEmpty;
+        Runnable onExpiryNotEmpty = this::onExpiryNotEmpty;
+        Runnable onIssuedStartEmpty = this::onIssuedStartEmpty;
+        Runnable onIssuedStartNotEmpty = this::onIssuedStartNotEmpty;
+        Runnable onIssuedEndEmpty = this::onIssuedEndEmpty;
+        Runnable onIssuedEndNotEmpty = this::onIssuedEndNotEmpty;
+
         binding.shopListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.couponRegister) viewModel.requestRegister(storeId, onSuccess);
+                if (item.getItemId() == R.id.couponRegister) {
+                    if (viewModel.valid(
+                            onNameEmpty,
+                            onNameNotEmpty,
+                            onAmountEmpty,
+                            onAmountNotEmpty,
+                            onAmountInvalid,
+                            onMinPriceEmpty,
+                            onMinPriceNotEmpty,
+                            onMinPriceInvalid,
+                            onQuantityEmpty,
+                            onQuantityNotEmpty,
+                            onQuantityInvalid,
+                            onExpiryEmpty,
+                            onExpiryNotEmpty,
+                            onIssuedStartEmpty,
+                            onIssuedStartNotEmpty,
+                            onIssuedEndEmpty,
+                            onIssuedEndNotEmpty
+                    )) {
+                        viewModel.requestRegister(storeId, onSuccess);
+                    }
+                }
                 return true;
+            }
+        });
+
+        binding.shopListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
             }
         });
 
@@ -160,6 +208,91 @@ public class CouponRegisterFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    public void onNameEmpty() {
+        binding.couponNameLayout.setErrorEnabled(true);
+        binding.couponNameLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onNameNotEmpty() {
+        binding.couponNameLayout.setErrorEnabled(false);
+        binding.couponNameLayout.setError(null);
+    }
+
+    public void onAmountEmpty() {
+        binding.couponAmountLayout.setErrorEnabled(true);
+        binding.couponAmountLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onAmountNotEmpty() {
+        binding.couponAmountLayout.setErrorEnabled(false);
+        binding.couponAmountLayout.setError(null);
+    }
+
+    public void onAmountInvalid() {
+        binding.couponAmountLayout.setErrorEnabled(true);
+        binding.couponAmountLayout.setError("유효하지 않은 입력입니다.");
+    }
+
+    public void onMinPriceEmpty() {
+        binding.couponMinPriceLayout.setErrorEnabled(true);
+        binding.couponMinPriceLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onMinPriceNotEmpty() {
+        binding.couponMinPriceLayout.setErrorEnabled(false);
+        binding.couponMinPriceLayout.setError(null);
+    }
+
+    public void onMinPriceInvalid() {
+        binding.couponMinPriceLayout.setErrorEnabled(true);
+        binding.couponMinPriceLayout.setError("유효하지 않은 입력입니다.");
+    }
+
+    public void onQuantityEmpty() {
+        binding.couponQuantityLayout.setErrorEnabled(true);
+        binding.couponQuantityLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onQuantityNotEmpty() {
+        binding.couponQuantityLayout.setErrorEnabled(false);
+        binding.couponQuantityLayout.setError(null);
+    }
+
+    public void onQuantityInvalid() {
+        binding.couponQuantityLayout.setErrorEnabled(true);
+        binding.couponQuantityLayout.setError("유효하지 않은 입력입니다.");
+    }
+
+    public void onExpiryEmpty() {
+        binding.couponExpiryLayout.setErrorEnabled(true);
+        binding.couponExpiryLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onExpiryNotEmpty() {
+        binding.couponExpiryLayout.setErrorEnabled(false);
+        binding.couponExpiryLayout.setError(null);
+    }
+
+    public void onIssuedStartEmpty() {
+        binding.couponIssueStartLayout.setErrorEnabled(true);
+        binding.couponIssueStartLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onIssuedStartNotEmpty() {
+        binding.couponIssueStartLayout.setErrorEnabled(false);
+        binding.couponIssueStartLayout.setError(null);
+    }
+
+    public void onIssuedEndEmpty() {
+        binding.couponIssueEndLayout.setErrorEnabled(true);
+        binding.couponIssueEndLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onIssuedEndNotEmpty() {
+        binding.couponIssueEndLayout.setErrorEnabled(false);
+        binding.couponIssueEndLayout.setError(null);
     }
 
     public void onSuccess() {

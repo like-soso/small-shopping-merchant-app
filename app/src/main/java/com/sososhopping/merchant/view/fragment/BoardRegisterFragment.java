@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -99,13 +100,31 @@ public class BoardRegisterFragment extends Fragment {
         Runnable onSuccess = this::onSuccess;
         Runnable onError = this::onNetworkError;
 
+        Runnable onTitleEmpty = this::onTitleEmpty;
+        Runnable onTitleNotEmpty = this::onTitleNotEmpty;
+        Runnable onContentEmpty = this::onContentEmpty;
+        Runnable onContentNotEmpty = this::onContentNotEmpty;
         binding.shopListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId() == R.id.boardRegister) {
-                    viewModel.requestRegister(storeId, onSuccess, onError);
+                    if (viewModel.valid(
+                            onTitleEmpty,
+                            onTitleNotEmpty,
+                            onContentEmpty,
+                            onContentNotEmpty
+                    )) {
+                        viewModel.requestRegister(storeId, onSuccess, onError);
+                    }
                 }
                 return true;
+            }
+        });
+
+        binding.shopListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
             }
         });
 
@@ -129,11 +148,32 @@ public class BoardRegisterFragment extends Fragment {
         imageActivityResultLauncher.launch(intent);
     }
 
-    private void onSuccess() {
+    public void onTitleEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(true);
+        binding.signupFormEmailLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onTitleNotEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(false);
+        binding.signupFormEmailLayout.setError(null);
+
+    }
+
+    public void onContentEmpty() {
+        binding.itemDescriptionLayout.setErrorEnabled(true);
+        binding.itemDescriptionLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onContentNotEmpty() {
+        binding.itemDescriptionLayout.setErrorEnabled(false);
+        binding.itemDescriptionLayout.setError(null);
+    }
+
+    public void onSuccess() {
         NavHostFragment.findNavController(this).navigateUp();
     }
 
-    private void onNetworkError() {
+    public void onNetworkError() {
         NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
     }
 }

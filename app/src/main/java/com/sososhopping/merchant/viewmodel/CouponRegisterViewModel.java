@@ -70,4 +70,69 @@ public class CouponRegisterViewModel extends ViewModel {
                 couponType.get().equals("FIX") ? Integer.parseInt(couponAmount.get()) : 0
         );
     }
+
+    public boolean valid(Runnable onNameEmpty, Runnable onNameNotEmpty, Runnable onAmountEmpty, Runnable onAmountNotEmpty, Runnable onAmountInvalid, Runnable onMinPriceEmpty, Runnable onMinPriceNotEmpty, Runnable onMinPriceInvalid, Runnable onQuantityEmpty, Runnable onQuantityNotEmpty, Runnable onQuantityInvalid, Runnable onExpiryEmpty, Runnable onExpiryNotEmpty, Runnable onIssuedStartEmpty, Runnable onIssuedStartNotEmpty, Runnable onIssuedEndEmpty, Runnable onIssuedEndNotEmpty) {
+        boolean ret = true;
+
+        if(couponName.get() == null || couponName.get().isEmpty()) {
+            ret = false;
+            onNameEmpty.run();
+        } else onNameNotEmpty.run();
+
+        try {
+            if(couponAmount.get() == null || couponAmount.get().isEmpty()) {
+                ret = false;
+                onAmountEmpty.run();
+            } else if ("FIX".equals(couponType.get()) ? Integer.parseInt(couponAmount.get()) <= 0 : Double.parseDouble(couponAmount.get()) <= 0) {
+                ret = false;
+                onAmountInvalid.run();
+            } else onAmountNotEmpty.run();
+        } catch (Exception e) {
+            ret = false;
+            onAmountInvalid.run();
+        }
+
+        try {
+            if(couponMinPrice.get() == null || couponMinPrice.get().isEmpty()) {
+                ret = false;
+                onMinPriceEmpty.run();
+            } else if (Integer.parseInt(couponMinPrice.get()) <= 0) {
+                ret = false;
+                onMinPriceInvalid.run();
+            } else onMinPriceNotEmpty.run();
+        } catch (Exception e) {
+            ret = false;
+            onMinPriceInvalid.run();
+        }
+
+        try {
+            if(couponQuantity.get() == null || couponQuantity.get().isEmpty()) {
+                ret = false;
+                onQuantityEmpty.run();
+            } else if (Integer.parseInt(couponQuantity.get()) <= 0) {
+                ret = false;
+                onQuantityInvalid.run();
+            } else onQuantityNotEmpty.run();
+        } catch (Exception e) {
+            ret = false;
+            onQuantityInvalid.run();
+        }
+
+        if(couponIssuedStart.get() == null || couponIssuedStart.get().isEmpty()) {
+            ret = false;
+            onIssuedStartEmpty.run();
+        } else onIssuedStartNotEmpty.run();
+
+        if(couponIssuedEnd.get() == null || couponIssuedEnd.get().isEmpty()) {
+            ret = false;
+            onIssuedEndEmpty.run();
+        } else onIssuedEndNotEmpty.run();
+
+        if(couponExpiry.get() == null || couponExpiry.get().isEmpty()) {
+            ret = false;
+            onExpiryEmpty.run();
+        } else onExpiryNotEmpty.run();
+
+        return ret;
+    }
 }

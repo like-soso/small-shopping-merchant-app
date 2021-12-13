@@ -14,13 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        tools:context=".view.fragment.ItemRegisterFragment">
+        tools:context=".view.fragment.ItemUpdateFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/frameLayout2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".item.view.ItemRegisterFragment">
+            android:layout_height="match_parent">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/shopListToolbar"
@@ -29,7 +28,7 @@
                 android:background="@drawable/background_bottom_stroke"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
-                app:menu="@menu/menu_item_register_toolbar"
+                app:menu="@menu/menu_item_update_toolbar"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text|textMultiLine"
-                    android:lines="3"
+                    android:lines="7"
                     android:text="@={itemUpdateViewModel.description}"
                     android:hint="물품 설명" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -153,7 +152,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
+                    android:inputType="number"
+                    android:maxLength="8"
                     android:text="@={itemUpdateViewModel.unitPrice}"
                     android:hint="단위별 가격" />
             </com.google.android.material.textfield.TextInputLayout>

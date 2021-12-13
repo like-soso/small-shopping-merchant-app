@@ -66,6 +66,13 @@ public class PointFragment extends Fragment {
         Runnable onValid = this::onValid;
         Runnable onInvalid = this::onInvalid;
 
+        binding.shopListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
+            }
+        });
+
         binding.pointRuleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +120,7 @@ public class PointFragment extends Fragment {
 
     public void onInvalid() {
         binding.signupFormEmailLayout.setErrorEnabled(true);
-        binding.signupFormEmailLayout.setError("포인트 적립 비율은 양수만 사용할 수 있습니다.");
+        binding.signupFormEmailLayout.setError("유효하지 않은 입력입니다.");
     }
 
     public void onNetworkError() {

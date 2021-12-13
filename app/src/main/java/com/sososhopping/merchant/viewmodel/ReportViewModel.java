@@ -14,8 +14,8 @@ public class ReportViewModel extends ViewModel {
         return content;
     }
 
-    public void requestReport(int storeId, int userId, String userName, Runnable onSuccess) {
-        ReportRepository.getInstance().requestReport(storeId, this.toDto(userId, userName), onSuccess);
+    public void requestReport(int storeId, int userId, String userName, Runnable onSuccess, Runnable onError) {
+        ReportRepository.getInstance().requestReport(storeId, this.toDto(userId, userName), onSuccess, onError);
     }
 
     private UserReportRequestDto toDto(int userId, String userName) {

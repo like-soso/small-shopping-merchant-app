@@ -18,11 +18,6 @@ import com.sososhopping.merchant.R;
 import com.sososhopping.merchant.databinding.FragmentReportBinding;
 import com.sososhopping.merchant.viewmodel.ReportViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ReportFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ReportFragment extends Fragment {
 
     private static final String STOREID = "storeId";
@@ -71,14 +66,22 @@ public class ReportFragment extends Fragment {
         binding.userNameLayout.getEditText().setText(customerName);
 
         Runnable onSuccess = this::onSuccess;
+        Runnable onError = this::onError;
 
         binding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.reportReport) {
-                    viewModel.requestReport(storeId, customerId, customerName, onSuccess);
+                    viewModel.requestReport(storeId, customerId, customerName, onSuccess, onError);
                 }
                 return true;
+            }
+        });
+
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
             }
         });
 
@@ -87,5 +90,9 @@ public class ReportFragment extends Fragment {
 
     public void onSuccess() {
         NavHostFragment.findNavController(this).navigate(R.id.action_reportFragment_to_reportDoneFragment);
+    }
+
+    public void onError() {
+        NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
     }
 }

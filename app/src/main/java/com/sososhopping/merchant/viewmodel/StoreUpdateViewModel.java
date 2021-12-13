@@ -193,8 +193,8 @@ public class StoreUpdateViewModel extends ViewModel {
         this.delivery = delivery;
     }
 
-    public void requestUpdate(int storeId, Runnable onSuccess) {
-        StoreRepository.getInstance().requestStoreUpdate(storeId, this.bitmap.get(), toDto(), onSuccess);
+    public void requestUpdate(int storeId, Runnable onSuccess, Runnable onError) {
+        StoreRepository.getInstance().requestStoreUpdate(storeId, this.bitmap.get(), toDto(), onSuccess, onError);
     }
 
     public void setItem(StoreDetail storeDetail) {
@@ -287,5 +287,66 @@ public class StoreUpdateViewModel extends ViewModel {
         days.add(new StoreBusinessDay(sundayId, "일", openSunday, openSunday ? openHourSunday.get() : null, openSunday ? closeHourSunday.get() : null));
 
         return days;
+    }
+
+    public boolean validate(Runnable onNameEmpty, Runnable onNameNotEmpty, Runnable onPhoneEmpty, Runnable onPhoneNotEmpty, Runnable onCategoryEmpty, Runnable onCategoryNotEmpty, Runnable onMondayConsistent, Runnable onMondayInconsistent, Runnable onTuesdayConsistent, Runnable onTuesdayInconsistent, Runnable onWednesdayConsistent, Runnable onWednesdayInconsistent, Runnable onThursdayConsistent, Runnable onThursdayInconsistent, Runnable onFridayConsistent, Runnable onFridayInconsistent, Runnable onSaturdayConsistent, Runnable onSaturdayInconsistent, Runnable onSundayConsistent, Runnable onSundayInconsistent, Runnable onDeliveryConsistent, Runnable onDeliveryInconsistent) {
+        boolean ret = true;
+
+        if (name.get() == null || name.get().isEmpty()) {
+            ret = false;
+            onNameEmpty.run();
+        } else onNameNotEmpty.run();
+
+        if (phone.get() == null || phone.get().isEmpty()) {
+            ret = false;
+            onPhoneEmpty.run();
+        } else onPhoneNotEmpty.run();
+
+        if (category.get() == null || category.get().isEmpty() || "카테고리".equals(category.get())) {
+            ret = false;
+            onCategoryEmpty.run();
+        } else onCategoryNotEmpty.run();
+
+        if (openMonday && (openHourMonday.get() == null || openHourMonday.get().isEmpty() || closeHourMonday.get() == null || closeHourMonday.get().isEmpty())) {
+            ret = false;
+            onMondayInconsistent.run();
+        } else onMondayConsistent.run();
+
+        if (openTuesday && (openHourTuesday.get() == null || openHourTuesday.get().isEmpty() || closeHourTuesday.get() == null || closeHourTuesday.get().isEmpty())) {
+            ret = false;
+            onTuesdayInconsistent.run();
+        } else onTuesdayConsistent.run();
+
+        if (openWednesday && (openHourWednesday.get() == null || openHourWednesday.get().isEmpty() || closeHourWednesday.get() == null || closeHourWednesday.get().isEmpty())) {
+            ret = false;
+            onWednesdayInconsistent.run();
+        } else onWednesdayConsistent.run();
+
+        if (openThursday && (openHourThursday.get() == null || openHourThursday.get().isEmpty() || closeHourThursday.get() == null || closeHourThursday.get().isEmpty())) {
+            ret = false;
+            onThursdayInconsistent.run();
+        } else onThursdayConsistent.run();
+
+        if (openFriday && (openHourFriday.get() == null || openHourFriday.get().isEmpty() || closeHourFriday.get() == null || closeHourFriday.get().isEmpty())) {
+            ret = false;
+            onFridayInconsistent.run();
+        } else onFridayConsistent.run();
+
+        if (openSaturday && (openHourSaturday.get() == null || openHourSaturday.get().isEmpty() || closeHourSaturday.get() == null || closeHourSaturday.get().isEmpty())) {
+            ret = false;
+            onSaturdayInconsistent.run();
+        } else onSaturdayConsistent.run();
+
+        if (openSunday && (openHourSunday.get() == null || openHourSunday.get().isEmpty() || closeHourSunday.get() == null || closeHourSunday.get().isEmpty())) {
+            ret = false;
+            onSundayInconsistent.run();
+        } else onSundayConsistent.run();
+
+        if (delivery && (deliveryCharge.get() == null || deliveryCharge.get().isEmpty())) {
+            ret = false;
+            onDeliveryInconsistent.run();
+        } else onDeliveryConsistent.run();
+
+        return ret;
     }
 }

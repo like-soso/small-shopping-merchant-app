@@ -46,24 +46,22 @@ public class AccountingUpdateViewModel extends ViewModel {
                 description.get());
     }
 
-    public boolean validate(Runnable onMemoEmpty, Runnable onMemoNotEmpty, Runnable onAmountEmpty, Runnable onAmountNegative, Runnable onAmountNotEmpty, Runnable onDateEmpty, Runnable onDateNotEmpty, Runnable onTimeEmpty, Runnable onTimeNotEmpty) {
+    public boolean validate(Runnable onAmountEmpty, Runnable onAmountNegative, Runnable onAmountNotEmpty, Runnable onDateEmpty, Runnable onDateNotEmpty, Runnable onTimeEmpty, Runnable onTimeNotEmpty) {
         boolean ret = true;
 
-        if (description.get() == null || description.get().isEmpty()) {
-            onMemoEmpty.run();
+        try {
+            if (amount.get() == null || amount.get().isEmpty()) {
+                onAmountEmpty.run();
+                ret = false;
+            } else if (Integer.parseInt(amount.get()) <= 0){
+                onAmountNegative.run();
+                ret = false;
+            } else {
+                onAmountNotEmpty.run();
+            }
+        } catch (Exception e) {
             ret = false;
-        } else {
-            onMemoNotEmpty.run();
-        }
-
-        if (amount.get() == null || amount.get().isEmpty()) {
-            onAmountEmpty.run();
-            ret = false;
-        } else if (Integer.parseInt(amount.get()) <= 0){
             onAmountNegative.run();
-            ret = false;
-        } else {
-            onAmountNotEmpty.run();
         }
 
         if (date.get() == null || date.get().isEmpty()) {

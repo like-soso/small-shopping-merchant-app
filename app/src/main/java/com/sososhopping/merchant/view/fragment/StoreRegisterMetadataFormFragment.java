@@ -58,6 +58,7 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
         binding.setStoreRegisterViewModel(viewModel);
 
         Runnable onSuccess = this::navigateToNext;
+        Runnable onInvalid = this::onBusinessNumDuplicate;
         Runnable onError = this::onNetworkError;
 
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -67,11 +68,33 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
             }
         });
 
+        Runnable onBusinessNumEmpty = this::onBusinessNumEmpty;
+        Runnable onBusinessNumNotEmpty = this::onBusinessNumNotEmpty;
+        Runnable onOwnerNameEmpty = this::onOwnerNameEmpty;
+        Runnable onOwnerNameNotEmpty = this::onOwnerNameNotEmpty;
+        Runnable onBusinessNameEmpty = this::onBusinessNameEmpty;
+        Runnable onBusinessNameNotEmpty = this::onBusinessNameNotEmpty;
+        Runnable onOpenDateEmpty = this::onOpenDateEmpty;
+        Runnable onOpenDateNotEmpty = this::onOpenDateNotEmpty;
+        Runnable onAddressNotChecked = this::onStreetAddressNotChecked;
+
+
         binding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.storeRegisterMetadataRegister) {
-                    viewModel.requestRegister(onSuccess, onError);
+                    if (viewModel.validateMetaForm(
+                            onBusinessNumEmpty,
+                            onBusinessNumNotEmpty,
+                            onOwnerNameEmpty,
+                            onOwnerNameNotEmpty,
+                            onBusinessNameEmpty,
+                            onBusinessNameNotEmpty,
+                            onOpenDateEmpty,
+                            onOpenDateNotEmpty,
+                            onAddressNotChecked
+                    ))
+                    viewModel.requestRegister(onSuccess, onInvalid, onError);
                 }
                 return true;
             }
@@ -133,17 +156,67 @@ public class StoreRegisterMetadataFormFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void onBusinessNumDuplicate() {
+        binding.name.setErrorEnabled(true);
+        binding.name.setError("이미 사용중인 사업자 등록 번호입니다.");
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
 
-    private void navigateToNext() {
+    public void onBusinessNumEmpty() {
+        binding.name.setErrorEnabled(true);
+        binding.name.setError("필수 입력 항목입니다.");
+    }
+
+    public void onBusinessNumNotEmpty() {
+        binding.name.setErrorEnabled(false);
+        binding.name.setError(null);
+    }
+
+    public void onOwnerNameEmpty() {
+        binding.signupFormPasswordLayout.setErrorEnabled(true);
+        binding.signupFormPasswordLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onOwnerNameNotEmpty() {
+        binding.signupFormPasswordLayout.setErrorEnabled(false);
+        binding.signupFormPasswordLayout.setError(null);
+    }
+
+    public void onBusinessNameNotEmpty() {
+        binding.shopName.setErrorEnabled(false);
+        binding.shopName.setError(null);
+    }
+
+    public void onBusinessNameEmpty() {
+        binding.shopName.setErrorEnabled(true);
+        binding.shopName.setError("필수 입력 항목입니다.");
+    }
+
+    public void onOpenDateEmpty() {
+        binding.shopOpenDay.setErrorEnabled(true);
+        binding.shopOpenDay.setError("필수 입력 항목입니다.");
+    }
+
+    public void onOpenDateNotEmpty() {
+        binding.shopOpenDay.setErrorEnabled(false);
+        binding.shopOpenDay.setError(null);
+    }
+
+    public void onStreetAddressNotChecked() {
+        binding.shopAddress.setErrorEnabled(true);
+        binding.shopAddress.setError("주소 확인을 진행해주세요.");
+    }
+
+    public void navigateToNext() {
         NavHostFragment.findNavController(this).navigate(R.id.action_storeRegisterMetadataFormFragment_to_storeRegisteredFragment);
     }
 
-    private void onNetworkError() {
+    public void onNetworkError() {
         NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
     }
 }

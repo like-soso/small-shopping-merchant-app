@@ -4,11 +4,11 @@ import com.sososhopping.merchant.model.coupon.entity.Coupon;
 
 public class CouponCheckResponseDto {
 
-    String userName;
+    String userNickname;
     Coupon coupon;
 
     public String getUserName() {
-        return userName;
+        return userNickname;
     }
 
     public Coupon getCoupon() {

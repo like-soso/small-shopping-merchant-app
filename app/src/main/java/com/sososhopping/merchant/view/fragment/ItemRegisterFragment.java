@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -99,13 +100,38 @@ public class ItemRegisterFragment extends Fragment {
         Runnable onSuccess = this::onSuccess;
         Runnable onError = this::onNetworkError;
 
+        Runnable onNameEmpty = this::onNameEmpty;
+        Runnable onNameNotEmpty = this::onNameNotEmpty;
+        Runnable onUnitEmpty = this::onUnitEmpty;
+        Runnable onUnitNotEmpty = this::onUnitNotEmpty;
+        Runnable onPriceEmpty = this::onPriceEmpty;
+        Runnable onPriceNotEmpty = this::onPriceNotEmpty;
+        Runnable onPriceInvalid = this::onPriceInvalid;
+
         binding.shopListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.itemRegister){
-                    viewModel.requestRegister(storeId, onSuccess, onError);
+                    if (viewModel.valid(
+                            onNameEmpty,
+                            onNameNotEmpty,
+                            onUnitEmpty,
+                            onUnitNotEmpty,
+                            onPriceEmpty,
+                            onPriceNotEmpty,
+                            onPriceInvalid
+                    )) {
+                        viewModel.requestRegister(storeId, onSuccess, onError);
+                    }
                 }
                 return true;
+            }
+        });
+
+        binding.shopListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigateUp();
             }
         });
 
@@ -116,6 +142,41 @@ public class ItemRegisterFragment extends Fragment {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         imageActivityResultLauncher.launch(intent);
+    }
+
+    public void onNameEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(true);
+        binding.signupFormEmailLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onNameNotEmpty() {
+        binding.signupFormEmailLayout.setErrorEnabled(false);
+        binding.signupFormEmailLayout.setError(null);
+    }
+
+    public void onUnitEmpty() {
+        binding.itemUnitLayout.setErrorEnabled(true);
+        binding.itemUnitLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onUnitNotEmpty() {
+        binding.itemUnitLayout.setErrorEnabled(false);
+        binding.itemUnitLayout.setError(null);
+    }
+
+    public void onPriceEmpty() {
+        binding.itemUnitPriceLayout.setErrorEnabled(true);
+        binding.itemUnitPriceLayout.setError("필수 입력 항목입니다.");
+    }
+
+    public void onPriceInvalid() {
+        binding.itemUnitPriceLayout.setErrorEnabled(true);
+        binding.itemUnitPriceLayout.setError("양수만 입력 가능");
+    }
+
+    public void onPriceNotEmpty() {
+        binding.itemUnitLayout.setErrorEnabled(false);
+        binding.itemUnitLayout.setError(null);
     }
 
     private void onSuccess() {

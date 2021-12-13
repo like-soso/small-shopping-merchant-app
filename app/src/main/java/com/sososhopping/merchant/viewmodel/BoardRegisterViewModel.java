@@ -12,8 +12,8 @@ public class BoardRegisterViewModel extends ViewModel {
     ObservableField<Bitmap> bitmap = new ObservableField<>();
 
     ObservableField<String> category = new ObservableField<>("EVENT");
-    ObservableField<String> title = new ObservableField<>();
-    ObservableField<String> description = new ObservableField<>();
+    ObservableField<String> title = new ObservableField<>("");
+    ObservableField<String> description = new ObservableField<>("");
 
     public ObservableField<Bitmap> getBitmap() {
         return bitmap;
@@ -45,5 +45,21 @@ public class BoardRegisterViewModel extends ViewModel {
 
     private BoardRegisterRequestDto toDto() {
         return new BoardRegisterRequestDto(title.get(), description.get(), category.get());
+    }
+
+    public boolean valid(Runnable onTitleEmpty, Runnable onTitleNotEmpty, Runnable onContentEmpty, Runnable onContentNotEmpty) {
+        boolean ret = true;
+
+        if (title.get() == null || title.get().isEmpty()) {
+            ret = false;
+            onTitleEmpty.run();
+        } else onTitleNotEmpty.run();
+
+        if (description.get() == null || description.get().isEmpty()) {
+            ret = false;
+            onContentEmpty.run();
+        } else onContentNotEmpty.run();
+
+        return ret;
     }
 }

@@ -61,14 +61,22 @@ public class PointCheckDialog extends DialogFragment {
         PointModifyViewModel viewModel = viewModelProvider.get(PointModifyViewModel.class);
         binding.setPointModifyViewModel(viewModel);
 
+        viewModel.getAmount().set("");
+        viewModel.getUserPhone().set("");
+        viewModel.getIsSave().set(true);
+
         Consumer<PointCheckResponseDto> onSuccess = this::onSuccess;
         Runnable onFailed = this::onUserNotFound;
         Runnable onError = this::onNetworkError;
 
+        Runnable onValid = this::onPointValid;
+        Runnable onInvalid = this::onPointInvalid;
         binding.check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.requestUserCheck(storeId, onSuccess, onFailed, onError);
+                if (viewModel.valid(onValid, onInvalid)){
+                    viewModel.requestUserCheck(storeId, onSuccess, onFailed, onError);
+                }
             }
         });
 
@@ -92,7 +100,7 @@ public class PointCheckDialog extends DialogFragment {
         }
     }
 
-    private void onSuccess(PointCheckResponseDto dto) {
+    public void onSuccess(PointCheckResponseDto dto) {
         Bundle bundle = new Bundle();
         bundle.putInt(STOREID, storeId);
         bundle.putString("userName", dto.getUserName());
@@ -100,12 +108,22 @@ public class PointCheckDialog extends DialogFragment {
         NavHostFragment.findNavController(this).navigate(R.id.action_pointCheckDialog_to_pointModifyDialog, bundle);
     }
 
-    private void onUserNotFound() {
+    public void onUserNotFound() {
         binding.customerNumber.setErrorEnabled(true);
         binding.customerNumber.setError("일치하는 고객을 찾을 수 없습니다.");
     }
 
-    private void onNetworkError() {
+    public void onPointValid() {
+        binding.point.setErrorEnabled(false);
+        binding.point.setError(null);
+    }
+
+    public void onPointInvalid() {
+        binding.point.setErrorEnabled(true);
+        binding.point.setError("유효하지 않은 입력입니다.");
+    }
+
+    public void onNetworkError() {
         NavHostFragment.findNavController(this).navigate(R.id.action_global_networkErrorDialog);
     }
 }

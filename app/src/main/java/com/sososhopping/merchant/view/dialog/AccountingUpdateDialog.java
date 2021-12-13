@@ -75,8 +75,6 @@ public class AccountingUpdateDialog extends DialogFragment {
         Runnable onSuccess = this::closeDialog;
         Runnable onError = this::onNetworkError;
 
-        Runnable onMemoEmpty = this::onMemoEmpty;
-        Runnable onMemoNotEmpty = this::onMemoNotEmpty;
         Runnable onAmountEmpty = this::onAmountEmpty;
         Runnable onAmountNegative = this::onAmountNegative;
         Runnable onAmountNotEmpty = this::onAmountNotEmpty;
@@ -89,8 +87,6 @@ public class AccountingUpdateDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 if (viewModel.validate(
-                        onMemoEmpty,
-                        onMemoNotEmpty,
                         onAmountEmpty,
                         onAmountNegative,
                         onAmountNotEmpty,
@@ -182,16 +178,6 @@ public class AccountingUpdateDialog extends DialogFragment {
         getParentFragmentManager().setFragmentResult("key", null);
     }
 
-    public void onMemoEmpty() {
-        binding.memo.setErrorEnabled(true);
-        binding.memo.setError("필수 입력 항목입니다.");
-    }
-
-    public void onMemoNotEmpty() {
-        binding.memo.setErrorEnabled(false);
-        binding.memo.setError(null);
-    }
-
     public void onAmountEmpty() {
         binding.amount.setErrorEnabled(true);
         binding.amount.setError("필수 입력 항목입니다.");
@@ -199,7 +185,7 @@ public class AccountingUpdateDialog extends DialogFragment {
 
     public void onAmountNegative() {
         binding.amount.setErrorEnabled(true);
-        binding.amount.setError("금액은 양수만 입력 가능합니다.");
+        binding.amount.setError("유효하지 않은 입력입니다.");
     }
 
     public void onAmountNotEmpty() {

@@ -12,13 +12,19 @@ import java.util.function.Consumer;
 
 public class CouponModifyViewModel extends ViewModel {
 
-    private final ObservableField<String> userPhone = new ObservableField<>();
-    private final ObservableField<String> couponCode = new ObservableField<>();
+    String couponType = "FIX";
 
-    ObservableField<String> couponName = new ObservableField<>();
-    ObservableField<String> couponAmount = new ObservableField<>();
-    ObservableField<String> couponMinPrice = new ObservableField<>();
-    ObservableField<String> couponExpiry = new ObservableField<>();
+    private final ObservableField<String> userPhone = new ObservableField<>("");
+    private final ObservableField<String> couponCode = new ObservableField<>("");
+
+    ObservableField<String> couponName = new ObservableField<>("");
+    ObservableField<String> couponAmount = new ObservableField<>("");
+    ObservableField<String> couponMinPrice = new ObservableField<>("");
+    ObservableField<String> couponExpiry = new ObservableField<>("");
+
+    public String getCouponType() {
+        return couponType;
+    }
 
     public ObservableField<String> getUserPhone() {
         return userPhone;
@@ -44,12 +50,12 @@ public class CouponModifyViewModel extends ViewModel {
         return couponExpiry;
     }
 
-    public void requestCouponCheck(int storeId, Consumer<CouponCheckResponseDto> onSuccess) {
-        CouponRepository.getInstance().requestCouponCheck(storeId, userPhone.get(), couponCode.get(), onSuccess);
+    public void requestCouponCheck(int storeId, Consumer<CouponCheckResponseDto> onSuccess, Runnable onFailed, Runnable onInvalid, Runnable onError) {
+        CouponRepository.getInstance().requestCouponCheck(storeId, userPhone.get(), couponCode.get(), onSuccess, onFailed, onInvalid, onError);
     }
 
-    public void requestCouponModify(int storeId, Runnable onSuccess) {
-        CouponRepository.getInstance().requestCouponModify(storeId, this.toDto(), onSuccess);
+    public void requestCouponModify(int storeId, Runnable onSuccess, Runnable onInvalid, Runnable onError) {
+        CouponRepository.getInstance().requestCouponModify(storeId, this.toDto(), onSuccess, onInvalid, onError);
     }
 
     private CouponModifyRequestDto toDto() {
@@ -57,6 +63,7 @@ public class CouponModifyViewModel extends ViewModel {
     }
 
     public void setModel(Coupon coupon) {
+        this.couponType = coupon.getCouponType();
         this.couponName.set(coupon.getCouponName());
         this.couponAmount.set(coupon.getCouponType().equals("FIX") ? Integer.toString(coupon.getFixAmount()) : Double.toString(coupon.getRateAmount()));
         this.couponMinPrice.set(Integer.toString(coupon.getMinimumOrderPrice()));
